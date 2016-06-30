@@ -7,12 +7,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import me.pexcn.bandwagonhost.R;
+import me.pexcn.bandwagonhost.base.presenter.IBasePresenter;
 
 /**
  * Created by pexcn on 2016-06-29.
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity<P extends IBasePresenter> extends AppCompatActivity implements IBaseView {
     protected Toolbar mToolbar;
+    protected P mPresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,10 +29,14 @@ public abstract class BaseActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
+        mPresenter = getPresenter();
+
         init();
     }
 
     abstract protected int getLayoutId();
+
+    abstract protected P getPresenter();
 
     abstract protected boolean hasParentActivity();
 
@@ -44,5 +50,12 @@ public abstract class BaseActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        mPresenter.destroy();
+        mPresenter = null;
+        super.onDestroy();
     }
 }

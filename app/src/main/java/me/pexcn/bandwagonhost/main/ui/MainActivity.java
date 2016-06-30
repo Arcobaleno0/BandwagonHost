@@ -12,28 +12,25 @@ import android.view.View;
 
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.base.ui.BaseActivity;
+import me.pexcn.bandwagonhost.main.presenter.IMainPresenter;
 import me.pexcn.bandwagonhost.main.presenter.MainPresenter;
 
-public class MainActivity extends BaseActivity implements IMainView,
+public class MainActivity extends BaseActivity<IMainPresenter> implements IMainView,
         NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private NavigationView mNavigationView;
-    private MainPresenter mPresenter;
 
     @Override
     protected void init() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar,
-                R.string.drawer_open, R.string.drawer_close);
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.drawer_open, R.string.drawer_close);
         mDrawerToggle.syncState();
         mDrawerLayout.addDrawerListener(mDrawerToggle);
-
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         assert mNavigationView != null;
         mNavigationView.setNavigationItemSelectedListener(this);
 
-        mPresenter = new MainPresenter(this);
         mPresenter.switchToFragment(R.id.nav_host);
         mNavigationView.setCheckedItem(R.id.nav_host);
     }
@@ -41,6 +38,11 @@ public class MainActivity extends BaseActivity implements IMainView,
     @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
+    }
+
+    @Override
+    protected MainPresenter getPresenter() {
+        return new MainPresenter(this);
     }
 
     @Override
@@ -56,7 +58,7 @@ public class MainActivity extends BaseActivity implements IMainView,
     }
 
     @Override
-    public void showSnackbarMessage(String msg, int duration) {
+    public void showTips(String msg, int duration) {
         CoordinatorLayout coordinator = (CoordinatorLayout) findViewById(R.id.coordinator_layout);
         assert coordinator != null;
         Snackbar.make(coordinator, msg, duration).setAction("确定", this).show();
@@ -64,7 +66,7 @@ public class MainActivity extends BaseActivity implements IMainView,
 
     @Override
     public void showAboutDialog() {
-        // TODO
+        // TODO: 显示关于Dialog
     }
 
     @Override
@@ -89,13 +91,6 @@ public class MainActivity extends BaseActivity implements IMainView,
         } else {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        mPresenter.destroy();
-        mPresenter = null;
-        super.onDestroy();
     }
 
     @Override

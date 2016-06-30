@@ -1,6 +1,7 @@
 package me.pexcn.bandwagonhost.main.presenter;
 
 import me.pexcn.bandwagonhost.R;
+import me.pexcn.bandwagonhost.base.presenter.BasePresenter;
 import me.pexcn.bandwagonhost.feature.extra.ui.ExtraFragment;
 import me.pexcn.bandwagonhost.feature.hostmanager.ui.HostManagerFragment;
 import me.pexcn.bandwagonhost.feature.migrate.ui.MigrateFragment;
@@ -9,11 +10,9 @@ import me.pexcn.bandwagonhost.main.ui.IMainView;
 /**
  * Created by pexcn on 2016-06-29.
  */
-public class MainPresenter implements IMainPresenter {
-    private IMainView mView;
-
+public class MainPresenter extends BasePresenter<IMainView> implements IMainPresenter {
     public MainPresenter(IMainView view) {
-        this.mView = view;
+        super(view);
     }
 
     @Override
@@ -29,10 +28,5 @@ public class MainPresenter implements IMainPresenter {
                 mView.switchToFragment(new ExtraFragment(), "额外功能");
                 break;
         }
-    }
-
-    @Override
-    public void destroy() {
-        mView = null;
     }
 }
