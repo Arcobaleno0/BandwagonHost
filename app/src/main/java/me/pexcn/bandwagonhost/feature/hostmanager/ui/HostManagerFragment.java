@@ -1,4 +1,4 @@
-package me.pexcn.bandwagonhost.feature.host.ui;
+package me.pexcn.bandwagonhost.feature.hostmanager.ui;
 
 import android.view.View;
 

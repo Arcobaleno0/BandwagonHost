@@ -2,7 +2,7 @@ package me.pexcn.bandwagonhost.main.presenter;
 
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.feature.extra.ui.ExtraFragment;
-import me.pexcn.bandwagonhost.feature.host.ui.HostManagerFragment;
+import me.pexcn.bandwagonhost.feature.hostmanager.ui.HostManagerFragment;
 import me.pexcn.bandwagonhost.feature.migrate.ui.MigrateFragment;
 import me.pexcn.bandwagonhost.main.ui.IMainView;
 

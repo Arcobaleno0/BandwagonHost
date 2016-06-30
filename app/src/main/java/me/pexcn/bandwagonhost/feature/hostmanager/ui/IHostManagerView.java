@@ -1,4 +1,4 @@
-package me.pexcn.bandwagonhost.feature.host.ui;
+package me.pexcn.bandwagonhost.feature.hostmanager.ui;
 
 /**
  * Created by pexcn on 2016-06-29.
