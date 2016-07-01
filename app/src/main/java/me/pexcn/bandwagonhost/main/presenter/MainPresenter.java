@@ -8,7 +8,7 @@ import me.pexcn.bandwagonhost.base.presenter.BasePresenter;
 import me.pexcn.bandwagonhost.feature.extra.ui.ExtraFragment;
 import me.pexcn.bandwagonhost.feature.hostmanager.ui.HostManagerFragment;
 import me.pexcn.bandwagonhost.feature.migrate.ui.MigrateFragment;
-import me.pexcn.bandwagonhost.main.listener.OnAddHostStateListener;
+import me.pexcn.bandwagonhost.feature.hostmanager.listener.OnAddHostStateListener;
 import me.pexcn.bandwagonhost.main.model.IMainModel;
 import me.pexcn.bandwagonhost.main.model.MainModel;
 import me.pexcn.bandwagonhost.main.ui.IMainView;
