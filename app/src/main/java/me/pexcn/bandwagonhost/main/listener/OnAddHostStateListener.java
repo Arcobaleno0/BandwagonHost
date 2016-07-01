@@ -1,4 +1,4 @@
-package me.pexcn.bandwagonhost.feature.hostmanager.listener;
+package me.pexcn.bandwagonhost.main.listener;
 
 /**
  * Created by pexcn on 2016-07-01.
