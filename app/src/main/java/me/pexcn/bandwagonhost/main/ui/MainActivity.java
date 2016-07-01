@@ -12,6 +12,8 @@ import android.view.View;
 
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.base.ui.BaseActivity;
+import me.pexcn.bandwagonhost.bean.Host;
+import me.pexcn.bandwagonhost.database.HostDatabase;
 import me.pexcn.bandwagonhost.main.presenter.IMainPresenter;
 import me.pexcn.bandwagonhost.main.presenter.MainPresenter;
 
@@ -27,12 +29,23 @@ public class MainActivity extends BaseActivity<IMainPresenter> implements IMainV
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.drawer_open, R.string.drawer_close);
         mDrawerToggle.syncState();
         mDrawerLayout.addDrawerListener(mDrawerToggle);
+
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         assert mNavigationView != null;
         mNavigationView.setNavigationItemSelectedListener(this);
 
+        prepare();
+    }
+
+    private void prepare() {
         mPresenter.switchToFragment(R.id.nav_host);
         mNavigationView.setCheckedItem(R.id.nav_host);
+
+        Host host = new Host();
+        host.setTitle("22");
+        host.setVeid("22334");
+        host.setKey("22323dfgsdfbd");
+        HostDatabase.getInstance(this).insert(host);
     }
 
     @Override
@@ -66,7 +79,7 @@ public class MainActivity extends BaseActivity<IMainPresenter> implements IMainV
 
     @Override
     public void showAboutDialog() {
-        // TODO: 显示关于Dialog
+        // TODO
     }
 
     @Override

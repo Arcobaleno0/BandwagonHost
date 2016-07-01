@@ -26,7 +26,6 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter> imp
         return new HostManagerPresenter(this);
     }
 
-
     @Override
     protected void initView(View view) {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rcv_list);

@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import me.pexcn.bandwagonhost.base.presenter.IBasePresenter;
-import me.pexcn.bandwagonhost.main.ui.IMainView;
 
 /**
  * Created by pexcn on 2016-06-29.
@@ -53,7 +52,6 @@ public abstract class BaseFragment<P extends IBasePresenter> extends Fragment im
 
     @Override
     public void showTips(String msg, int duration) {
-        // TODO: IMainView看来并不适合
-        ((IMainView) mActivity).showTips(msg, duration);
+        ((IBaseView) mActivity).showTips(msg, duration);
     }
 }

@@ -6,7 +6,7 @@ import java.util.List;
  * Created by pexcn on 2016-06-30.
  */
 public interface IDatabase<T> {
-    void add(T t);
+    void insert(T t);
 
     void delete(T t);
 
@@ -14,5 +14,7 @@ public interface IDatabase<T> {
 
     List<T> queryAll();
 
-    void modify(T t);
+    void update(T t);
+
+    void close();
 }
