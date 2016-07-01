@@ -1,6 +1,5 @@
 package me.pexcn.bandwagonhost.feature.migrate.ui;
 
-import android.support.design.widget.Snackbar;
 import android.view.View;
 
 import me.pexcn.bandwagonhost.R;
@@ -25,7 +24,7 @@ public class MigrateFragment extends BaseFragment<IMigratePresenter> implements 
 
     @Override
     protected void initView(View view) {
-        showTips("Migrate", Snackbar.LENGTH_INDEFINITE);
+
     }
 
     @Override

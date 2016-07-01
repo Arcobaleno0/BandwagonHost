@@ -17,6 +17,8 @@ public class HostDatabase implements IDatabase<Host> {
     private HostDatabaseHelper mHelper;
     private SQLiteDatabase mDatabase;
 
+    // TODO: 重构数据库
+
     private HostDatabase(Context context) {
         mHelper = new HostDatabaseHelper(context);
         mDatabase = mHelper.getWritableDatabase();
@@ -27,6 +29,8 @@ public class HostDatabase implements IDatabase<Host> {
     public static HostDatabase getInstance(Context context) {
         if (database == null) {
             database = new HostDatabase(context);
+        } else {
+            database.open();
         }
         return database;
     }
@@ -80,6 +84,11 @@ public class HostDatabase implements IDatabase<Host> {
         values.put(HostDatabaseHelper.TABLE_COLUMN_VEID, host.getVeid());
         values.put(HostDatabaseHelper.TABLE_COLUMN_KEY, host.getKey());
         mDatabase.update(HostDatabaseHelper.TABLE_NAME, values, HostDatabaseHelper.TABLE_COLUMN_ID + "=" + host.getId(), null);
+    }
+
+    @Override
+    public void open() {
+        mDatabase = mHelper.getWritableDatabase();
     }
 
     @Override

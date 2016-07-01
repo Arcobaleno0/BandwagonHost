@@ -1,6 +1,5 @@
 package me.pexcn.bandwagonhost.feature.hostmanager.ui;
 
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -34,6 +33,6 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter> imp
 
     @Override
     protected void initData() {
-        showTips("HostManager", Snackbar.LENGTH_LONG);
+
     }
 }

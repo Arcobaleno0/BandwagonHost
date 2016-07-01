@@ -1,6 +1,5 @@
 package me.pexcn.bandwagonhost.feature.extra.ui;
 
-import android.support.design.widget.Snackbar;
 import android.view.View;
 
 import me.pexcn.bandwagonhost.R;
@@ -29,6 +28,6 @@ public class ExtraFragment extends BaseFragment<IExtraPresenter> implements IExt
 
     @Override
     protected void initData() {
-        showTips("Extra", Snackbar.LENGTH_INDEFINITE);
+
     }
 }

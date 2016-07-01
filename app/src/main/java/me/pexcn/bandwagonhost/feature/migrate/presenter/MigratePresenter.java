@@ -6,8 +6,13 @@ import me.pexcn.bandwagonhost.feature.migrate.ui.IExtraView;
 /**
  * Created by pexcn on 2016-06-30.
  */
-public class MigratePresenter extends BasePresenter<IExtraView> implements IMigratePresenter {
+public class MigratePresenter extends BasePresenter<IExtraView, Object> implements IMigratePresenter {
     public MigratePresenter(IExtraView view) {
         super(view);
+    }
+
+    @Override
+    protected Object getModel() {
+        return null;
     }
 }

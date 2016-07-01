@@ -16,5 +16,7 @@ public interface IDatabase<T> {
 
     void update(T t);
 
+    void open();
+
     void close();
 }

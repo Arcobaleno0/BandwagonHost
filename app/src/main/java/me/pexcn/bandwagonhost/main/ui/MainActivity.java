@@ -14,6 +14,7 @@ import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.base.ui.BaseActivity;
 import me.pexcn.bandwagonhost.bean.Host;
 import me.pexcn.bandwagonhost.database.HostDatabase;
+import me.pexcn.bandwagonhost.database.IDatabase;
 import me.pexcn.bandwagonhost.main.presenter.IMainPresenter;
 import me.pexcn.bandwagonhost.main.presenter.MainPresenter;
 
@@ -22,30 +23,28 @@ public class MainActivity extends BaseActivity<IMainPresenter> implements IMainV
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private NavigationView mNavigationView;
+    private IDatabase<Host> mDatabase;
 
     @Override
     protected void init() {
+        // drawer
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.drawer_open, R.string.drawer_close);
         mDrawerToggle.syncState();
         mDrawerLayout.addDrawerListener(mDrawerToggle);
 
+        // nav
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         assert mNavigationView != null;
         mNavigationView.setNavigationItemSelectedListener(this);
 
-        prepare();
-    }
+        // database
+        mDatabase = HostDatabase.getInstance(this);
 
-    private void prepare() {
+        // prepare
         mPresenter.switchToFragment(R.id.nav_host);
         mNavigationView.setCheckedItem(R.id.nav_host);
-
-        Host host = new Host();
-        host.setTitle("22");
-        host.setVeid("22334");
-        host.setKey("22323dfgsdfbd");
-        HostDatabase.getInstance(this).insert(host);
+        mPresenter.prepare();
     }
 
     @Override
@@ -109,5 +108,11 @@ public class MainActivity extends BaseActivity<IMainPresenter> implements IMainV
     @Override
     public void onClick(View v) {
         // ignore
+    }
+
+    @Override
+    protected void onDestroy() {
+        mDatabase.close();
+        super.onDestroy();
     }
 }
