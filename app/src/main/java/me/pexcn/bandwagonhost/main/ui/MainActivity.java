@@ -1,12 +1,18 @@
 package me.pexcn.bandwagonhost.main.ui;
 
+import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
+import android.text.InputFilter;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -17,12 +23,15 @@ import me.pexcn.bandwagonhost.database.HostDatabase;
 import me.pexcn.bandwagonhost.database.IDatabase;
 import me.pexcn.bandwagonhost.main.presenter.IMainPresenter;
 import me.pexcn.bandwagonhost.main.presenter.MainPresenter;
+import me.pexcn.bandwagonhost.tools.TextFilter;
 
 public class MainActivity extends BaseActivity<IMainPresenter> implements IMainView,
-        NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+        NavigationView.OnNavigationItemSelectedListener, View.OnClickListener,
+        DialogInterface.OnClickListener {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private NavigationView mNavigationView;
+    private FloatingActionButton mFab;
     private IDatabase<Host> mDatabase;
 
     @Override
@@ -37,6 +46,11 @@ public class MainActivity extends BaseActivity<IMainPresenter> implements IMainV
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         assert mNavigationView != null;
         mNavigationView.setNavigationItemSelectedListener(this);
+
+        // fab
+        mFab = (FloatingActionButton) findViewById(R.id.fab);
+        assert mFab != null;
+        mFab.setOnClickListener(this);
 
         // database
         mDatabase = HostDatabase.getInstance(this);
@@ -67,6 +81,24 @@ public class MainActivity extends BaseActivity<IMainPresenter> implements IMainV
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_content, fragment).commit();
         assert getSupportActionBar() != null;
         getSupportActionBar().setTitle(title);
+    }
+
+    @SuppressLint("InflateParams")
+    @Override
+    public void showAddHostDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.dialog_addhost, null);
+        builder.setView(view);
+        builder.setTitle("添加主机");
+        builder.setPositiveButton("确定", this);
+        builder.setNegativeButton("取消", this);
+        builder.show();
+        TextInputEditText title = (TextInputEditText) view.findViewById(R.id.et_title);
+        TextInputEditText veid = (TextInputEditText) view.findViewById(R.id.et_veid);
+        TextInputEditText key = (TextInputEditText) view.findViewById(R.id.et_key);
+        title.setFilters(new InputFilter[]{new TextFilter(title)});
+        veid.setFilters(new InputFilter[]{new TextFilter(veid)});
+        key.setFilters(new InputFilter[]{new TextFilter(key)});
     }
 
     @Override
@@ -107,7 +139,23 @@ public class MainActivity extends BaseActivity<IMainPresenter> implements IMainV
 
     @Override
     public void onClick(View v) {
-        // ignore
+        switch (v.getId()) {
+            case R.id.fab:
+                mPresenter.addHost();
+                break;
+        }
+    }
+
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        switch (which) {
+            case DialogInterface.BUTTON_POSITIVE:
+                // TODO
+                break;
+            case DialogInterface.BUTTON_NEGATIVE:
+
+                break;
+        }
     }
 
     @Override

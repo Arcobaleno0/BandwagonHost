@@ -10,5 +10,7 @@ import me.pexcn.bandwagonhost.base.ui.IBaseView;
 public interface IMainView extends IBaseView {
     void switchToFragment(Fragment fragment, String title);
 
+    void showAddHostDialog();
+
     void showAboutDialog();
 }

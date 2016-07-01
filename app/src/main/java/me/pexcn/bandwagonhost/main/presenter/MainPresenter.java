@@ -16,7 +16,6 @@ import me.pexcn.bandwagonhost.main.ui.IMainView;
  * Created by pexcn on 2016-06-29.
  */
 public class MainPresenter extends BasePresenter<IMainView, IMainModel> implements IMainPresenter {
-
     public MainPresenter(IMainView view) {
         super(view);
     }
@@ -24,6 +23,18 @@ public class MainPresenter extends BasePresenter<IMainView, IMainModel> implemen
     @Override
     protected IMainModel getModel() {
         return new MainModel((Context) mView);
+    }
+
+    @Override
+    public void prepare() {
+        if (!mModel.hasHostData()) {
+            mView.showTips("无数据\n" + "请先点击右下角的 + 号添加主机", Snackbar.LENGTH_INDEFINITE);
+        }
+    }
+
+    @Override
+    public void addHost() {
+        mView.showAddHostDialog();
     }
 
     @Override
@@ -38,13 +49,6 @@ public class MainPresenter extends BasePresenter<IMainView, IMainModel> implemen
             case R.id.nav_extra:
                 mView.switchToFragment(new ExtraFragment(), "额外功能");
                 break;
-        }
-    }
-
-    @Override
-    public void prepare() {
-        if (mModel.hasHostData()) {
-            mView.showTips("无数据", Snackbar.LENGTH_INDEFINITE);
         }
     }
 }
