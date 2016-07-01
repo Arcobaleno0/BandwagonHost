@@ -9,6 +9,15 @@ public class Host {
     private String veid;
     private String key;
 
+    public Host() {
+    }
+
+    public Host(String title, String veid, String key) {
+        this.title = title;
+        this.veid = veid;
+        this.key = key;
+    }
+
     public int getId() {
         return _id;
     }

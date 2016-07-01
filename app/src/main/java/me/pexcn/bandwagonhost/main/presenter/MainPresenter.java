@@ -8,6 +8,7 @@ import me.pexcn.bandwagonhost.base.presenter.BasePresenter;
 import me.pexcn.bandwagonhost.feature.extra.ui.ExtraFragment;
 import me.pexcn.bandwagonhost.feature.hostmanager.ui.HostManagerFragment;
 import me.pexcn.bandwagonhost.feature.migrate.ui.MigrateFragment;
+import me.pexcn.bandwagonhost.main.listener.OnAddHostStateListener;
 import me.pexcn.bandwagonhost.main.model.IMainModel;
 import me.pexcn.bandwagonhost.main.model.MainModel;
 import me.pexcn.bandwagonhost.main.ui.IMainView;
@@ -15,7 +16,7 @@ import me.pexcn.bandwagonhost.main.ui.IMainView;
 /**
  * Created by pexcn on 2016-06-29.
  */
-public class MainPresenter extends BasePresenter<IMainView, IMainModel> implements IMainPresenter {
+public class MainPresenter extends BasePresenter<IMainView, IMainModel> implements IMainPresenter, OnAddHostStateListener {
     public MainPresenter(IMainView view) {
         super(view);
     }
@@ -33,8 +34,8 @@ public class MainPresenter extends BasePresenter<IMainView, IMainModel> implemen
     }
 
     @Override
-    public void addHost() {
-        mView.showAddHostDialog();
+    public void addHost(String title, String veid, String key) {
+        mModel.addHost(title, veid, key, this);
     }
 
     @Override
@@ -50,5 +51,11 @@ public class MainPresenter extends BasePresenter<IMainView, IMainModel> implemen
                 mView.switchToFragment(new ExtraFragment(), "额外功能");
                 break;
         }
+    }
+
+    @Override
+    public void onFinished(String title) {
+        mView.showTips(title + "添加成功", Snackbar.LENGTH_LONG);
+        // TODO: 刷新列表
     }
 }

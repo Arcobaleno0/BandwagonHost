@@ -12,5 +12,8 @@ public interface IMainView extends IBaseView {
 
     void showAddHostDialog();
 
+    // TODO
+    // void showCancelDialog();
+
     void showAboutDialog();
 }

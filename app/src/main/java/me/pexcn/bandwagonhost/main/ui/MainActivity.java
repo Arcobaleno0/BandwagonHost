@@ -34,6 +34,10 @@ public class MainActivity extends BaseActivity<IMainPresenter> implements IMainV
     private FloatingActionButton mFab;
     private IDatabase<Host> mDatabase;
 
+    private TextInputEditText mTitle;
+    private TextInputEditText mVeid;
+    private TextInputEditText mKey;
+
     @Override
     protected void init() {
         // drawer
@@ -89,16 +93,17 @@ public class MainActivity extends BaseActivity<IMainPresenter> implements IMainV
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View view = getLayoutInflater().inflate(R.layout.dialog_addhost, null);
         builder.setView(view);
+        builder.setCancelable(false);
         builder.setTitle("添加主机");
         builder.setPositiveButton("确定", this);
         builder.setNegativeButton("取消", this);
         builder.show();
-        TextInputEditText title = (TextInputEditText) view.findViewById(R.id.et_title);
-        TextInputEditText veid = (TextInputEditText) view.findViewById(R.id.et_veid);
-        TextInputEditText key = (TextInputEditText) view.findViewById(R.id.et_key);
-        title.setFilters(new InputFilter[]{new TextFilter(title)});
-        veid.setFilters(new InputFilter[]{new TextFilter(veid)});
-        key.setFilters(new InputFilter[]{new TextFilter(key)});
+        mTitle = (TextInputEditText) view.findViewById(R.id.et_title);
+        mVeid = (TextInputEditText) view.findViewById(R.id.et_veid);
+        mKey = (TextInputEditText) view.findViewById(R.id.et_key);
+        mTitle.setFilters(new InputFilter[]{new TextFilter(mTitle)});
+        mVeid.setFilters(new InputFilter[]{new TextFilter(mVeid)});
+        mKey.setFilters(new InputFilter[]{new TextFilter(mKey)});
     }
 
     @Override
@@ -141,7 +146,7 @@ public class MainActivity extends BaseActivity<IMainPresenter> implements IMainV
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fab:
-                mPresenter.addHost();
+                showAddHostDialog();
                 break;
         }
     }
@@ -150,10 +155,7 @@ public class MainActivity extends BaseActivity<IMainPresenter> implements IMainV
     public void onClick(DialogInterface dialog, int which) {
         switch (which) {
             case DialogInterface.BUTTON_POSITIVE:
-                // TODO
-                break;
-            case DialogInterface.BUTTON_NEGATIVE:
-
+                mPresenter.addHost(mTitle.getText().toString(), mVeid.getText().toString(), mKey.getText().toString());
                 break;
         }
     }

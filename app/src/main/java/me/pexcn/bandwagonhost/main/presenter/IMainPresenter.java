@@ -8,7 +8,7 @@ import me.pexcn.bandwagonhost.base.presenter.IBasePresenter;
 public interface IMainPresenter extends IBasePresenter {
     void prepare();
 
-    void addHost();
+    void addHost(String title, String veid, String key);
 
     void switchToFragment(int id);
 }
