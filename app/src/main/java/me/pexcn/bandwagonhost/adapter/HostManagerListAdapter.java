@@ -26,7 +26,7 @@ public class HostManagerListAdapter extends RecyclerView.Adapter<HostManagerList
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.item_hostlist, parent, false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_host, parent, false);
         return new HostManagerListAdapter.ViewHolder(view);
     }
 
