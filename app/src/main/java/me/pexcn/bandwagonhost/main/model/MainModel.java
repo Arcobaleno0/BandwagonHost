@@ -25,6 +25,6 @@ public class MainModel implements IMainModel {
     @Override
     public void addHost(Host host, OnAddHostFinishListener listener) {
         mDatabase.insert(host);
-        listener.onFinish(host.title);
+        listener.onFinish(host);
     }
 }

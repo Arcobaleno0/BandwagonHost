@@ -19,9 +19,8 @@ import me.pexcn.bandwagonhost.feature.hostmanager.presenter.IHostManagerPresente
  */
 public class HostManagerFragment extends BaseFragment<IHostManagerPresenter> implements IHostManagerView {
     private RecyclerView mRecyclerView;
-
     private HostManagerListAdapter mAdapter;
-    private List<Host> mHosts = new ArrayList<>();
+    private List<Host> mHosts;
 
     @Override
     protected int getLayoutId() {
@@ -40,15 +39,25 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter> imp
 
     @Override
     protected void initData() {
+        mHosts = new ArrayList<>();
         mAdapter = new HostManagerListAdapter(mActivity, mHosts);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
+        // TODO: 列表动画
         mRecyclerView.setAdapter(mAdapter);
 
-        mPresenter.loadList(mHosts);
+        mPresenter.prepare(mHosts);
     }
 
     @Override
     public void refreshList() {
+        // TODO: notify优化
         mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void addHost(Host host) {
+        mHosts.add(host);
+        // TODO: notify优化
+        mAdapter.notifyItemInserted(mHosts.size());
     }
 }

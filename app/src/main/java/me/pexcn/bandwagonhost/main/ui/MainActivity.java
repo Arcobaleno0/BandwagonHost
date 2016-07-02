@@ -13,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.text.InputFilter;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -128,12 +129,22 @@ public class MainActivity extends BaseActivity<IMainPresenter> implements IMainV
         View view = getLayoutInflater().inflate(R.layout.dialog_addhost, null);
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setView(view)
-                .setCancelable(false)
                 .setTitle("添加主机")
                 .setPositiveButton("确定", null)
                 .setNegativeButton("取消", null)
                 .create();
+        dialog.setCancelable(false);
         dialog.show();
+        dialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+            @Override
+            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP && !event.isCanceled()) {
+                    dialog.cancel();
+                    return true;
+                }
+                return false;
+            }
+        });
         dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(new OnDialogButtonClickListener(dialog, DialogInterface.BUTTON_POSITIVE));
         mTitle = (TextInputEditText) view.findViewById(R.id.et_title);
         mVeid = (TextInputEditText) view.findViewById(R.id.et_veid);

@@ -2,12 +2,14 @@ package me.pexcn.bandwagonhost.main.presenter;
 
 import android.content.Context;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.base.presenter.BasePresenter;
 import me.pexcn.bandwagonhost.bean.Host;
 import me.pexcn.bandwagonhost.feature.extra.ui.ExtraFragment;
 import me.pexcn.bandwagonhost.feature.hostmanager.ui.HostManagerFragment;
+import me.pexcn.bandwagonhost.feature.hostmanager.ui.IHostManagerView;
 import me.pexcn.bandwagonhost.feature.migrate.ui.MigrateFragment;
 import me.pexcn.bandwagonhost.main.model.IMainModel;
 import me.pexcn.bandwagonhost.main.model.MainModel;
@@ -56,8 +58,12 @@ public class MainPresenter extends BasePresenter<IMainView, IMainModel>
     }
 
     @Override
-    public void onFinish(String title) {
-        mView.showTips(title + " " + "添加成功", Snackbar.LENGTH_LONG);
-        // TODO: 刷新列表
+    public void onFinish(Host host) {
+        mView.showTips(host.title + " " + "添加成功", Snackbar.LENGTH_LONG);
+        // TODO: 待优化
+        ((IHostManagerView) ((AppCompatActivity) mView)
+                .getSupportFragmentManager()
+                .findFragmentById(R.id.frame_content))
+                .addHost(host);
     }
 }

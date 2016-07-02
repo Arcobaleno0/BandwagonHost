@@ -20,8 +20,10 @@ public class HostManagerModel implements IHostManagerModel {
     }
 
     @Override
-    public List<Host> loadList(List<Host> hosts) {
+    public void loadList(List<Host> hosts) {
+        if (!hosts.isEmpty()) {
+            hosts.clear();
+        }
         hosts.addAll(mDatabase.queryAll());
-        return hosts;
     }
 }

@@ -7,7 +7,7 @@ import me.pexcn.bandwagonhost.bean.Host;
  */
 public interface IMainModel {
     interface OnAddHostFinishListener {
-        void onFinish(String title);
+        void onFinish(Host host);
     }
 
     boolean hasHost();
