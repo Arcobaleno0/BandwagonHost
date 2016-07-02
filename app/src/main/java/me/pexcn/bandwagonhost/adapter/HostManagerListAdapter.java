@@ -32,7 +32,7 @@ public class HostManagerListAdapter extends RecyclerView.Adapter<HostManagerList
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mTextView.setText(mHosts.get(position).getTitle());
+        holder.mTextView.setText(mHosts.get(position).title);
     }
 
     @Override

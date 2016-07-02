@@ -20,7 +20,6 @@ import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.base.ui.BaseActivity;
 import me.pexcn.bandwagonhost.bean.Host;
 import me.pexcn.bandwagonhost.database.HostDatabase;
-import me.pexcn.bandwagonhost.database.IDatabase;
 import me.pexcn.bandwagonhost.main.presenter.IMainPresenter;
 import me.pexcn.bandwagonhost.main.presenter.MainPresenter;
 import me.pexcn.bandwagonhost.utils.TextFilter;
@@ -31,7 +30,7 @@ public class MainActivity extends BaseActivity<IMainPresenter> implements IMainV
     private ActionBarDrawerToggle mDrawerToggle;
     private NavigationView mNavigationView;
     private FloatingActionButton mFab;
-    private IDatabase<Host> mDatabase;
+
     private TextInputEditText mTitle;
     private TextInputEditText mVeid;
     private TextInputEditText mKey;
@@ -54,11 +53,7 @@ public class MainActivity extends BaseActivity<IMainPresenter> implements IMainV
         assert mFab != null;
         mFab.setOnClickListener(this);
 
-        // database
-        mDatabase = HostDatabase.getInstance(this);
-
         // prepare
-        mPresenter.switchToFragment(R.id.nav_hostmanager);
         mPresenter.prepare();
     }
 
@@ -99,20 +94,24 @@ public class MainActivity extends BaseActivity<IMainPresenter> implements IMainV
 
             @Override
             public void onClick(View v) {
+                Host host = new Host();
+                host.title = mTitle.getText().toString();
+                host.veid = mVeid.getText().toString();
+                host.key = mKey.getText().toString();
                 switch (which) {
                     case DialogInterface.BUTTON_POSITIVE:
-                        if ("".equals(mTitle.getText().toString()) || "".equals(mVeid.getText().toString()) || "".equals(mKey.getText().toString())) {
-                            if ("".equals(mTitle.getText().toString())) {
+                        if ("".equals(host.title) || "".equals(host.veid) || "".equals(host.key)) {
+                            if ("".equals(host.title)) {
                                 mTitle.setError("标题不能为空");
                             }
-                            if ("".equals(mVeid.getText().toString())) {
-                                mVeid.setError("VEID不能为空");
+                            if ("".equals(host.veid)) {
+                                mVeid.setError("VEID 不能为空");
                             }
-                            if ("".equals(mKey.getText().toString())) {
-                                mKey.setError("KEY不能为空");
+                            if ("".equals(host.key)) {
+                                mKey.setError("KEY 不能为空");
                             }
                         } else {
-                            mPresenter.addHost(mTitle.getText().toString(), mVeid.getText().toString(), mKey.getText().toString());
+                            mPresenter.addHost(host);
                             dialog.dismiss();
                         }
                         break;
@@ -169,7 +168,9 @@ public class MainActivity extends BaseActivity<IMainPresenter> implements IMainV
             case R.id.nav_hostmanager:
             case R.id.nav_migrate:
             case R.id.nav_extra:
-                mPresenter.switchToFragment(id);
+                if (!item.isChecked()) {
+                    mPresenter.switchToFragment(id);
+                }
                 break;
         }
         mDrawerLayout.closeDrawer(GravityCompat.START);
@@ -196,7 +197,10 @@ public class MainActivity extends BaseActivity<IMainPresenter> implements IMainV
 
     @Override
     protected void onDestroy() {
-        mDatabase.close();
+        HostDatabase mDatabase = HostDatabase.getInstance(this);
+        if (mDatabase.isOpen()) {
+            mDatabase.close();
+        }
         super.onDestroy();
     }
 }

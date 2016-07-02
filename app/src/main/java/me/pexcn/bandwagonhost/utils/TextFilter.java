@@ -42,7 +42,7 @@ public class TextFilter implements InputFilter {
                 case Character.SURROGATE:
                 case Character.OTHER_SYMBOL:
                 case Character.PRIVATE_USE:
-                    mEditText.setError("Emoji表情不允许输入");
+                    mEditText.setError("Emoji 表情不允许输入");
                     return "";
             }
         }

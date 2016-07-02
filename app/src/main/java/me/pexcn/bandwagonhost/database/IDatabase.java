@@ -19,4 +19,6 @@ public interface IDatabase<T> {
     void open();
 
     void close();
+
+    boolean isOpen();
 }

@@ -5,10 +5,10 @@ import android.support.design.widget.Snackbar;
 
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.base.presenter.BasePresenter;
+import me.pexcn.bandwagonhost.bean.Host;
 import me.pexcn.bandwagonhost.feature.extra.ui.ExtraFragment;
 import me.pexcn.bandwagonhost.feature.hostmanager.ui.HostManagerFragment;
 import me.pexcn.bandwagonhost.feature.migrate.ui.MigrateFragment;
-import me.pexcn.bandwagonhost.main.listener.OnAddHostStateListener;
 import me.pexcn.bandwagonhost.main.model.IMainModel;
 import me.pexcn.bandwagonhost.main.model.MainModel;
 import me.pexcn.bandwagonhost.main.ui.IMainView;
@@ -16,7 +16,8 @@ import me.pexcn.bandwagonhost.main.ui.IMainView;
 /**
  * Created by pexcn on 2016-06-29.
  */
-public class MainPresenter extends BasePresenter<IMainView, IMainModel> implements IMainPresenter, OnAddHostStateListener {
+public class MainPresenter extends BasePresenter<IMainView, IMainModel>
+        implements IMainPresenter, IMainModel.OnAddHostFinishListener {
     public MainPresenter(IMainView view) {
         super(view);
     }
@@ -28,14 +29,10 @@ public class MainPresenter extends BasePresenter<IMainView, IMainModel> implemen
 
     @Override
     public void prepare() {
-        if (!mModel.hasHostData()) {
+        switchToFragment(R.id.nav_hostmanager);
+        if (!mModel.hasHost()) {
             mView.showTips("无数据\n" + "请先点击右下角的 + 号添加主机", Snackbar.LENGTH_INDEFINITE);
         }
-    }
-
-    @Override
-    public void addHost(String title, String veid, String key) {
-        mModel.addHost(title, veid, key, this);
     }
 
     @Override
@@ -54,8 +51,13 @@ public class MainPresenter extends BasePresenter<IMainView, IMainModel> implemen
     }
 
     @Override
-    public void onFinished(String title) {
-        mView.showTips(title + "添加成功", Snackbar.LENGTH_LONG);
+    public void addHost(Host host) {
+        mModel.addHost(host, this);
+    }
+
+    @Override
+    public void onFinish(String title) {
+        mView.showTips(title + " " + "添加成功", Snackbar.LENGTH_LONG);
         // TODO: 刷新列表
     }
 }

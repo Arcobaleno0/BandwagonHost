@@ -39,15 +39,15 @@ public class HostDatabase implements IDatabase<Host> {
     @Override
     public void insert(Host host) {
         ContentValues values = new ContentValues();
-        values.put(Constant.HOST_TABLE_TITLE, host.getTitle());
-        values.put(Constant.HOST_TABLE_VEID, host.getVeid());
-        values.put(Constant.HOST_TABLE_KEY, host.getKey());
+        values.put(Constant.HOST_TABLE_TITLE, host.title);
+        values.put(Constant.HOST_TABLE_VEID, host.veid);
+        values.put(Constant.HOST_TABLE_KEY, host.key);
         mDatabase.insert(Constant.HOST_TABLE_NAME, null, values);
     }
 
     @Override
     public void delete(Host host) {
-        mDatabase.delete(Constant.HOST_TABLE_NAME, Constant.HOST_TABLE_ID + "=" + host.getId(), null);
+        mDatabase.delete(Constant.HOST_TABLE_NAME, Constant.HOST_TABLE_ID + "=" + host._id, null);
     }
 
     @Override
@@ -68,10 +68,10 @@ public class HostDatabase implements IDatabase<Host> {
         Cursor cursor = mDatabase.query(Constant.HOST_TABLE_NAME, columns, null, null, null, null, null);
         while (cursor.moveToNext()) {
             Host host = new Host();
-            host.setId(cursor.getInt(cursor.getColumnIndex(Constant.HOST_TABLE_ID)));
-            host.setTitle(cursor.getString(cursor.getColumnIndex(Constant.HOST_TABLE_TITLE)));
-            host.setVeid(cursor.getString(cursor.getColumnIndex(Constant.HOST_TABLE_VEID)));
-            host.setKey(cursor.getString(cursor.getColumnIndex(Constant.HOST_TABLE_KEY)));
+            host._id = cursor.getInt(cursor.getColumnIndex(Constant.HOST_TABLE_ID));
+            host.title = cursor.getString(cursor.getColumnIndex(Constant.HOST_TABLE_TITLE));
+            host.veid = cursor.getString(cursor.getColumnIndex(Constant.HOST_TABLE_VEID));
+            host.key = cursor.getString(cursor.getColumnIndex(Constant.HOST_TABLE_KEY));
             hosts.add(host);
         }
         cursor.close();
@@ -81,10 +81,10 @@ public class HostDatabase implements IDatabase<Host> {
     @Override
     public void update(Host host) {
         ContentValues values = new ContentValues();
-        values.put(Constant.HOST_TABLE_TITLE, host.getTitle());
-        values.put(Constant.HOST_TABLE_VEID, host.getVeid());
-        values.put(Constant.HOST_TABLE_KEY, host.getKey());
-        mDatabase.update(Constant.HOST_TABLE_NAME, values, Constant.HOST_TABLE_ID + "=" + host.getId(), null);
+        values.put(Constant.HOST_TABLE_TITLE, host.title);
+        values.put(Constant.HOST_TABLE_VEID, host.veid);
+        values.put(Constant.HOST_TABLE_KEY, host.key);
+        mDatabase.update(Constant.HOST_TABLE_NAME, values, Constant.HOST_TABLE_ID + "=" + host._id, null);
     }
 
     @Override
@@ -95,5 +95,10 @@ public class HostDatabase implements IDatabase<Host> {
     @Override
     public void close() {
         mDatabase.close();
+    }
+
+    @Override
+    public boolean isOpen() {
+        return mDatabase.isOpen();
     }
 }
