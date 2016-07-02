@@ -18,6 +18,8 @@ public abstract class BaseFragment<P extends IBasePresenter> extends Fragment im
     protected View mView;
     protected P mPresenter;
 
+    // TODO: 抽取getArgs
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

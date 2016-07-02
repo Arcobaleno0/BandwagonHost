@@ -41,14 +41,14 @@ public class MainPresenter extends BasePresenter<IMainView, IMainModel> implemen
     @Override
     public void switchToFragment(int id) {
         switch (id) {
-            case R.id.nav_host:
-                mView.switchToFragment(new HostManagerFragment(), "主机管理");
+            case R.id.nav_hostmanager:
+                mView.switchToFragment(new HostManagerFragment(), "主机管理", id);
                 break;
             case R.id.nav_migrate:
-                mView.switchToFragment(new MigrateFragment(), "切换机房");
+                mView.switchToFragment(new MigrateFragment(), "切换机房", id);
                 break;
             case R.id.nav_extra:
-                mView.switchToFragment(new ExtraFragment(), "额外功能");
+                mView.switchToFragment(new ExtraFragment(), "额外功能", id);
                 break;
         }
     }

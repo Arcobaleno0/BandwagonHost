@@ -1,4 +1,4 @@
-package me.pexcn.bandwagonhost.tools;
+package me.pexcn.bandwagonhost.utils;
 
 import android.content.Context;
 import android.text.InputFilter;

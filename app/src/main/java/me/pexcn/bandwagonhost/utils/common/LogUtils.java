@@ -1,4 +1,4 @@
-package me.pexcn.bandwagonhost.utils;
+package me.pexcn.bandwagonhost.utils.common;
 
 import android.util.Log;
 

@@ -8,7 +8,7 @@ import me.pexcn.bandwagonhost.base.ui.IBaseView;
  * Created by pexcn on 2016-06-29.
  */
 public interface IMainView extends IBaseView {
-    void switchToFragment(Fragment fragment, String title);
+    void switchToFragment(Fragment fragment, String title, int item);
 
     void showAddHostDialog();
 

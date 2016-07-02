@@ -23,17 +23,15 @@ import me.pexcn.bandwagonhost.database.HostDatabase;
 import me.pexcn.bandwagonhost.database.IDatabase;
 import me.pexcn.bandwagonhost.main.presenter.IMainPresenter;
 import me.pexcn.bandwagonhost.main.presenter.MainPresenter;
-import me.pexcn.bandwagonhost.tools.TextFilter;
+import me.pexcn.bandwagonhost.utils.TextFilter;
 
 public class MainActivity extends BaseActivity<IMainPresenter> implements IMainView,
-        NavigationView.OnNavigationItemSelectedListener, View.OnClickListener,
-        DialogInterface.OnClickListener {
+        NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private NavigationView mNavigationView;
     private FloatingActionButton mFab;
     private IDatabase<Host> mDatabase;
-
     private TextInputEditText mTitle;
     private TextInputEditText mVeid;
     private TextInputEditText mKey;
@@ -60,8 +58,7 @@ public class MainActivity extends BaseActivity<IMainPresenter> implements IMainV
         mDatabase = HostDatabase.getInstance(this);
 
         // prepare
-        mPresenter.switchToFragment(R.id.nav_host);
-        mNavigationView.setCheckedItem(R.id.nav_host);
+        mPresenter.switchToFragment(R.id.nav_hostmanager);
         mPresenter.prepare();
     }
 
@@ -81,23 +78,64 @@ public class MainActivity extends BaseActivity<IMainPresenter> implements IMainV
     }
 
     @Override
-    public void switchToFragment(Fragment fragment, String title) {
+    public void switchToFragment(Fragment fragment, String title, int item) {
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_content, fragment).commit();
         assert getSupportActionBar() != null;
         getSupportActionBar().setTitle(title);
+        mNavigationView.setCheckedItem(item);
     }
 
     @SuppressLint("InflateParams")
     @Override
     public void showAddHostDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        class OnDialogButtonClickListener implements View.OnClickListener {
+            private DialogInterface dialog;
+            private int which;
+
+            public OnDialogButtonClickListener(DialogInterface dialog, int which) {
+                this.dialog = dialog;
+                this.which = which;
+            }
+
+            @Override
+            public void onClick(View v) {
+                switch (which) {
+                    case DialogInterface.BUTTON_POSITIVE:
+                        if ("".equals(mTitle.getText().toString()) || "".equals(mVeid.getText().toString()) || "".equals(mKey.getText().toString())) {
+                            if ("".equals(mTitle.getText().toString())) {
+                                mTitle.setError("标题不能为空");
+                            }
+                            if ("".equals(mVeid.getText().toString())) {
+                                mVeid.setError("VEID不能为空");
+                            }
+                            if ("".equals(mKey.getText().toString())) {
+                                mKey.setError("KEY不能为空");
+                            }
+                        } else {
+                            mPresenter.addHost(mTitle.getText().toString(), mVeid.getText().toString(), mKey.getText().toString());
+                            dialog.dismiss();
+                        }
+                        break;
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        // ignore
+                        break;
+                    case DialogInterface.BUTTON_NEUTRAL:
+                        // ignore
+                        break;
+                }
+            }
+        }
+
         View view = getLayoutInflater().inflate(R.layout.dialog_addhost, null);
-        builder.setView(view);
-        builder.setCancelable(false);
-        builder.setTitle("添加主机");
-        builder.setPositiveButton("确定", this);
-        builder.setNegativeButton("取消", this);
-        builder.show();
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setView(view)
+                .setCancelable(false)
+                .setTitle("添加主机")
+                .setPositiveButton("确定", null)
+                .setNegativeButton("取消", null)
+                .create();
+        dialog.show();
+        dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(new OnDialogButtonClickListener(dialog, DialogInterface.BUTTON_POSITIVE));
         mTitle = (TextInputEditText) view.findViewById(R.id.et_title);
         mVeid = (TextInputEditText) view.findViewById(R.id.et_veid);
         mKey = (TextInputEditText) view.findViewById(R.id.et_key);
@@ -121,13 +159,18 @@ public class MainActivity extends BaseActivity<IMainPresenter> implements IMainV
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.nav_settings) {
-            // TODO
-        } else if (id == R.id.nav_about) {
-            showAboutDialog();
-        } else {
-            mPresenter.switchToFragment(id);
-            item.setChecked(true);
+        switch (id) {
+            case R.id.nav_settings:
+                // TODO
+                break;
+            case R.id.nav_about:
+                showAboutDialog();
+                break;
+            case R.id.nav_hostmanager:
+            case R.id.nav_migrate:
+            case R.id.nav_extra:
+                mPresenter.switchToFragment(id);
+                break;
         }
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
@@ -147,15 +190,6 @@ public class MainActivity extends BaseActivity<IMainPresenter> implements IMainV
         switch (v.getId()) {
             case R.id.fab:
                 showAddHostDialog();
-                break;
-        }
-    }
-
-    @Override
-    public void onClick(DialogInterface dialog, int which) {
-        switch (which) {
-            case DialogInterface.BUTTON_POSITIVE:
-                mPresenter.addHost(mTitle.getText().toString(), mVeid.getText().toString(), mKey.getText().toString());
                 break;
         }
     }
