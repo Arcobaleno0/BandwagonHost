@@ -1,4 +1,4 @@
-package me.pexcn.bandwagonhost.adapter;
+package me.pexcn.bandwagonhost.feature.hostmanager.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

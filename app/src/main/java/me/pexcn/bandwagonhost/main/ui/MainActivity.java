@@ -84,56 +84,20 @@ public class MainActivity extends BaseActivity<IMainPresenter> implements IMainV
     @SuppressLint("InflateParams")
     @Override
     public void showAddHostDialog() {
-        class OnDialogButtonClickListener implements View.OnClickListener {
-            private DialogInterface dialog;
-            private int which;
-
-            public OnDialogButtonClickListener(DialogInterface dialog, int which) {
-                this.dialog = dialog;
-                this.which = which;
-            }
-
-            @Override
-            public void onClick(View v) {
-                Host host = new Host();
-                host.title = mTitle.getText().toString();
-                host.veid = mVeid.getText().toString();
-                host.key = mKey.getText().toString();
-                switch (which) {
-                    case DialogInterface.BUTTON_POSITIVE:
-                        if ("".equals(host.title) || "".equals(host.veid) || "".equals(host.key)) {
-                            if ("".equals(host.title)) {
-                                mTitle.setError("标题不能为空");
-                            }
-                            if ("".equals(host.veid)) {
-                                mVeid.setError("VEID 不能为空");
-                            }
-                            if ("".equals(host.key)) {
-                                mKey.setError("KEY 不能为空");
-                            }
-                        } else {
-                            mPresenter.addHost(host);
-                            dialog.dismiss();
-                        }
-                        break;
-                    case DialogInterface.BUTTON_NEGATIVE:
-                        // ignore
-                        break;
-                    case DialogInterface.BUTTON_NEUTRAL:
-                        // ignore
-                        break;
-                }
-            }
-        }
-
         View view = getLayoutInflater().inflate(R.layout.dialog_addhost, null);
-        AlertDialog dialog = new AlertDialog.Builder(this)
+        mTitle = (TextInputEditText) view.findViewById(R.id.et_title);
+        mVeid = (TextInputEditText) view.findViewById(R.id.et_veid);
+        mKey = (TextInputEditText) view.findViewById(R.id.et_key);
+        mTitle.setFilters(new InputFilter[]{new TextFilter(mTitle)});
+        mVeid.setFilters(new InputFilter[]{new TextFilter(mVeid)});
+        mKey.setFilters(new InputFilter[]{new TextFilter(mKey)});
+        final AlertDialog dialog = new AlertDialog.Builder(this)
                 .setView(view)
+                .setCancelable(false)
                 .setTitle("添加主机")
                 .setPositiveButton("确定", null)
                 .setNegativeButton("取消", null)
                 .create();
-        dialog.setCancelable(false);
         dialog.show();
         dialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
             @Override
@@ -145,13 +109,29 @@ public class MainActivity extends BaseActivity<IMainPresenter> implements IMainV
                 return false;
             }
         });
-        dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(new OnDialogButtonClickListener(dialog, DialogInterface.BUTTON_POSITIVE));
-        mTitle = (TextInputEditText) view.findViewById(R.id.et_title);
-        mVeid = (TextInputEditText) view.findViewById(R.id.et_veid);
-        mKey = (TextInputEditText) view.findViewById(R.id.et_key);
-        mTitle.setFilters(new InputFilter[]{new TextFilter(mTitle)});
-        mVeid.setFilters(new InputFilter[]{new TextFilter(mVeid)});
-        mKey.setFilters(new InputFilter[]{new TextFilter(mKey)});
+        dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Host host = new Host();
+                host.title = mTitle.getText().toString();
+                host.veid = mVeid.getText().toString();
+                host.key = mKey.getText().toString();
+                if ("".equals(host.title) || "".equals(host.veid) || "".equals(host.key)) {
+                    if ("".equals(host.title)) {
+                        mTitle.setError("标题不能为空");
+                    }
+                    if ("".equals(host.veid)) {
+                        mVeid.setError("VEID 不能为空");
+                    }
+                    if ("".equals(host.key)) {
+                        mKey.setError("KEY 不能为空");
+                    }
+                } else {
+                    mPresenter.addHost(host);
+                    dialog.dismiss();
+                }
+            }
+        });
     }
 
     @Override
@@ -208,9 +188,8 @@ public class MainActivity extends BaseActivity<IMainPresenter> implements IMainV
 
     @Override
     protected void onDestroy() {
-        HostDatabase mDatabase = HostDatabase.getInstance(this);
-        if (mDatabase.isOpen()) {
-            mDatabase.close();
+        if (HostDatabase.getInstance(this).isOpen()) {
+            HostDatabase.getInstance(this).close();
         }
         super.onDestroy();
     }

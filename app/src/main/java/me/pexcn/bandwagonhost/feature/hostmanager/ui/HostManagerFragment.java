@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.pexcn.bandwagonhost.R;
-import me.pexcn.bandwagonhost.adapter.HostManagerListAdapter;
+import me.pexcn.bandwagonhost.feature.hostmanager.adapter.HostManagerListAdapter;
 import me.pexcn.bandwagonhost.base.ui.BaseFragment;
 import me.pexcn.bandwagonhost.bean.Host;
 import me.pexcn.bandwagonhost.feature.hostmanager.presenter.HostManagerPresenter;
