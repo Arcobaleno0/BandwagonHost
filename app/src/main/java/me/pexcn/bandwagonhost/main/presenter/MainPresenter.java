@@ -22,20 +22,28 @@ public class MainPresenter extends BasePresenter<IMainView, Object> implements I
 
     @Override
     public void prepare() {
-        switchToFragment(R.id.nav_hostmanager);
+        mView.setToolbarTitle("主机管理");
+        mView.setNavCheckedItem(R.id.nav_hostmanager);
+        mView.switchFragment(new HostManagerFragment());
     }
 
     @Override
-    public void switchToFragment(int id) {
+    public void switchModule(int id) {
         switch (id) {
             case R.id.nav_hostmanager:
-                mView.switchToFragment(new HostManagerFragment(), "主机管理", id);
+                mView.setToolbarTitle("主机管理");
+                mView.setNavCheckedItem(id);
+                mView.switchFragment(new HostManagerFragment());
                 break;
             case R.id.nav_migrate:
-                mView.switchToFragment(new MigrateFragment(), "切换机房", id);
+                mView.setToolbarTitle("切换机房");
+                mView.setNavCheckedItem(id);
+                mView.switchFragment(new MigrateFragment());
                 break;
             case R.id.nav_extra:
-                mView.switchToFragment(new ExtraFragment(), "额外功能", id);
+                mView.setToolbarTitle("额外功能");
+                mView.setNavCheckedItem(id);
+                mView.switchFragment(new ExtraFragment());
                 break;
         }
     }

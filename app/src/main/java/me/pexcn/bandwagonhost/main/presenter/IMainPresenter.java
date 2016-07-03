@@ -8,5 +8,5 @@ import me.pexcn.bandwagonhost.base.presenter.IBasePresenter;
 public interface IMainPresenter extends IBasePresenter {
     void prepare();
 
-    void switchToFragment(int id);
+    void switchModule(int id);
 }

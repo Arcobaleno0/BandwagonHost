@@ -51,11 +51,19 @@ public class MainActivity extends BaseActivity<IMainPresenter> implements IMainV
     }
 
     @Override
-    public void switchToFragment(Fragment fragment, String title, int item) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_content, fragment).commit();
+    public void setToolbarTitle(String title) {
         assert getSupportActionBar() != null;
         getSupportActionBar().setTitle(title);
-        mNavigationView.setCheckedItem(item);
+    }
+
+    @Override
+    public void setNavCheckedItem(int id) {
+        mNavigationView.setCheckedItem(id);
+    }
+
+    @Override
+    public void switchFragment(Fragment fragment) {
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_content, fragment).commit();
     }
 
     @Override
@@ -77,7 +85,7 @@ public class MainActivity extends BaseActivity<IMainPresenter> implements IMainV
             case R.id.nav_migrate:
             case R.id.nav_extra:
                 if (!item.isChecked()) {
-                    mPresenter.switchToFragment(id);
+                    mPresenter.switchModule(id);
                 }
                 break;
         }
