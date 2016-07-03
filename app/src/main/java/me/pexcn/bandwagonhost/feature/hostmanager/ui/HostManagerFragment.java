@@ -29,7 +29,7 @@ import me.pexcn.bandwagonhost.utils.TextFilter;
  * Created by pexcn on 2016-06-29.
  */
 public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
-        implements IHostManagerView, View.OnClickListener {
+        implements IHostManagerView, View.OnClickListener, DialogInterface.OnKeyListener {
 
     /**
      * TODO: RecyclerView 列表动画
@@ -43,6 +43,7 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
     private TextInputEditText mTitle;
     private TextInputEditText mVeid;
     private TextInputEditText mKey;
+    private AlertDialog mDialog;
 
     private List<Host> mHosts;
 
@@ -99,27 +100,24 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
         mTitle.setFilters(new InputFilter[]{new TextFilter(mTitle)});
         mVeid.setFilters(new InputFilter[]{new TextFilter(mVeid)});
         mKey.setFilters(new InputFilter[]{new TextFilter(mKey)});
-        final AlertDialog dialog = new AlertDialog.Builder(mActivity)
+        mDialog = new AlertDialog.Builder(mActivity)
                 .setView(view)
                 .setCancelable(false)
                 .setTitle("添加主机")
-                .setPositiveButton("确定", null)
                 .setNegativeButton("取消", null)
-                .create();
-        dialog.show();
-        dialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
-            @Override
-            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP && !event.isCanceled()) {
-                    dialog.cancel();
-                    return true;
-                }
-                return false;
-            }
-        });
-        dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                .setPositiveButton("确定", null)
+                .setOnKeyListener(this)
+                .show();
+        mDialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.fab:
+                showAddHostDialog();
+                break;
+            case android.R.id.button1:
                 Host host = new Host();
                 host.title = mTitle.getText().toString();
                 host.veid = mVeid.getText().toString();
@@ -136,18 +134,18 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
                     }
                 } else {
                     mPresenter.addHost(host);
-                    dialog.dismiss();
+                    mDialog.dismiss();
                 }
-            }
-        });
+                break;
+        }
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.fab:
-                showAddHostDialog();
-                break;
+    public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP && !event.isCanceled()) {
+            dialog.cancel();
+            return true;
         }
+        return false;
     }
 }

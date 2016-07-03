@@ -1,7 +1,10 @@
 package me.pexcn.bandwagonhost.feature.migrate.presenter;
 
+import android.support.v4.app.Fragment;
+
 import me.pexcn.bandwagonhost.base.presenter.BasePresenter;
 import me.pexcn.bandwagonhost.feature.migrate.model.IMigrateModel;
+import me.pexcn.bandwagonhost.feature.migrate.model.MigrateModel;
 import me.pexcn.bandwagonhost.feature.migrate.ui.IMigrateView;
 
 /**
@@ -14,6 +17,11 @@ public class MigratePresenter extends BasePresenter<IMigrateView, IMigrateModel>
 
     @Override
     protected IMigrateModel getModel() {
-        return null;
+        return new MigrateModel(((Fragment) mView).getActivity());
+    }
+
+    @Override
+    public void prepare() {
+        mView.showSelectHostDialog(mModel.getHostTitle());
     }
 }
