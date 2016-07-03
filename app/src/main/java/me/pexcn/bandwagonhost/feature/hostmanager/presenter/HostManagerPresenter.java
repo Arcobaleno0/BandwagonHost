@@ -1,5 +1,6 @@
 package me.pexcn.bandwagonhost.feature.hostmanager.presenter;
 
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 
 import java.util.List;
@@ -26,6 +27,14 @@ public class HostManagerPresenter extends BasePresenter<IHostManagerView, IHostM
 
     @Override
     public void prepare(List<Host> hosts) {
+        //if (!mModel.hasHost()) {
+            mView.showTips("无数据\n" + "请先点击右下角的 + 号添加主机", Snackbar.LENGTH_INDEFINITE);
+        //}
         mModel.loadList(hosts);
+    }
+
+    @Override
+    public void addHost(Host host) {
+
     }
 }

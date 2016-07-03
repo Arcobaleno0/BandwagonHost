@@ -31,4 +31,9 @@ public class MigrateFragment extends BaseFragment<IMigratePresenter> implements 
     protected void initData() {
 
     }
+
+    @Override
+    protected void showTips(String msg, int duration) {
+
+    }
 }

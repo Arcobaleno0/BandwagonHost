@@ -13,12 +13,13 @@ import me.pexcn.bandwagonhost.base.presenter.IBasePresenter;
 /**
  * Created by pexcn on 2016-06-29.
  */
-public abstract class BaseFragment<P extends IBasePresenter> extends Fragment implements IBaseView {
+public abstract class BaseFragment<P extends IBasePresenter> extends Fragment {
     protected Activity mActivity;
     protected View mView;
     protected P mPresenter;
 
     // TODO: 抽取getArgs
+    // TODO: initData位置
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,8 +33,13 @@ public abstract class BaseFragment<P extends IBasePresenter> extends Fragment im
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(getLayoutId(), container, false);
         initView(mView);
-        initData();
         return mView;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        initData();
     }
 
     // TODO: WeakReference
@@ -52,8 +58,5 @@ public abstract class BaseFragment<P extends IBasePresenter> extends Fragment im
 
     abstract protected void initData();
 
-    @Override
-    public void showTips(String msg, int duration) {
-        ((IBaseView) mActivity).showTips(msg, duration);
-    }
+    abstract protected void showTips(String msg, int duration);
 }

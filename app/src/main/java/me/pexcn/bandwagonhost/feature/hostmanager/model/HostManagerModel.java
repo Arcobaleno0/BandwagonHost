@@ -20,6 +20,17 @@ public class HostManagerModel implements IHostManagerModel {
     }
 
     @Override
+    public boolean hasHost() {
+        return !mDatabase.queryAll().isEmpty();
+    }
+
+    @Override
+    public void addHost(Host host, OnAddHostFinishListener listener) {
+        mDatabase.insert(host);
+        listener.onFinish(host);
+    }
+
+    @Override
     public void loadList(List<Host> hosts) {
         if (!hosts.isEmpty()) {
             hosts.clear();

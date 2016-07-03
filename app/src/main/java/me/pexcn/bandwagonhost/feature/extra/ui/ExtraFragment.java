@@ -30,4 +30,9 @@ public class ExtraFragment extends BaseFragment<IExtraPresenter> implements IExt
     protected void initData() {
 
     }
+
+    @Override
+    protected void showTips(String msg, int duration) {
+
+    }
 }

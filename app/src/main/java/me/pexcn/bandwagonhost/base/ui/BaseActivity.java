@@ -12,7 +12,7 @@ import me.pexcn.bandwagonhost.base.presenter.IBasePresenter;
 /**
  * Created by pexcn on 2016-06-29.
  */
-public abstract class BaseActivity<P extends IBasePresenter> extends AppCompatActivity implements IBaseView {
+public abstract class BaseActivity<P extends IBasePresenter> extends AppCompatActivity {
     protected Toolbar mToolbar;
     protected P mPresenter;
 
