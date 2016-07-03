@@ -2,6 +2,8 @@ package me.pexcn.bandwagonhost.feature.hostmanager.ui;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
@@ -55,7 +57,7 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
     }
 
     @Override
-    protected void initView(View view) {
+    protected void initView(View view, @Nullable Bundle savedInstanceState) {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rcv_list);
         mFab = (FloatingActionButton) view.findViewById(R.id.fab);
     }

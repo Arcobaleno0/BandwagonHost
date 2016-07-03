@@ -15,7 +15,7 @@ import me.pexcn.bandwagonhost.base.presenter.IBasePresenter;
  */
 public abstract class BaseFragment<P extends IBasePresenter> extends Fragment {
     protected Activity mActivity;
-    protected View mView;
+    protected View mRootView;
     protected P mPresenter;
 
     // TODO: 抽取getArgs
@@ -31,9 +31,9 @@ public abstract class BaseFragment<P extends IBasePresenter> extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(getLayoutId(), container, false);
-        initView(mView);
-        return mView;
+        mRootView = inflater.inflate(getLayoutId(), container, false);
+        initView(mRootView, savedInstanceState);
+        return mRootView;
     }
 
     @Override
@@ -54,7 +54,7 @@ public abstract class BaseFragment<P extends IBasePresenter> extends Fragment {
 
     abstract protected P getPresenter();
 
-    abstract protected void initView(View view);
+    abstract protected void initView(View view, @Nullable Bundle savedInstanceState);
 
     abstract protected void initData();
 

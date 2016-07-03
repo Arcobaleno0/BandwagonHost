@@ -1,5 +1,7 @@
 package me.pexcn.bandwagonhost.feature.extra.ui;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 
 import me.pexcn.bandwagonhost.R;
@@ -22,7 +24,7 @@ public class ExtraFragment extends BaseFragment<IExtraPresenter> implements IExt
     }
 
     @Override
-    protected void initView(View view) {
+    protected void initView(View view, @Nullable Bundle savedInstanceState) {
 
     }
 

@@ -27,9 +27,9 @@ public class HostManagerPresenter extends BasePresenter<IHostManagerView, IHostM
 
     @Override
     public void prepare(List<Host> hosts) {
-        //if (!mModel.hasHost()) {
+        if (!mModel.hasHost()) {
             mView.showTips("无数据\n" + "请先点击右下角的 + 号添加主机", Snackbar.LENGTH_INDEFINITE);
-        //}
+        }
         mModel.loadList(hosts);
     }
 
