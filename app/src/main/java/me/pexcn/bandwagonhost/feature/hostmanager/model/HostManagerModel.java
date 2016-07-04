@@ -25,7 +25,7 @@ public class HostManagerModel implements IHostManagerModel {
 
     @Override
     public boolean isEmpty() {
-        return !mDatabase.isEmpty();
+        return mDatabase.isEmpty();
     }
 
     @Override

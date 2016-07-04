@@ -39,7 +39,7 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
 
     private RecyclerView mRecyclerView;
     private HostManagerListAdapter mAdapter;
-    private List<Host> mHosts = new ArrayList<>();
+    private List<Host> mHosts;
 
     private FloatingActionButton mFab;
     private AlertDialog mDialog;
@@ -62,6 +62,7 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rcv_list);
         mFab = (FloatingActionButton) view.findViewById(R.id.fab);
 
+        mHosts = new ArrayList<>();
         mAdapter = new HostManagerListAdapter(mActivity, mHosts);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
         mRecyclerView.setAdapter(mAdapter);
