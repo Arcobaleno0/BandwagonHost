@@ -25,37 +25,31 @@ public class HostManagerModel implements IHostManagerModel {
 
     @Override
     public boolean isEmpty() {
-        return mDatabase.isEmpty();
+        return !mDatabase.isEmpty();
     }
 
     @Override
-    public void insertHost(List<Host> hosts, Host host) {
+    public void insertHost(Host host) {
         mDatabase.insert(host);
-        hosts.add(host);
-        // TODO: 对hosts的操作是不是应该移动到View层？
     }
 
     @Override
-    public void removeHost(List<Host> hosts, int id, int position) {
+    public void removeHost(int id) {
         mDatabase.remove(id);
-        hosts.remove(position);
     }
 
     @Override
-    public void loadList(List<Host> hosts) {
-        if (!hosts.isEmpty()) {
-            hosts.clear();
-        }
-        hosts.addAll(mDatabase.queryAll());
+    public List<Host> loadList() {
+        return mDatabase.queryAll();
     }
 
-    @Override
-    public int[] getHostIds() {
-        int size = mDatabase.queryAll().size();
-        int[] ids = new int[size];
-        for (int i = 0; i < size; i++) {
-            ids[i] = mDatabase.queryAll().get(i)._id;
-        }
-        return ids;
-    }
+//    @Override
+//    public int[] getHostIds() {
+//        int size = mDatabase.queryAll().size();
+//        int[] ids = new int[size];
+//        for (int i = 0; i < size; i++) {
+//            ids[i] = mDatabase.queryAll().get(i)._id;
+//        }
+//        return ids;
+//    }
 }

@@ -39,7 +39,8 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
 
     private RecyclerView mRecyclerView;
     private HostManagerListAdapter mAdapter;
-    private List<Host> mHosts;
+    private List<Host> mHosts = new ArrayList<>();
+
     private FloatingActionButton mFab;
     private AlertDialog mDialog;
     private TextInputEditText mTitle;
@@ -61,13 +62,13 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rcv_list);
         mFab = (FloatingActionButton) view.findViewById(R.id.fab);
 
-        mHosts = new ArrayList<>();
         mAdapter = new HostManagerListAdapter(mActivity, mHosts);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
         mRecyclerView.setAdapter(mAdapter);
         mFab.setOnClickListener(this);
 
-        mPresenter.prepare(mHosts);
+        setSwipeRemoveItem();
+        mPresenter.prepare();
     }
 
     @Override
@@ -75,9 +76,21 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
 
     }
 
-    @Override
-    public void notifyItemInserted(int position) {
-        mAdapter.notifyItemInserted(position);
+    private void setSwipeRemoveItem() {
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+//                int[] ids = mPresenter.getHostIds();
+//                int id = ids[viewHolder.getAdapterPosition()];
+//                mPresenter.removeHost(mHosts, id, viewHolder.getAdapterPosition());
+//                mAdapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+            }
+        }).attachToRecyclerView(mRecyclerView);
     }
 
     @Override
@@ -101,21 +114,21 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
     }
 
     @Override
-    public void setSwipeRemoveItem() {
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-            @Override
-            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-                return false;
-            }
+    public void insertItem(Host host) {
+        mHosts.add(host);
+        mAdapter.notifyItemInserted(mHosts.size());
+    }
 
-            @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-                int[] ids = mPresenter.getHostIds();
-                int id = ids[viewHolder.getAdapterPosition()];
-                mPresenter.removeHost(mHosts, id, viewHolder.getAdapterPosition());
-                mAdapter.notifyItemRemoved(viewHolder.getAdapterPosition());
-            }
-        }).attachToRecyclerView(mRecyclerView);
+    @Override
+    public void removeItem(int position) {
+        mHosts.remove(position);
+        mAdapter.notifyItemRemoved(position);
+    }
+
+    @Override
+    public void showList(List<Host> hosts) {
+        mHosts.addAll(hosts);
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -145,7 +158,7 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
                         mKey.setError("KEY 不能为空");
                     }
                 } else {
-                    mPresenter.insertHost(mHosts, host);
+                    mPresenter.insertHost(host);
                     mDialog.dismiss();
                 }
                 break;
