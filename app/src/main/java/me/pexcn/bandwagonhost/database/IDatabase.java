@@ -8,7 +8,7 @@ import java.util.List;
 public interface IDatabase<T> {
     void insert(T t);
 
-    void delete(T t);
+    void remove(int id);
 
     T query(int id);
 

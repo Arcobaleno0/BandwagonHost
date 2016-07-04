@@ -11,5 +11,9 @@ import me.pexcn.bandwagonhost.bean.Host;
 public interface IHostManagerPresenter extends IBasePresenter {
     void prepare(List<Host> hosts);
 
-    void addHost(List<Host> hosts, Host host);
+    void insertHost(List<Host> hosts, Host host);
+
+    void removeHost(List<Host> hosts, int id, int position);
+
+    int[] getHostIds();
 }

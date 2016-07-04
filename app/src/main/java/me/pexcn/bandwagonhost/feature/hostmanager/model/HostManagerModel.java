@@ -13,27 +13,50 @@ import me.pexcn.bandwagonhost.database.HostDatabase;
 public class HostManagerModel implements IHostManagerModel {
     private Context mContext;
     private HostDatabase mDatabase;
-    private List<Host> mList;
+
+    /**
+     * TODO: 优化数据库查询操作
+     */
 
     public HostManagerModel(Context context) {
         this.mContext = context;
-        mDatabase = HostDatabase.getInstance(mContext);
-        mList = mDatabase.queryAll();
+        this.mDatabase = HostDatabase.getInstance(mContext);
     }
 
     @Override
-    public boolean hasHost() {
-        return !mDatabase.queryAll().isEmpty();
-    }
-
-    @Override
-    public void addHost(List<Host> hosts, Host host) {
-        mDatabase.insert(host);
-        hosts.add(host);
+    public boolean isEmpty() {
+        return mDatabase.queryAll().isEmpty();
     }
 
     @Override
     public void loadList(List<Host> hosts) {
-        hosts.addAll(mList);
+        if (!hosts.isEmpty()) {
+            hosts.clear();
+        }
+        hosts.addAll(mDatabase.queryAll());
+    }
+
+    @Override
+    public void insertHost(List<Host> hosts, Host host) {
+        mDatabase.insert(host);
+        mDatabase.queryAll().add(host);
+        hosts.add(host);
+        // TODO: 对hosts的操作是不是应该移动到View层？
+    }
+
+    @Override
+    public void removeHost(List<Host> hosts, int id, int position) {
+        mDatabase.remove(id);
+        hosts.remove(position);
+    }
+
+    @Override
+    public int[] getHostIds() {
+        int size = mDatabase.queryAll().size();
+        int[] ids = new int[size];
+        for (int i = 0; i < size; i++) {
+            ids[i] = mDatabase.queryAll().get(i)._id;
+        }
+        return ids;
     }
 }

@@ -10,6 +10,7 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.InputFilter;
 import android.view.KeyEvent;
 import android.view.View;
@@ -78,7 +79,7 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
     }
 
     @Override
-    public void showAddHostDialog() {
+    public void showInsertHostDialog() {
         @SuppressLint("InflateParams") View view = getLayoutInflater(null).inflate(R.layout.dialog_addhost, null);
         mTitle = (TextInputEditText) view.findViewById(R.id.et_title);
         mVeid = (TextInputEditText) view.findViewById(R.id.et_veid);
@@ -98,6 +99,26 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
     }
 
     @Override
+    public void setSwipeRemoveItem() {
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                int[] ids = mPresenter.getHostIds();
+                int id = ids[viewHolder.getAdapterPosition()];
+//                LogUtils.d(String.valueOf(id));
+                mPresenter.removeHost(mHosts, id, viewHolder.getAdapterPosition());
+//                LogUtils.d(String.valueOf(viewHolder.getAdapterPosition() - 1));
+                mAdapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+            }
+        }).attachToRecyclerView(mRecyclerView);
+    }
+
+    @Override
     public void showTips(String msg, int duration) {
         Snackbar.make(mActivity.findViewById(R.id.coordinator_layout), msg, duration).setAction("确定", this).show();
     }
@@ -106,7 +127,7 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fab:
-                showAddHostDialog();
+                showInsertHostDialog();
                 break;
             case android.R.id.button1:
                 Host host = new Host();
@@ -124,7 +145,7 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
                         mKey.setError("KEY 不能为空");
                     }
                 } else {
-                    mPresenter.addHost(mHosts, host);
+                    mPresenter.insertHost(mHosts, host);
                     mDialog.dismiss();
                 }
                 break;

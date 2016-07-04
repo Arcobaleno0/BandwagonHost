@@ -6,7 +6,9 @@ package me.pexcn.bandwagonhost.feature.hostmanager.ui;
 public interface IHostManagerView {
     void refreshList(int position);
 
-    void showAddHostDialog();
+    void showInsertHostDialog();
+
+    void setSwipeRemoveItem();
 
     void showTips(String msg, int duration);
 }

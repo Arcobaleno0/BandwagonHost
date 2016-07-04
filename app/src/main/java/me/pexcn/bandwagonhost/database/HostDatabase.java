@@ -46,8 +46,8 @@ public class HostDatabase implements IDatabase<Host> {
     }
 
     @Override
-    public void delete(Host host) {
-        mDatabase.delete(Constant.HOST_TABLE_NAME, Constant.HOST_TABLE_ID + "=" + host._id, null);
+    public void remove(int id) {
+        mDatabase.delete(Constant.HOST_TABLE_NAME, Constant.HOST_TABLE_ID + "=" + id, null);
     }
 
     @Override
