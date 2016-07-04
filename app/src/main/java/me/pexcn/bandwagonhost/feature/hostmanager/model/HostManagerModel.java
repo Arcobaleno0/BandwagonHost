@@ -4,6 +4,7 @@ import android.content.Context;
 
 import java.util.List;
 
+import me.pexcn.bandwagonhost.Constant;
 import me.pexcn.bandwagonhost.bean.Host;
 import me.pexcn.bandwagonhost.database.HostDatabase;
 
@@ -41,6 +42,11 @@ public class HostManagerModel implements IHostManagerModel {
     @Override
     public List<Host> loadList() {
         return mDatabase.queryAll();
+    }
+
+    @Override
+    public List<Integer> getIds() {
+        return mDatabase.queryAll(Constant.HOST_TABLE_ID);
     }
 
 //    @Override

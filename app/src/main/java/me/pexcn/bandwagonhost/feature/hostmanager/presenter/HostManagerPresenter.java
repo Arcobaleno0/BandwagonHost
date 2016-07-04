@@ -3,6 +3,8 @@ package me.pexcn.bandwagonhost.feature.hostmanager.presenter;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 
+import java.util.List;
+
 import me.pexcn.bandwagonhost.base.presenter.BasePresenter;
 import me.pexcn.bandwagonhost.bean.Host;
 import me.pexcn.bandwagonhost.feature.hostmanager.model.HostManagerModel;
@@ -42,5 +44,10 @@ public class HostManagerPresenter extends BasePresenter<IHostManagerView, IHostM
     public void removeHost(int id, int position) {
         mModel.removeHost(id);
         mView.removeItem(position);
+    }
+
+    @Override
+    public List<Integer> getIds() {
+        return mModel.getIds();
     }
 }

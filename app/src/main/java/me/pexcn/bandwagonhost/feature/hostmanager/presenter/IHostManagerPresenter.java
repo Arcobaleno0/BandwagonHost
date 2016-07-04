@@ -1,5 +1,7 @@
 package me.pexcn.bandwagonhost.feature.hostmanager.presenter;
 
+import java.util.List;
+
 import me.pexcn.bandwagonhost.base.presenter.IBasePresenter;
 import me.pexcn.bandwagonhost.bean.Host;
 
@@ -12,4 +14,6 @@ public interface IHostManagerPresenter extends IBasePresenter {
     void insertHost(Host host);
 
     void removeHost(int id, int position);
+
+    List<Integer> getIds();
 }

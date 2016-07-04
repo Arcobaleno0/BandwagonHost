@@ -14,7 +14,7 @@ import me.pexcn.bandwagonhost.bean.Host;
 /**
  * Created by pexcn on 2016-06-30.
  */
-public class HostDatabase implements IDatabase<Host> {
+public class HostDatabase implements IDatabase<Host, Integer> {
     private HostDatabaseHelper mHelper;
     private SQLiteDatabase mDatabase;
 
@@ -52,7 +52,7 @@ public class HostDatabase implements IDatabase<Host> {
 
     @Override
     public Host query(int id) {
-        // TODO
+
         return null;
     }
 
@@ -76,6 +76,17 @@ public class HostDatabase implements IDatabase<Host> {
         }
         cursor.close();
         return hosts;
+    }
+
+    @Override
+    public List<Integer> queryAll(String field) {
+        ArrayList<Integer> fields = new ArrayList<>();
+        Cursor cursor = mDatabase.rawQuery("SELECT " + field + " FROM " + Constant.HOST_TABLE_NAME, null);
+        while (cursor.moveToNext()) {
+            fields.add(cursor.getInt(cursor.getColumnIndex(Constant.HOST_TABLE_ID)));
+        }
+        cursor.close();
+        return fields;
     }
 
     @Override

@@ -86,10 +86,10 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
 
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-//                int[] ids = mPresenter.getHostIds();
-//                int id = ids[viewHolder.getAdapterPosition()];
-//                mPresenter.removeHost(mHosts, id, viewHolder.getAdapterPosition());
-//                mAdapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+                // TODO: 应该可以优化
+                ArrayList<Integer> ids = (ArrayList<Integer>) mPresenter.getIds();
+                int currentItem = viewHolder.getAdapterPosition();
+                mPresenter.removeHost(ids.get(currentItem), currentItem);
             }
         }).attachToRecyclerView(mRecyclerView);
     }
@@ -117,7 +117,6 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
     @Override
     public void insertItem(Host host) {
         mHosts.add(host);
-        mAdapter.notifyItemInserted(mHosts.size());
     }
 
     @Override
@@ -129,7 +128,6 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
     @Override
     public void showList(List<Host> hosts) {
         mHosts.addAll(hosts);
-        mAdapter.notifyDataSetChanged();
     }
 
     @Override

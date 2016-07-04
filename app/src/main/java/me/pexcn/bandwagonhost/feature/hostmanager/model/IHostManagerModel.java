@@ -15,4 +15,6 @@ public interface IHostManagerModel {
     void removeHost(int id);
 
     List<Host> loadList();
+
+    List<Integer> getIds();
 }
