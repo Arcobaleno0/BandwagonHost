@@ -21,7 +21,7 @@ import java.util.List;
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.base.ui.BaseFragment;
 import me.pexcn.bandwagonhost.bean.Host;
-import me.pexcn.bandwagonhost.feature.hostmanager.adapter.HostManagerListAdapter;
+import me.pexcn.bandwagonhost.feature.hostmanager.adapter.HostListAdapter;
 import me.pexcn.bandwagonhost.feature.hostmanager.presenter.HostManagerPresenter;
 import me.pexcn.bandwagonhost.feature.hostmanager.presenter.IHostManagerPresenter;
 import me.pexcn.bandwagonhost.utils.TextFilter;
@@ -38,7 +38,7 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
      */
 
     private RecyclerView mRecyclerView;
-    private HostManagerListAdapter mAdapter;
+    private HostListAdapter mAdapter;
     private List<Host> mHosts;
 
     private FloatingActionButton mFab;
@@ -63,7 +63,7 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
         mFab = (FloatingActionButton) view.findViewById(R.id.fab);
 
         mHosts = new ArrayList<>();
-        mAdapter = new HostManagerListAdapter(mActivity, mHosts);
+        mAdapter = new HostListAdapter(mHosts);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
         mRecyclerView.setAdapter(mAdapter);
         mFab.setOnClickListener(this);

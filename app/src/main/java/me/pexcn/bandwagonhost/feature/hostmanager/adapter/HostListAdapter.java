@@ -1,6 +1,5 @@
 package me.pexcn.bandwagonhost.feature.hostmanager.adapter;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,24 +14,22 @@ import me.pexcn.bandwagonhost.bean.Host;
 /**
  * Created by pexcn on 2016-07-01.
  */
-public class HostManagerListAdapter extends RecyclerView.Adapter<HostManagerListAdapter.ViewHolder> {
-    private Context mContext;
+public class HostListAdapter extends RecyclerView.Adapter<HostListAdapter.ViewHolder> {
     private List<Host> mHosts;
 
-    public HostManagerListAdapter(Context context, List<Host> hosts) {
-        this.mContext = context;
+    public HostListAdapter(List<Host> hosts) {
         this.mHosts = hosts;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.item_host, parent, false);
-        return new HostManagerListAdapter.ViewHolder(view);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_host, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mTextView.setText(mHosts.get(position).title);
+
     }
 
     @Override

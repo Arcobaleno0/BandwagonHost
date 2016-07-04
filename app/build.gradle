@@ -10,14 +10,12 @@ android {
         targetSdkVersion 23
         versionCode 3
         versionName "0.2"
-        // multiDexEnabled true
+        multiDexEnabled true
         resConfigs "zh"
     }
     buildTypes {
         debug {
-            minifyEnabled true
             shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         release {
             minifyEnabled true
