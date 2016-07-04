@@ -21,4 +21,6 @@ public interface IDatabase<T> {
     void close();
 
     boolean isOpen();
+
+    boolean isEmpty();
 }

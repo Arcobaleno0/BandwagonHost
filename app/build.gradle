@@ -8,13 +8,20 @@ android {
         applicationId "me.pexcn.bandwagonhost"
         minSdkVersion 21
         targetSdkVersion 23
-        versionCode 2
+        versionCode 3
         versionName "0.2"
-        multiDexEnabled true
+        // multiDexEnabled true
+        resConfigs "zh"
     }
     buildTypes {
+        debug {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

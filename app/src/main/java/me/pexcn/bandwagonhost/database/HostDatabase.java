@@ -47,7 +47,7 @@ public class HostDatabase implements IDatabase<Host> {
 
     @Override
     public void remove(int id) {
-        mDatabase.delete(Constant.HOST_TABLE_NAME, Constant.HOST_TABLE_ID + "=" + id, null);
+        mDatabase.delete(Constant.HOST_TABLE_NAME, Constant.HOST_TABLE_ID + " = " + id, null);
     }
 
     @Override
@@ -100,5 +100,16 @@ public class HostDatabase implements IDatabase<Host> {
     @Override
     public boolean isOpen() {
         return mDatabase.isOpen();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        boolean isEmpty = true;
+        Cursor cursor = mDatabase.rawQuery("SELECT * FROM " + Constant.HOST_TABLE_NAME, null);
+        if (cursor.moveToFirst()) {
+            isEmpty = false;
+        }
+        cursor.close();
+        return isEmpty;
     }
 }

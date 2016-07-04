@@ -60,10 +60,7 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
     protected void initView(View view, @Nullable Bundle savedInstanceState) {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rcv_list);
         mFab = (FloatingActionButton) view.findViewById(R.id.fab);
-    }
 
-    @Override
-    protected void initData() {
         mHosts = new ArrayList<>();
         mAdapter = new HostManagerListAdapter(mActivity, mHosts);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
@@ -74,7 +71,12 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
     }
 
     @Override
-    public void refreshList(int position) {
+    protected void initData() {
+
+    }
+
+    @Override
+    public void notifyItemInserted(int position) {
         mAdapter.notifyItemInserted(position);
     }
 
@@ -110,9 +112,7 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 int[] ids = mPresenter.getHostIds();
                 int id = ids[viewHolder.getAdapterPosition()];
-//                LogUtils.d(String.valueOf(id));
                 mPresenter.removeHost(mHosts, id, viewHolder.getAdapterPosition());
-//                LogUtils.d(String.valueOf(viewHolder.getAdapterPosition() - 1));
                 mAdapter.notifyItemRemoved(viewHolder.getAdapterPosition());
             }
         }).attachToRecyclerView(mRecyclerView);
@@ -120,7 +120,7 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
 
     @Override
     public void showTips(String msg, int duration) {
-        Snackbar.make(mActivity.findViewById(R.id.coordinator_layout), msg, duration).setAction("确定", this).show();
+        Snackbar.make(mRootView.findViewById(R.id.coordinator_layout), msg, duration).setAction("确定", this).show();
     }
 
     @Override

@@ -10,11 +10,11 @@ import me.pexcn.bandwagonhost.bean.Host;
 public interface IHostManagerModel {
     boolean isEmpty();
 
-    void loadList(List<Host> hosts);
-
     void insertHost(List<Host> hosts, Host host);
 
     void removeHost(List<Host> hosts, int id, int position);
+
+    void loadList(List<Host> hosts);
 
     int[] getHostIds();
 }

@@ -11,12 +11,12 @@ import me.pexcn.bandwagonhost.database.HostDatabase;
  * Created by pexcn on 2016-07-01.
  */
 public class HostManagerModel implements IHostManagerModel {
-    private Context mContext;
-    private HostDatabase mDatabase;
-
     /**
      * TODO: 优化数据库查询操作
      */
+
+    private Context mContext;
+    private HostDatabase mDatabase;
 
     public HostManagerModel(Context context) {
         this.mContext = context;
@@ -25,21 +25,12 @@ public class HostManagerModel implements IHostManagerModel {
 
     @Override
     public boolean isEmpty() {
-        return mDatabase.queryAll().isEmpty();
-    }
-
-    @Override
-    public void loadList(List<Host> hosts) {
-        if (!hosts.isEmpty()) {
-            hosts.clear();
-        }
-        hosts.addAll(mDatabase.queryAll());
+        return mDatabase.isEmpty();
     }
 
     @Override
     public void insertHost(List<Host> hosts, Host host) {
         mDatabase.insert(host);
-        mDatabase.queryAll().add(host);
         hosts.add(host);
         // TODO: 对hosts的操作是不是应该移动到View层？
     }
@@ -48,6 +39,14 @@ public class HostManagerModel implements IHostManagerModel {
     public void removeHost(List<Host> hosts, int id, int position) {
         mDatabase.remove(id);
         hosts.remove(position);
+    }
+
+    @Override
+    public void loadList(List<Host> hosts) {
+        if (!hosts.isEmpty()) {
+            hosts.clear();
+        }
+        hosts.addAll(mDatabase.queryAll());
     }
 
     @Override
