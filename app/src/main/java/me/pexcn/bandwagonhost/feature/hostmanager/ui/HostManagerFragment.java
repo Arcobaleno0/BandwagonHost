@@ -38,14 +38,12 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
 
     private RecyclerView mRecyclerView;
     private HostManagerListAdapter mAdapter;
+    private List<Host> mHosts;
     private FloatingActionButton mFab;
-
+    private AlertDialog mDialog;
     private TextInputEditText mTitle;
     private TextInputEditText mVeid;
     private TextInputEditText mKey;
-    private AlertDialog mDialog;
-
-    private List<Host> mHosts;
 
     @Override
     protected int getLayoutId() {
@@ -69,27 +67,15 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
         mAdapter = new HostManagerListAdapter(mActivity, mHosts);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
         mRecyclerView.setAdapter(mAdapter);
-
         mFab.setOnClickListener(this);
 
         mPresenter.prepare(mHosts);
     }
 
     @Override
-    public void showTips(String msg, int duration) {
-        Snackbar.make(mActivity.findViewById(R.id.coordinator_layout), msg, duration).setAction("确定", this).show();
+    public void refreshList(int position) {
+        mAdapter.notifyItemInserted(position);
     }
-
-    @Override
-    public void refreshList() {
-        mAdapter.notifyDataSetChanged();
-    }
-
-//    @Override
-//    public void addHost(Host host) {
-//        mHosts.add(host);
-//        mAdapter.notifyItemInserted(mHosts.size());
-//    }
 
     @Override
     public void showAddHostDialog() {
@@ -109,6 +95,11 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
                 .setOnKeyListener(this)
                 .show();
         mDialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(this);
+    }
+
+    @Override
+    public void showTips(String msg, int duration) {
+        Snackbar.make(mActivity.findViewById(R.id.coordinator_layout), msg, duration).setAction("确定", this).show();
     }
 
     @Override
@@ -133,7 +124,7 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
                         mKey.setError("KEY 不能为空");
                     }
                 } else {
-                    mPresenter.addHost(host);
+                    mPresenter.addHost(mHosts, host);
                     mDialog.dismiss();
                 }
                 break;

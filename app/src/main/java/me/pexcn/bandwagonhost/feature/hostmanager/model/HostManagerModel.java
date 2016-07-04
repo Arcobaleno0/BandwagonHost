@@ -13,10 +13,12 @@ import me.pexcn.bandwagonhost.database.HostDatabase;
 public class HostManagerModel implements IHostManagerModel {
     private Context mContext;
     private HostDatabase mDatabase;
+    private List<Host> mList;
 
     public HostManagerModel(Context context) {
         this.mContext = context;
         mDatabase = HostDatabase.getInstance(mContext);
+        mList = mDatabase.queryAll();
     }
 
     @Override
@@ -25,16 +27,13 @@ public class HostManagerModel implements IHostManagerModel {
     }
 
     @Override
-    public void addHost(Host host, OnAddHostFinishListener listener) {
+    public void addHost(List<Host> hosts, Host host) {
         mDatabase.insert(host);
-        listener.onFinish(host);
+        hosts.add(host);
     }
 
     @Override
     public void loadList(List<Host> hosts) {
-        if (!hosts.isEmpty()) {
-            hosts.clear();
-        }
-        hosts.addAll(mDatabase.queryAll());
+        hosts.addAll(mList);
     }
 }

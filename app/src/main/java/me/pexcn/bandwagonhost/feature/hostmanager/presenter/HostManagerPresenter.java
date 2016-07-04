@@ -14,8 +14,7 @@ import me.pexcn.bandwagonhost.feature.hostmanager.ui.IHostManagerView;
 /**
  * Created by pexcn on 2016-06-30.
  */
-public class HostManagerPresenter extends BasePresenter<IHostManagerView, IHostManagerModel>
-        implements IHostManagerPresenter {
+public class HostManagerPresenter extends BasePresenter<IHostManagerView, IHostManagerModel> implements IHostManagerPresenter {
     public HostManagerPresenter(IHostManagerView view) {
         super(view);
     }
@@ -34,7 +33,9 @@ public class HostManagerPresenter extends BasePresenter<IHostManagerView, IHostM
     }
 
     @Override
-    public void addHost(Host host) {
-
+    public void addHost(List<Host> hosts, Host host) {
+        mModel.addHost(hosts, host);
+        mView.refreshList(hosts.size());
+        mView.showTips(host.title + " " + "添加成功", Snackbar.LENGTH_LONG);
     }
 }
