@@ -68,7 +68,7 @@ public class MainActivity extends BaseActivity<IMainPresenter> implements IMainV
 
     @Override
     public void showAboutDialog() {
-        // TODO
+
     }
 
     @Override
@@ -76,7 +76,7 @@ public class MainActivity extends BaseActivity<IMainPresenter> implements IMainV
         int id = item.getItemId();
         switch (id) {
             case R.id.nav_settings:
-                // TODO
+
                 break;
             case R.id.nav_about:
                 showAboutDialog();
