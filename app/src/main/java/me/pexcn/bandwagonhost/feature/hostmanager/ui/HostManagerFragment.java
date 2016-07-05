@@ -32,11 +32,6 @@ import me.pexcn.bandwagonhost.utils.TextFilter;
 public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
         implements IHostManagerView, View.OnClickListener, DialogInterface.OnKeyListener {
 
-    /**
-     * TODO: RecyclerView 列表动画
-     * TODO: 列表 notify 优化
-     */
-
     private RecyclerView mRecyclerView;
     private HostListAdapter mAdapter;
     private List<Host> mHosts;
@@ -115,8 +110,7 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
     @Override
     public void insertItem(Host host) {
         mHosts.add(host);
-        // TODO: 为什么不用手动notify也可以刷新？
-        // mAdapter.notifyItemInserted(mHosts.size());
+        mAdapter.notifyItemInserted(mHosts.size());
     }
 
     @Override
@@ -128,7 +122,7 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
     @Override
     public void showList(List<Host> hosts) {
         mHosts.addAll(hosts);
-        // mAdapter.notifyDataSetChanged();
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override
