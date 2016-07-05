@@ -29,7 +29,7 @@ public class HostListAdapter extends RecyclerView.Adapter<HostListAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-
+        holder.mTextView.setText(mHosts.get(position).title);
     }
 
     @Override

@@ -61,7 +61,10 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
     protected void initView(View view, @Nullable Bundle savedInstanceState) {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rcv_list);
         mFab = (FloatingActionButton) view.findViewById(R.id.fab);
+    }
 
+    @Override
+    protected void initData() {
         mHosts = new ArrayList<>();
         mAdapter = new HostListAdapter(mHosts);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
@@ -70,11 +73,6 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
 
         setSwipeRemoveItem();
         mPresenter.prepare();
-    }
-
-    @Override
-    protected void initData() {
-
     }
 
     private void setSwipeRemoveItem() {
@@ -117,6 +115,8 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
     @Override
     public void insertItem(Host host) {
         mHosts.add(host);
+        // TODO: 为什么不用手动notify也可以刷新？
+        // mAdapter.notifyItemInserted(mHosts.size());
     }
 
     @Override
@@ -128,6 +128,7 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
     @Override
     public void showList(List<Host> hosts) {
         mHosts.addAll(hosts);
+        // mAdapter.notifyDataSetChanged();
     }
 
     @Override

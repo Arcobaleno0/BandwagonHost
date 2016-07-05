@@ -10,6 +10,7 @@ import java.util.List;
 /**
  * Created by pexcn on 2016-07-04.
  */
+// TODO
 public abstract class BaseRecyclerViewAdapter<L extends List> extends RecyclerView.Adapter<BaseRecyclerViewAdapter.BaseViewHolder> {
     protected L mDatas;
 

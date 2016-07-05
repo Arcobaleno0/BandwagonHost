@@ -33,13 +33,8 @@ public abstract class BaseFragment<P extends IBasePresenter> extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mRootView = inflater.inflate(getLayoutId(), container, false);
         initView(mRootView, savedInstanceState);
-        return mRootView;
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
         initData();
+        return mRootView;
     }
 
     // TODO: WeakReference
