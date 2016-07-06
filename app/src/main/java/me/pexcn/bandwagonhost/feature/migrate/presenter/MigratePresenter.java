@@ -22,6 +22,6 @@ public class MigratePresenter extends BasePresenter<IMigrateView, IMigrateModel>
 
     @Override
     public void prepare() {
-        mView.showSelectHostDialog(mModel.getHostTitle());
+        // mView.showSelectHostDialog(mModel.getHostTitle());
     }
 }
