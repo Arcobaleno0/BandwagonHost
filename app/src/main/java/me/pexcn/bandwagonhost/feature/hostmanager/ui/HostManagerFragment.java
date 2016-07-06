@@ -9,10 +9,13 @@ import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.InputFilter;
+import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -30,7 +33,9 @@ import me.pexcn.bandwagonhost.utils.TextFilter;
  * Created by pexcn on 2016-06-29.
  */
 public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
-        implements IHostManagerView, View.OnClickListener, DialogInterface.OnKeyListener {
+        implements IHostManagerView, View.OnClickListener, DialogInterface.OnKeyListener,
+        HostListAdapter.OnItemClickListener, HostListAdapter.OnItemLongClickListener,
+        PopupMenu.OnMenuItemClickListener {
 
     private RecyclerView mRecyclerView;
     private HostListAdapter mAdapter;
@@ -62,6 +67,8 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
     protected void initData() {
         mHosts = new ArrayList<>();
         mAdapter = new HostListAdapter(mHosts);
+        mAdapter.setOnItemClickListener(this);
+        mAdapter.setOnItemLongClickListener(this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
         mRecyclerView.setAdapter(mAdapter);
         mFab.setOnClickListener(this);
@@ -105,6 +112,14 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
                 .setOnKeyListener(this)
                 .show();
         mDialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(this);
+    }
+
+    @Override
+    public void showPopupMenu(View view) {
+        PopupMenu popupMenu = new PopupMenu(mActivity, view, Gravity.END);
+        popupMenu.inflate(R.menu.menu_popupmenu);
+        popupMenu.setOnMenuItemClickListener(this);
+        popupMenu.show();
     }
 
     @Override
@@ -156,7 +171,17 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
                     mDialog.dismiss();
                 }
                 break;
+            case R.id.cv_item:
+                // TODO: start new activity.
+
+                break;
         }
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        showPopupMenu(v);
+        return true;
     }
 
     @Override
@@ -164,6 +189,19 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP && !event.isCanceled()) {
             dialog.cancel();
             return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_update:
+
+                return true;
+            case R.id.menu_remove:
+
+                return true;
         }
         return false;
     }

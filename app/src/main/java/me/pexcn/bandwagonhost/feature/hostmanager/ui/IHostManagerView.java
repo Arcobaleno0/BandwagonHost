@@ -1,5 +1,7 @@
 package me.pexcn.bandwagonhost.feature.hostmanager.ui;
 
+import android.view.View;
+
 import java.util.List;
 
 import me.pexcn.bandwagonhost.bean.Host;
@@ -15,6 +17,8 @@ public interface IHostManagerView {
     void showList(List<Host> hosts);
 
     void showInsertHostDialog();
+
+    void showPopupMenu(View view);
 
     void showTips(String msg, int duration);
 }
