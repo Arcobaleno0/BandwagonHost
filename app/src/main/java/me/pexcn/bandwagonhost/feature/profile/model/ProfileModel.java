@@ -67,14 +67,4 @@ public class ProfileModel implements IProfileModel {
     public List<Integer> getIds() {
         return mDatabase.queryAll(Constants.PROFILE.DATABASE.TABLE_COLUMN_ID);
     }
-
-//    @Override
-//    public int[] getHostIds() {
-//        int size = mDatabase.queryAll().size();
-//        int[] ids = new int[size];
-//        for (int i = 0; i < size; i++) {
-//            ids[i] = mDatabase.queryAll().get(i)._id;
-//        }
-//        return ids;
-//    }
 }

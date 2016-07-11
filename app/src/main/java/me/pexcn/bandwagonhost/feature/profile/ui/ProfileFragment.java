@@ -68,7 +68,7 @@ public class ProfileFragment extends BaseFragment<IProfilePresenter>
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_hostmanager;
+        return R.layout.fragment_profile;
     }
 
     @Override
@@ -116,7 +116,7 @@ public class ProfileFragment extends BaseFragment<IProfilePresenter>
 
     @Override
     public void showInsertHostDialog() {
-        @SuppressLint("InflateParams") View view = getLayoutInflater(null).inflate(R.layout.dialog_addhost, null);
+        @SuppressLint("InflateParams") View view = getLayoutInflater(null).inflate(R.layout.dialog_add_profile, null);
         mTitle = (TextInputEditText) view.findViewById(R.id.et_title);
         mVeid = (TextInputEditText) view.findViewById(R.id.et_veid);
         mKey = (TextInputEditText) view.findViewById(R.id.et_key);
