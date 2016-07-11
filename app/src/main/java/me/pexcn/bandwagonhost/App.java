@@ -19,6 +19,7 @@
 
 package me.pexcn.bandwagonhost;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 import android.os.Handler;
@@ -30,6 +31,7 @@ public class App extends Application {
     private static App sInstance;
     private static Handler sHandler;
 
+    @SuppressLint("MissingSuperCall")
     @Override
     public void onCreate() {
         sInstance = this;

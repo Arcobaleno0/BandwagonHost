@@ -23,20 +23,19 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import me.pexcn.bandwagonhost.Constant;
+import me.pexcn.bandwagonhost.Constants;
 
 /**
  * Created by pexcn on 2016-06-30.
  */
 public class ProfileDatabaseHelper extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME = Constant.HOST_DATABASE_NAME;
-    private static final int DATABASE_VERSION = Constant.HOST_DATABASE_VERSION;
-    private static final String TABLE_NAME = Constant.HOST_TABLE_NAME;
-
-    private static final String TABLE_COLUMN_ID = Constant.HOST_TABLE_ID;
-    private static final String TABLE_COLUMN_TITLE = Constant.HOST_TABLE_TITLE;
-    private static final String TABLE_COLUMN_VEID = Constant.HOST_TABLE_VEID;
-    private static final String TABLE_COLUMN_KEY = Constant.HOST_TABLE_KEY;
+    private static final String DATABASE_NAME = Constants.PROFILE.DATABASE.DATABASE_NAME;
+    private static final int DATABASE_VERSION = Constants.PROFILE.DATABASE.DATABASE_VERSION;
+    private static final String TABLE_NAME = Constants.PROFILE.DATABASE.TABLE_NAME;
+    private static final String TABLE_COLUMN_ID = Constants.PROFILE.DATABASE.TABLE_COLUMN_ID;
+    private static final String TABLE_COLUMN_TITLE = Constants.PROFILE.DATABASE.TABLE_COLUMN_TITLE;
+    private static final String TABLE_COLUMN_VEID = Constants.PROFILE.DATABASE.TABLE_COLUMN_VEID;
+    private static final String TABLE_COLUMN_KEY = Constants.PROFILE.DATABASE.TABLE_COLUMN_KEY;
 
     private static final String CREATE_TABLE =
             "create table if not exists " + TABLE_NAME + "("

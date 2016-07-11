@@ -27,13 +27,19 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.pexcn.bandwagonhost.Constant;
+import me.pexcn.bandwagonhost.Constants;
 import me.pexcn.bandwagonhost.bean.Profile;
 
 /**
  * Created by pexcn on 2016-06-30.
  */
 public class ProfileDatabase implements IDatabase<Profile, Integer> {
+    private static final String TABLE_NAME = Constants.PROFILE.DATABASE.TABLE_NAME;
+    private static final String TABLE_COLUMN_ID = Constants.PROFILE.DATABASE.TABLE_COLUMN_ID;
+    private static final String TABLE_COLUMN_TITLE = Constants.PROFILE.DATABASE.TABLE_COLUMN_TITLE;
+    private static final String TABLE_COLUMN_VEID = Constants.PROFILE.DATABASE.TABLE_COLUMN_VEID;
+    private static final String TABLE_COLUMN_KEY = Constants.PROFILE.DATABASE.TABLE_COLUMN_KEY;
+
     private ProfileDatabaseHelper mHelper;
     private SQLiteDatabase mDatabase;
 
@@ -58,15 +64,15 @@ public class ProfileDatabase implements IDatabase<Profile, Integer> {
     @Override
     public void insert(Profile profile) {
         ContentValues values = new ContentValues();
-        values.put(Constant.HOST_TABLE_TITLE, profile.title);
-        values.put(Constant.HOST_TABLE_VEID, profile.veid);
-        values.put(Constant.HOST_TABLE_KEY, profile.key);
-        mDatabase.insert(Constant.HOST_TABLE_NAME, null, values);
+        values.put(TABLE_COLUMN_TITLE, profile.title);
+        values.put(TABLE_COLUMN_VEID, profile.veid);
+        values.put(TABLE_COLUMN_KEY, profile.key);
+        mDatabase.insert(TABLE_NAME, null, values);
     }
 
     @Override
     public void remove(int id) {
-        mDatabase.delete(Constant.HOST_TABLE_NAME, Constant.HOST_TABLE_ID + " = " + id, null);
+        mDatabase.delete(TABLE_NAME, TABLE_COLUMN_ID + " = " + id, null);
     }
 
     @Override
@@ -79,18 +85,18 @@ public class ProfileDatabase implements IDatabase<Profile, Integer> {
     public List<Profile> queryAll() {
         ArrayList<Profile> profiles = new ArrayList<>();
         String[] columns = {
-                Constant.HOST_TABLE_ID,
-                Constant.HOST_TABLE_TITLE,
-                Constant.HOST_TABLE_VEID,
-                Constant.HOST_TABLE_KEY
+                TABLE_COLUMN_ID,
+                TABLE_COLUMN_TITLE,
+                TABLE_COLUMN_VEID,
+                TABLE_COLUMN_KEY
         };
-        Cursor cursor = mDatabase.query(Constant.HOST_TABLE_NAME, columns, null, null, null, null, null);
+        Cursor cursor = mDatabase.query(TABLE_NAME, columns, null, null, null, null, null);
         while (cursor.moveToNext()) {
             Profile profile = new Profile();
-            profile._id = cursor.getInt(cursor.getColumnIndex(Constant.HOST_TABLE_ID));
-            profile.title = cursor.getString(cursor.getColumnIndex(Constant.HOST_TABLE_TITLE));
-            profile.veid = cursor.getString(cursor.getColumnIndex(Constant.HOST_TABLE_VEID));
-            profile.key = cursor.getString(cursor.getColumnIndex(Constant.HOST_TABLE_KEY));
+            profile._id = cursor.getInt(cursor.getColumnIndex(TABLE_COLUMN_ID));
+            profile.title = cursor.getString(cursor.getColumnIndex(TABLE_COLUMN_TITLE));
+            profile.veid = cursor.getString(cursor.getColumnIndex(TABLE_COLUMN_VEID));
+            profile.key = cursor.getString(cursor.getColumnIndex(TABLE_COLUMN_KEY));
             profiles.add(profile);
         }
         cursor.close();
@@ -100,9 +106,9 @@ public class ProfileDatabase implements IDatabase<Profile, Integer> {
     @Override
     public List<Integer> queryAll(String field) {
         ArrayList<Integer> fields = new ArrayList<>();
-        Cursor cursor = mDatabase.rawQuery("SELECT " + field + " FROM " + Constant.HOST_TABLE_NAME, null);
+        Cursor cursor = mDatabase.rawQuery("SELECT " + field + " FROM " + TABLE_NAME, null);
         while (cursor.moveToNext()) {
-            fields.add(cursor.getInt(cursor.getColumnIndex(Constant.HOST_TABLE_ID)));
+            fields.add(cursor.getInt(cursor.getColumnIndex(TABLE_COLUMN_ID)));
         }
         cursor.close();
         return fields;
@@ -111,10 +117,10 @@ public class ProfileDatabase implements IDatabase<Profile, Integer> {
     @Override
     public void update(Profile profile) {
         ContentValues values = new ContentValues();
-        values.put(Constant.HOST_TABLE_TITLE, profile.title);
-        values.put(Constant.HOST_TABLE_VEID, profile.veid);
-        values.put(Constant.HOST_TABLE_KEY, profile.key);
-        mDatabase.update(Constant.HOST_TABLE_NAME, values, Constant.HOST_TABLE_ID + "=" + profile._id, null);
+        values.put(TABLE_COLUMN_TITLE, profile.title);
+        values.put(TABLE_COLUMN_VEID, profile.veid);
+        values.put(TABLE_COLUMN_KEY, profile.key);
+        mDatabase.update(TABLE_NAME, values, TABLE_COLUMN_ID + "=" + profile._id, null);
     }
 
     @Override
@@ -135,7 +141,7 @@ public class ProfileDatabase implements IDatabase<Profile, Integer> {
     @Override
     public boolean isEmpty() {
         boolean isEmpty = true;
-        Cursor cursor = mDatabase.rawQuery("SELECT * FROM " + Constant.HOST_TABLE_NAME, null);
+        Cursor cursor = mDatabase.rawQuery("SELECT * FROM " + TABLE_NAME, null);
         if (cursor.moveToFirst()) {
             isEmpty = false;
         }

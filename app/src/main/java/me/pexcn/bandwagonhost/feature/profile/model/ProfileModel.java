@@ -23,7 +23,7 @@ import android.content.Context;
 
 import java.util.List;
 
-import me.pexcn.bandwagonhost.Constant;
+import me.pexcn.bandwagonhost.Constants;
 import me.pexcn.bandwagonhost.bean.Profile;
 import me.pexcn.bandwagonhost.database.ProfileDatabase;
 
@@ -65,7 +65,7 @@ public class ProfileModel implements IProfileModel {
 
     @Override
     public List<Integer> getIds() {
-        return mDatabase.queryAll(Constant.HOST_TABLE_ID);
+        return mDatabase.queryAll(Constants.PROFILE.DATABASE.TABLE_COLUMN_ID);
     }
 
 //    @Override
