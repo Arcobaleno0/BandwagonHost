@@ -1,3 +1,22 @@
+/*
+ * BandwagonHost - A bandwagonhost.com client for Android
+ * Copyright (C) 2016 Xingyu Chen (pexcn) <pexcn97@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
 package me.pexcn.bandwagonhost.main.ui;
 
 import android.support.design.widget.NavigationView;
@@ -13,25 +32,25 @@ import me.pexcn.bandwagonhost.database.HostDatabase;
 import me.pexcn.bandwagonhost.main.presenter.IMainPresenter;
 import me.pexcn.bandwagonhost.main.presenter.MainPresenter;
 
+/**
+ * Created by pexcn on 2016-06-29.
+ */
 public class MainActivity extends BaseActivity<IMainPresenter> implements IMainView, NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private NavigationView mNavigationView;
 
+    @SuppressWarnings("ConstantConditions")
     @Override
     protected void init() {
-        // drawer
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.drawer_open, R.string.drawer_close);
         mDrawerToggle.syncState();
         mDrawerLayout.addDrawerListener(mDrawerToggle);
 
-        // nav
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
-        assert mNavigationView != null;
         mNavigationView.setNavigationItemSelectedListener(this);
 
-        // prepare
         mPresenter.prepare();
     }
 
@@ -50,9 +69,9 @@ public class MainActivity extends BaseActivity<IMainPresenter> implements IMainV
         return false;
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Override
     public void setToolbarTitle(String title) {
-        assert getSupportActionBar() != null;
         getSupportActionBar().setTitle(title);
     }
 

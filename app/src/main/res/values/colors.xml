@@ -3,4 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#0F9D58</color>
+
+    <color name="fabMenuNormal">@color/colorAccent</color>
+    <color name="fabMenuPressed">@color/fabMenuNormal</color>
+    <color name="fabMenuRipple">#0D8B4E</color>
 </resources>

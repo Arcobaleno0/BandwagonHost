@@ -1,3 +1,22 @@
+/*
+ * BandwagonHost - A bandwagonhost.com client for Android
+ * Copyright (C) 2016 Xingyu Chen (pexcn) <pexcn97@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
 package me.pexcn.bandwagonhost.feature.hostmanager.ui;
 
 import android.annotation.SuppressLint;
@@ -61,19 +80,20 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
     protected void initView(View view, @Nullable Bundle savedInstanceState) {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rcv_list);
         mFab = (FloatingActionButton) view.findViewById(R.id.fab);
-    }
 
-    @Override
-    protected void initData() {
         mHosts = new ArrayList<>();
         mAdapter = new HostListAdapter(mHosts);
         mAdapter.setOnItemClickListener(this);
         mAdapter.setOnItemLongClickListener(this);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
+        LinearLayoutManager manager = new LinearLayoutManager(mActivity);
+        mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(mAdapter);
         mFab.setOnClickListener(this);
-
         setSwipeRemoveItem();
+    }
+
+    @Override
+    protected void initData() {
         mPresenter.prepare();
     }
 
@@ -126,6 +146,8 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
     public void insertItem(Host host) {
         mHosts.add(host);
         mAdapter.notifyItemInserted(mHosts.size());
+
+        mRecyclerView.smoothScrollToPosition(mHosts.size());
     }
 
     @Override
@@ -142,7 +164,8 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
 
     @Override
     public void showTips(String msg, int duration) {
-        Snackbar.make(mRootView.findViewById(R.id.coordinator_layout), msg, duration).setAction("确定", this).show();
+        // noinspection ConstantConditions
+        Snackbar.make(getView(), msg, duration).setAction("确定", this).show();
     }
 
     @Override

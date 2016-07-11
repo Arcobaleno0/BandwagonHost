@@ -11,12 +11,9 @@ android {
         versionCode 3
         versionName "0.2"
         multiDexEnabled true
-        resConfigs "zh-rCN"
+        resConfigs "en", "zh-rCN"
     }
     buildTypes {
-        debug {
-            shrinkResources true
-        }
         release {
             minifyEnabled true
             shrinkResources true
@@ -34,4 +31,6 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.4.0'
     compile 'com.google.android.gms:play-services:9.2.0'
     compile 'com.squareup.okhttp3:okhttp:3.3.1'
+
+    compile 'com.github.clans:fab:1.6.4'
 }
