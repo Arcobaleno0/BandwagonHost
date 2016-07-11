@@ -28,27 +28,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.pexcn.bandwagonhost.Constant;
-import me.pexcn.bandwagonhost.bean.Host;
+import me.pexcn.bandwagonhost.bean.Profile;
 
 /**
  * Created by pexcn on 2016-06-30.
  */
-public class HostDatabase implements IDatabase<Host, Integer> {
-    private HostDatabaseHelper mHelper;
+public class ProfileDatabase implements IDatabase<Profile, Integer> {
+    private ProfileDatabaseHelper mHelper;
     private SQLiteDatabase mDatabase;
 
     // TODO: 重构数据库
 
-    private HostDatabase(Context context) {
-        mHelper = new HostDatabaseHelper(context);
+    private ProfileDatabase(Context context) {
+        mHelper = new ProfileDatabaseHelper(context);
         mDatabase = mHelper.getWritableDatabase();
     }
 
-    private static HostDatabase database;
+    private static ProfileDatabase database;
 
-    public static HostDatabase getInstance(Context context) {
+    public static ProfileDatabase getInstance(Context context) {
         if (database == null) {
-            database = new HostDatabase(context);
+            database = new ProfileDatabase(context);
         } else {
             database.open();
         }
@@ -56,11 +56,11 @@ public class HostDatabase implements IDatabase<Host, Integer> {
     }
 
     @Override
-    public void insert(Host host) {
+    public void insert(Profile profile) {
         ContentValues values = new ContentValues();
-        values.put(Constant.HOST_TABLE_TITLE, host.title);
-        values.put(Constant.HOST_TABLE_VEID, host.veid);
-        values.put(Constant.HOST_TABLE_KEY, host.key);
+        values.put(Constant.HOST_TABLE_TITLE, profile.title);
+        values.put(Constant.HOST_TABLE_VEID, profile.veid);
+        values.put(Constant.HOST_TABLE_KEY, profile.key);
         mDatabase.insert(Constant.HOST_TABLE_NAME, null, values);
     }
 
@@ -70,14 +70,14 @@ public class HostDatabase implements IDatabase<Host, Integer> {
     }
 
     @Override
-    public Host query(int id) {
+    public Profile query(int id) {
 
         return null;
     }
 
     @Override
-    public List<Host> queryAll() {
-        ArrayList<Host> hosts = new ArrayList<>();
+    public List<Profile> queryAll() {
+        ArrayList<Profile> profiles = new ArrayList<>();
         String[] columns = {
                 Constant.HOST_TABLE_ID,
                 Constant.HOST_TABLE_TITLE,
@@ -86,15 +86,15 @@ public class HostDatabase implements IDatabase<Host, Integer> {
         };
         Cursor cursor = mDatabase.query(Constant.HOST_TABLE_NAME, columns, null, null, null, null, null);
         while (cursor.moveToNext()) {
-            Host host = new Host();
-            host._id = cursor.getInt(cursor.getColumnIndex(Constant.HOST_TABLE_ID));
-            host.title = cursor.getString(cursor.getColumnIndex(Constant.HOST_TABLE_TITLE));
-            host.veid = cursor.getString(cursor.getColumnIndex(Constant.HOST_TABLE_VEID));
-            host.key = cursor.getString(cursor.getColumnIndex(Constant.HOST_TABLE_KEY));
-            hosts.add(host);
+            Profile profile = new Profile();
+            profile._id = cursor.getInt(cursor.getColumnIndex(Constant.HOST_TABLE_ID));
+            profile.title = cursor.getString(cursor.getColumnIndex(Constant.HOST_TABLE_TITLE));
+            profile.veid = cursor.getString(cursor.getColumnIndex(Constant.HOST_TABLE_VEID));
+            profile.key = cursor.getString(cursor.getColumnIndex(Constant.HOST_TABLE_KEY));
+            profiles.add(profile);
         }
         cursor.close();
-        return hosts;
+        return profiles;
     }
 
     @Override
@@ -109,12 +109,12 @@ public class HostDatabase implements IDatabase<Host, Integer> {
     }
 
     @Override
-    public void update(Host host) {
+    public void update(Profile profile) {
         ContentValues values = new ContentValues();
-        values.put(Constant.HOST_TABLE_TITLE, host.title);
-        values.put(Constant.HOST_TABLE_VEID, host.veid);
-        values.put(Constant.HOST_TABLE_KEY, host.key);
-        mDatabase.update(Constant.HOST_TABLE_NAME, values, Constant.HOST_TABLE_ID + "=" + host._id, null);
+        values.put(Constant.HOST_TABLE_TITLE, profile.title);
+        values.put(Constant.HOST_TABLE_VEID, profile.veid);
+        values.put(Constant.HOST_TABLE_KEY, profile.key);
+        mDatabase.update(Constant.HOST_TABLE_NAME, values, Constant.HOST_TABLE_ID + "=" + profile._id, null);
     }
 
     @Override

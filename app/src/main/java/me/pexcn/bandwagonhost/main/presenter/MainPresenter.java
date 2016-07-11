@@ -22,7 +22,7 @@ package me.pexcn.bandwagonhost.main.presenter;
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.base.presenter.BasePresenter;
 import me.pexcn.bandwagonhost.feature.extra.ui.ExtraFragment;
-import me.pexcn.bandwagonhost.feature.hostmanager.ui.HostManagerFragment;
+import me.pexcn.bandwagonhost.feature.profile.ui.ProfileFragment;
 import me.pexcn.bandwagonhost.feature.migrate.ui.MigrateFragment;
 import me.pexcn.bandwagonhost.main.ui.IMainView;
 
@@ -43,7 +43,7 @@ public class MainPresenter extends BasePresenter<IMainView, Object> implements I
     public void prepare() {
         mView.setToolbarTitle("主机管理");
         mView.setNavCheckedItem(R.id.nav_hostmanager);
-        mView.switchFragment(new HostManagerFragment());
+        mView.switchFragment(new ProfileFragment());
     }
 
     @Override
@@ -52,7 +52,7 @@ public class MainPresenter extends BasePresenter<IMainView, Object> implements I
             case R.id.nav_hostmanager:
                 mView.setToolbarTitle("主机管理");
                 mView.setNavCheckedItem(id);
-                mView.switchFragment(new HostManagerFragment());
+                mView.switchFragment(new ProfileFragment());
                 break;
             case R.id.nav_migrate:
                 mView.setToolbarTitle("切换机房");

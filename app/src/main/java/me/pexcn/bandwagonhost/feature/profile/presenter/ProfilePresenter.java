@@ -17,7 +17,7 @@
  *
  */
 
-package me.pexcn.bandwagonhost.feature.hostmanager.presenter;
+package me.pexcn.bandwagonhost.feature.profile.presenter;
 
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -25,22 +25,22 @@ import android.support.v4.app.Fragment;
 import java.util.List;
 
 import me.pexcn.bandwagonhost.base.presenter.BasePresenter;
-import me.pexcn.bandwagonhost.bean.Host;
-import me.pexcn.bandwagonhost.feature.hostmanager.model.HostManagerModel;
-import me.pexcn.bandwagonhost.feature.hostmanager.model.IHostManagerModel;
-import me.pexcn.bandwagonhost.feature.hostmanager.ui.IHostManagerView;
+import me.pexcn.bandwagonhost.bean.Profile;
+import me.pexcn.bandwagonhost.feature.profile.model.ProfileModel;
+import me.pexcn.bandwagonhost.feature.profile.model.IProfileModel;
+import me.pexcn.bandwagonhost.feature.profile.ui.IProfileView;
 
 /**
  * Created by pexcn on 2016-06-30.
  */
-public class HostManagerPresenter extends BasePresenter<IHostManagerView, IHostManagerModel> implements IHostManagerPresenter {
-    public HostManagerPresenter(IHostManagerView view) {
+public class ProfilePresenter extends BasePresenter<IProfileView, IProfileModel> implements IProfilePresenter {
+    public ProfilePresenter(IProfileView view) {
         super(view);
     }
 
     @Override
-    protected IHostManagerModel getModel() {
-        return new HostManagerModel(((Fragment) mView).getActivity());
+    protected IProfileModel getModel() {
+        return new ProfileModel(((Fragment) mView).getActivity());
     }
 
     @Override
@@ -53,10 +53,10 @@ public class HostManagerPresenter extends BasePresenter<IHostManagerView, IHostM
     }
 
     @Override
-    public void insertHost(Host host) {
-        mModel.insertHost(host);
-        mView.insertItem(host);
-        mView.showTips(host.title + " " + "添加成功", Snackbar.LENGTH_LONG);
+    public void insertHost(Profile profile) {
+        mModel.insertHost(profile);
+        mView.insertItem(profile);
+        mView.showTips(profile.title + " " + "添加成功", Snackbar.LENGTH_LONG);
     }
 
     @Override

@@ -24,8 +24,19 @@ package me.pexcn.bandwagonhost.api;
  */
 public interface Api {
     String BASE_URL = "https://api.64clouds.com/v1";
-    String GET_INFO = BASE_URL + "/API_getServiceInfo";
-    String CREATE_SNAPSHOT = BASE_URL + "/snapshot/create";
-    String RESTART_VPS = BASE_URL + "/restart";
-    String SET_PTR_RECORD = BASE_URL + "/setPTR";
+
+    interface Profile {
+        String GET_INFO = BASE_URL + "/API_getServiceInfo";
+
+        String RESTART_VPS = BASE_URL + "/restart";
+        String SET_PTR_RECORD = BASE_URL + "/setPTR";
+    }
+
+    interface Migrate {
+
+    }
+
+    interface Extra {
+        String CREATE_SNAPSHOT = BASE_URL + "/snapshot/create";
+    }
 }

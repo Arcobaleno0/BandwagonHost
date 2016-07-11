@@ -17,23 +17,22 @@
  *
  */
 
-package me.pexcn.bandwagonhost.bean;
+package me.pexcn.bandwagonhost.feature.profile.presenter;
+
+import java.util.List;
+
+import me.pexcn.bandwagonhost.base.presenter.IBasePresenter;
+import me.pexcn.bandwagonhost.bean.Profile;
 
 /**
  * Created by pexcn on 2016-06-30.
  */
-public class Host {
-    public int _id;
-    public String title;
-    public String veid;
-    public String key;
+public interface IProfilePresenter extends IBasePresenter {
+    void prepare();
 
-    public Host() {
-    }
+    void insertHost(Profile profile);
 
-    public Host(String title, String veid, String key) {
-        this.title = title;
-        this.veid = veid;
-        this.key = key;
-    }
+    void removeHost(int id, int position);
+
+    List<Integer> getIds();
 }

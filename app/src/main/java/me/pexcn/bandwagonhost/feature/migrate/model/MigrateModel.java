@@ -23,27 +23,27 @@ import android.content.Context;
 
 import java.util.List;
 
-import me.pexcn.bandwagonhost.bean.Host;
-import me.pexcn.bandwagonhost.database.HostDatabase;
+import me.pexcn.bandwagonhost.bean.Profile;
+import me.pexcn.bandwagonhost.database.ProfileDatabase;
 
 /**
  * Created by pexcn on 2016-07-03.
  */
 public class MigrateModel implements IMigrateModel {
     private Context mContext;
-    private HostDatabase mDatabase;
+    private ProfileDatabase mDatabase;
 
     public MigrateModel(Context context) {
         this.mContext = context;
-        this.mDatabase = HostDatabase.getInstance(mContext);
+        this.mDatabase = ProfileDatabase.getInstance(mContext);
     }
 
     @Override
-    public String[] getHostTitle() {
-        List<Host> hosts = mDatabase.queryAll();
-        String[] titles = new String[hosts.size()];
-        for (int i = 0; i < hosts.size(); i++) {
-            titles[i] = hosts.get(i).title;
+    public String[] getProfiletTitle() {
+        List<Profile> profiles = mDatabase.queryAll();
+        String[] titles = new String[profiles.size()];
+        for (int i = 0; i < profiles.size(); i++) {
+            titles[i] = profiles.get(i).title;
         }
         return titles;
     }

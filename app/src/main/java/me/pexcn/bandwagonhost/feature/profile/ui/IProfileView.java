@@ -17,22 +17,27 @@
  *
  */
 
-package me.pexcn.bandwagonhost.feature.hostmanager.presenter;
+package me.pexcn.bandwagonhost.feature.profile.ui;
+
+import android.view.View;
 
 import java.util.List;
 
-import me.pexcn.bandwagonhost.base.presenter.IBasePresenter;
-import me.pexcn.bandwagonhost.bean.Host;
+import me.pexcn.bandwagonhost.bean.Profile;
 
 /**
- * Created by pexcn on 2016-06-30.
+ * Created by pexcn on 2016-06-29.
  */
-public interface IHostManagerPresenter extends IBasePresenter {
-    void prepare();
+public interface IProfileView {
+    void insertItem(Profile profile);
 
-    void insertHost(Host host);
+    void removeItem(int position);
 
-    void removeHost(int id, int position);
+    void showList(List<Profile> profiles);
 
-    List<Integer> getIds();
+    void showInsertHostDialog();
+
+    void showPopupMenu(View view);
+
+    void showTips(String msg, int duration);
 }

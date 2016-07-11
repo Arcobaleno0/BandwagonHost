@@ -17,7 +17,7 @@
  *
  */
 
-package me.pexcn.bandwagonhost.feature.hostmanager.adapter;
+package me.pexcn.bandwagonhost.feature.profile.adapter;
 
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -29,17 +29,17 @@ import android.widget.TextView;
 import java.util.List;
 
 import me.pexcn.bandwagonhost.R;
-import me.pexcn.bandwagonhost.bean.Host;
+import me.pexcn.bandwagonhost.bean.Profile;
 
 /**
  * Created by pexcn on 2016-07-01.
  */
-public class HostListAdapter extends RecyclerView.Adapter<HostListAdapter.ViewHolder>
+public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHolder>
         implements View.OnClickListener, View.OnLongClickListener {
-    private List<Host> mHosts;
+    private List<Profile> mProfiles;
 
-    public HostListAdapter(List<Host> hosts) {
-        this.mHosts = hosts;
+    public ProfileAdapter(List<Profile> profiles) {
+        this.mProfiles = profiles;
     }
 
     @Override
@@ -57,13 +57,13 @@ public class HostListAdapter extends RecyclerView.Adapter<HostListAdapter.ViewHo
 //            holder.itemView.setLayoutParams(params);
 //            holder.itemView.setPadding(0, 20, 0, 0);
 //        }
-        holder.mTextView.setText(mHosts.get(position).title);
+        holder.mTextView.setText(mProfiles.get(position).title);
     }
 
 
     @Override
     public int getItemCount() {
-        return mHosts.size();
+        return mProfiles.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

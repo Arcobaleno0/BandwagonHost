@@ -17,30 +17,30 @@
  *
  */
 
-package me.pexcn.bandwagonhost.feature.hostmanager.model;
+package me.pexcn.bandwagonhost.feature.profile.model;
 
 import android.content.Context;
 
 import java.util.List;
 
 import me.pexcn.bandwagonhost.Constant;
-import me.pexcn.bandwagonhost.bean.Host;
-import me.pexcn.bandwagonhost.database.HostDatabase;
+import me.pexcn.bandwagonhost.bean.Profile;
+import me.pexcn.bandwagonhost.database.ProfileDatabase;
 
 /**
  * Created by pexcn on 2016-07-01.
  */
-public class HostManagerModel implements IHostManagerModel {
+public class ProfileModel implements IProfileModel {
     /**
      * TODO: 优化数据库查询操作
      */
 
     private Context mContext;
-    private HostDatabase mDatabase;
+    private ProfileDatabase mDatabase;
 
-    public HostManagerModel(Context context) {
+    public ProfileModel(Context context) {
         this.mContext = context;
-        this.mDatabase = HostDatabase.getInstance(mContext);
+        this.mDatabase = ProfileDatabase.getInstance(mContext);
     }
 
     @Override
@@ -49,8 +49,8 @@ public class HostManagerModel implements IHostManagerModel {
     }
 
     @Override
-    public void insertHost(Host host) {
-        mDatabase.insert(host);
+    public void insertHost(Profile profile) {
+        mDatabase.insert(profile);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class HostManagerModel implements IHostManagerModel {
     }
 
     @Override
-    public List<Host> loadList() {
+    public List<Profile> loadList() {
         return mDatabase.queryAll();
     }
 

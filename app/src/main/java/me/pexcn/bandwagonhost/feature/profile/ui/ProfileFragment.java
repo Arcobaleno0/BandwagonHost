@@ -17,7 +17,7 @@
  *
  */
 
-package me.pexcn.bandwagonhost.feature.hostmanager.ui;
+package me.pexcn.bandwagonhost.feature.profile.ui;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
@@ -42,23 +42,23 @@ import java.util.List;
 
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.base.ui.BaseFragment;
-import me.pexcn.bandwagonhost.bean.Host;
-import me.pexcn.bandwagonhost.feature.hostmanager.adapter.HostListAdapter;
-import me.pexcn.bandwagonhost.feature.hostmanager.presenter.HostManagerPresenter;
-import me.pexcn.bandwagonhost.feature.hostmanager.presenter.IHostManagerPresenter;
+import me.pexcn.bandwagonhost.bean.Profile;
+import me.pexcn.bandwagonhost.feature.profile.adapter.ProfileAdapter;
+import me.pexcn.bandwagonhost.feature.profile.presenter.ProfilePresenter;
+import me.pexcn.bandwagonhost.feature.profile.presenter.IProfilePresenter;
 import me.pexcn.bandwagonhost.utils.TextFilter;
 
 /**
  * Created by pexcn on 2016-06-29.
  */
-public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
-        implements IHostManagerView, View.OnClickListener, DialogInterface.OnKeyListener,
-        HostListAdapter.OnItemClickListener, HostListAdapter.OnItemLongClickListener,
+public class ProfileFragment extends BaseFragment<IProfilePresenter>
+        implements IProfileView, View.OnClickListener, DialogInterface.OnKeyListener,
+        ProfileAdapter.OnItemClickListener, ProfileAdapter.OnItemLongClickListener,
         PopupMenu.OnMenuItemClickListener {
 
     private RecyclerView mRecyclerView;
-    private HostListAdapter mAdapter;
-    private List<Host> mHosts;
+    private ProfileAdapter mAdapter;
+    private List<Profile> mProfiles;
 
     private FloatingActionButton mFab;
     private AlertDialog mDialog;
@@ -72,8 +72,8 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
     }
 
     @Override
-    protected IHostManagerPresenter getPresenter() {
-        return new HostManagerPresenter(this);
+    protected IProfilePresenter getPresenter() {
+        return new ProfilePresenter(this);
     }
 
     @Override
@@ -81,8 +81,8 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rcv_list);
         mFab = (FloatingActionButton) view.findViewById(R.id.fab);
 
-        mHosts = new ArrayList<>();
-        mAdapter = new HostListAdapter(mHosts);
+        mProfiles = new ArrayList<>();
+        mAdapter = new ProfileAdapter(mProfiles);
         mAdapter.setOnItemClickListener(this);
         mAdapter.setOnItemLongClickListener(this);
         LinearLayoutManager manager = new LinearLayoutManager(mActivity);
@@ -143,22 +143,22 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
     }
 
     @Override
-    public void insertItem(Host host) {
-        mHosts.add(host);
-        mAdapter.notifyItemInserted(mHosts.size());
+    public void insertItem(Profile profile) {
+        mProfiles.add(profile);
+        mAdapter.notifyItemInserted(mProfiles.size());
 
-        mRecyclerView.smoothScrollToPosition(mHosts.size());
+        mRecyclerView.smoothScrollToPosition(mProfiles.size());
     }
 
     @Override
     public void removeItem(int position) {
-        mHosts.remove(position);
+        mProfiles.remove(position);
         mAdapter.notifyItemRemoved(position);
     }
 
     @Override
-    public void showList(List<Host> hosts) {
-        mHosts.addAll(hosts);
+    public void showList(List<Profile> profiles) {
+        mProfiles.addAll(profiles);
         mAdapter.notifyDataSetChanged();
     }
 
@@ -175,22 +175,22 @@ public class HostManagerFragment extends BaseFragment<IHostManagerPresenter>
                 showInsertHostDialog();
                 break;
             case android.R.id.button1:
-                Host host = new Host();
-                host.title = mTitle.getText().toString();
-                host.veid = mVeid.getText().toString();
-                host.key = mKey.getText().toString();
-                if ("".equals(host.title) || "".equals(host.veid) || "".equals(host.key)) {
-                    if ("".equals(host.title)) {
+                Profile profile = new Profile();
+                profile.title = mTitle.getText().toString();
+                profile.veid = mVeid.getText().toString();
+                profile.key = mKey.getText().toString();
+                if ("".equals(profile.title) || "".equals(profile.veid) || "".equals(profile.key)) {
+                    if ("".equals(profile.title)) {
                         mTitle.setError("标题不能为空");
                     }
-                    if ("".equals(host.veid)) {
+                    if ("".equals(profile.veid)) {
                         mVeid.setError("VEID 不能为空");
                     }
-                    if ("".equals(host.key)) {
+                    if ("".equals(profile.key)) {
                         mKey.setError("KEY 不能为空");
                     }
                 } else {
-                    mPresenter.insertHost(host);
+                    mPresenter.insertHost(profile);
                     mDialog.dismiss();
                 }
                 break;

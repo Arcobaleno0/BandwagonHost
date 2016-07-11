@@ -17,23 +17,23 @@
  *
  */
 
-package me.pexcn.bandwagonhost.feature.hostmanager.model;
-
-import java.util.List;
-
-import me.pexcn.bandwagonhost.bean.Host;
+package me.pexcn.bandwagonhost.bean;
 
 /**
- * Created by pexcn on 2016-07-01.
+ * Created by pexcn on 2016-06-30.
  */
-public interface IHostManagerModel {
-    boolean isEmpty();
+public class Profile {
+    public int _id;
+    public String title;
+    public String veid;
+    public String key;
 
-    void insertHost(Host host);
+    public Profile() {
+    }
 
-    void removeHost(int id);
-
-    List<Host> loadList();
-
-    List<Integer> getIds();
+    public Profile(String title, String veid, String key) {
+        this.title = title;
+        this.veid = veid;
+        this.key = key;
+    }
 }

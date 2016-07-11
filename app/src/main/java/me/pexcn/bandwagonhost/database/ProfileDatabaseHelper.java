@@ -28,7 +28,7 @@ import me.pexcn.bandwagonhost.Constant;
 /**
  * Created by pexcn on 2016-06-30.
  */
-public class HostDatabaseHelper extends SQLiteOpenHelper {
+public class ProfileDatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = Constant.HOST_DATABASE_NAME;
     private static final int DATABASE_VERSION = Constant.HOST_DATABASE_VERSION;
     private static final String TABLE_NAME = Constant.HOST_TABLE_NAME;
@@ -45,7 +45,7 @@ public class HostDatabaseHelper extends SQLiteOpenHelper {
                     + TABLE_COLUMN_VEID + " VARCHAR, "
                     + TABLE_COLUMN_KEY + " VARCHAR)";
 
-    public HostDatabaseHelper(Context context) {
+    public ProfileDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
