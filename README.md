@@ -2,6 +2,8 @@
 
 ## LICENSE
 
+![GPL v3](https://www.gnu.org/graphics/gplv3-127x51.png)
+
 ```
 BandwagonHost - A bandwagonhost.com client for Android
 Copyright (C) 2016 Xingyu Chen (pexcn) <pexcn97@gmail.com>
