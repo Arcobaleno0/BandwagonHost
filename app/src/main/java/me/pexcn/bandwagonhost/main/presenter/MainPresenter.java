@@ -42,14 +42,14 @@ public class MainPresenter extends BasePresenter<IMainView, Object> implements I
     @Override
     public void prepare() {
         mView.setToolbarTitle("主机管理");
-        mView.setNavCheckedItem(R.id.nav_hostmanager);
+        mView.setNavCheckedItem(R.id.nav_profile);
         mView.switchFragment(new ProfileFragment());
     }
 
     @Override
     public void switchModule(int id) {
         switch (id) {
-            case R.id.nav_hostmanager:
+            case R.id.nav_profile:
                 mView.setToolbarTitle("主机管理");
                 mView.setNavCheckedItem(id);
                 mView.switchFragment(new ProfileFragment());

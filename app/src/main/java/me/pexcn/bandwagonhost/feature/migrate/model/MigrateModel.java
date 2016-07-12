@@ -39,7 +39,7 @@ public class MigrateModel implements IMigrateModel {
     }
 
     @Override
-    public String[] getProfiletTitle() {
+    public String[] getProfileTitle() {
         List<Profile> profiles = mDatabase.queryAll();
         String[] titles = new String[profiles.size()];
         for (int i = 0; i < profiles.size(); i++) {

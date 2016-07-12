@@ -43,9 +43,9 @@ import java.util.List;
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.base.ui.BaseFragment;
 import me.pexcn.bandwagonhost.bean.Profile;
-import me.pexcn.bandwagonhost.feature.profile.adapter.ProfileAdapter;
-import me.pexcn.bandwagonhost.feature.profile.presenter.ProfilePresenter;
+import me.pexcn.bandwagonhost.feature.profile.adapter.ProfileListAdapter;
 import me.pexcn.bandwagonhost.feature.profile.presenter.IProfilePresenter;
+import me.pexcn.bandwagonhost.feature.profile.presenter.ProfilePresenter;
 import me.pexcn.bandwagonhost.utils.TextFilter;
 
 /**
@@ -53,11 +53,11 @@ import me.pexcn.bandwagonhost.utils.TextFilter;
  */
 public class ProfileFragment extends BaseFragment<IProfilePresenter>
         implements IProfileView, View.OnClickListener, DialogInterface.OnKeyListener,
-        ProfileAdapter.OnItemClickListener, ProfileAdapter.OnItemLongClickListener,
+        ProfileListAdapter.OnItemClickListener, ProfileListAdapter.OnItemLongClickListener,
         PopupMenu.OnMenuItemClickListener {
 
     private RecyclerView mRecyclerView;
-    private ProfileAdapter mAdapter;
+    private ProfileListAdapter mAdapter;
     private List<Profile> mProfiles;
 
     private FloatingActionButton mFab;
@@ -65,6 +65,7 @@ public class ProfileFragment extends BaseFragment<IProfilePresenter>
     private TextInputEditText mTitle;
     private TextInputEditText mVeid;
     private TextInputEditText mKey;
+    private Snackbar mSnackbar;
 
     @Override
     protected int getLayoutId() {
@@ -76,28 +77,21 @@ public class ProfileFragment extends BaseFragment<IProfilePresenter>
         return new ProfilePresenter(this);
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Override
     protected void initView(View view, @Nullable Bundle savedInstanceState) {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rcv_list);
         mFab = (FloatingActionButton) view.findViewById(R.id.fab);
 
         mProfiles = new ArrayList<>();
-        mAdapter = new ProfileAdapter(mProfiles);
+        mAdapter = new ProfileListAdapter(mProfiles);
         mAdapter.setOnItemClickListener(this);
         mAdapter.setOnItemLongClickListener(this);
-        LinearLayoutManager manager = new LinearLayoutManager(mActivity);
-        mRecyclerView.setLayoutManager(manager);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
         mRecyclerView.setAdapter(mAdapter);
         mFab.setOnClickListener(this);
-        setSwipeRemoveItem();
-    }
+        mSnackbar = Snackbar.make(getView(), "", Snackbar.LENGTH_INDEFINITE);
 
-    @Override
-    protected void initData() {
-        mPresenter.prepare();
-    }
-
-    private void setSwipeRemoveItem() {
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
@@ -115,7 +109,12 @@ public class ProfileFragment extends BaseFragment<IProfilePresenter>
     }
 
     @Override
-    public void showInsertHostDialog() {
+    protected void initData() {
+        mPresenter.prepare();
+    }
+
+    @Override
+    public void showInsertProfileDialog() {
         @SuppressLint("InflateParams") View view = getLayoutInflater(null).inflate(R.layout.dialog_add_profile, null);
         mTitle = (TextInputEditText) view.findViewById(R.id.et_title);
         mVeid = (TextInputEditText) view.findViewById(R.id.et_veid);
@@ -132,6 +131,10 @@ public class ProfileFragment extends BaseFragment<IProfilePresenter>
                 .setOnKeyListener(this)
                 .show();
         mDialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(this);
+
+        if (mSnackbar.isShown()) {
+            hideTips();
+        }
     }
 
     @Override
@@ -146,8 +149,8 @@ public class ProfileFragment extends BaseFragment<IProfilePresenter>
     public void insertItem(Profile profile) {
         mProfiles.add(profile);
         mAdapter.notifyItemInserted(mProfiles.size());
-
-        mRecyclerView.smoothScrollToPosition(mProfiles.size());
+        // TODO: Scroll to position
+        // mRecyclerView.smoothScrollToPosition(mProfiles.size());
     }
 
     @Override
@@ -162,49 +165,61 @@ public class ProfileFragment extends BaseFragment<IProfilePresenter>
         mAdapter.notifyDataSetChanged();
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Override
     public void showTips(String msg, int duration) {
-        // noinspection ConstantConditions
-        Snackbar.make(getView(), msg, duration).setAction("确定", this).show();
+        mSnackbar.setText(msg).setDuration(duration).setAction("确定", this).show();
+    }
+
+    @Override
+    public void hideTips() {
+        mSnackbar.dismiss();
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fab:
-                showInsertHostDialog();
+                showInsertProfileDialog();
                 break;
             case android.R.id.button1:
-                Profile profile = new Profile();
-                profile.title = mTitle.getText().toString();
-                profile.veid = mVeid.getText().toString();
-                profile.key = mKey.getText().toString();
-                if ("".equals(profile.title) || "".equals(profile.veid) || "".equals(profile.key)) {
-                    if ("".equals(profile.title)) {
-                        mTitle.setError("标题不能为空");
-                    }
-                    if ("".equals(profile.veid)) {
-                        mVeid.setError("VEID 不能为空");
-                    }
-                    if ("".equals(profile.key)) {
-                        mKey.setError("KEY 不能为空");
-                    }
-                } else {
-                    mPresenter.insertHost(profile);
-                    mDialog.dismiss();
-                }
+                verifyInputProcessor();
                 break;
             case R.id.cv_item:
-                // TODO: start new activity.
 
                 break;
         }
     }
 
+    private void verifyInputProcessor() {
+        Profile profile = new Profile();
+        profile.title = mTitle.getText().toString();
+        profile.veid = mVeid.getText().toString();
+        profile.key = mKey.getText().toString();
+        if ("".equals(profile.title) || "".equals(profile.veid) || "".equals(profile.key)) {
+            if ("".equals(profile.title)) {
+                mTitle.setError("标题不能为空");
+            }
+            if ("".equals(profile.veid)) {
+                mVeid.setError("VEID 不能为空");
+            }
+            if ("".equals(profile.key)) {
+                mKey.setError("KEY 不能为空");
+            }
+        } else {
+            mPresenter.insertHost(profile);
+            mDialog.dismiss();
+        }
+    }
+
     @Override
     public boolean onLongClick(View v) {
-        showPopupMenu(v);
-        return true;
+        switch (v.getId()) {
+            case R.id.cv_item:
+                showPopupMenu(v);
+                return true;
+        }
+        return false;
     }
 
     @Override

@@ -27,6 +27,7 @@ import android.support.v7.app.AlertDialog;
 import android.view.KeyEvent;
 import android.view.View;
 
+import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -45,6 +46,8 @@ public class MigrateFragment extends BaseFragment<IMigratePresenter>
         DialogInterface.OnClickListener, DialogInterface.OnKeyListener, OnMapReadyCallback {
     private SupportMapFragment mMapFragment;
     private FloatingActionMenu mFloatingActionMenu;
+    private FloatingActionButton mSelectProfile;
+    private FloatingActionButton mSwitchDataCenter;
 
     @Override
     protected int getLayoutId() {
@@ -86,18 +89,6 @@ public class MigrateFragment extends BaseFragment<IMigratePresenter>
     }
 
     @Override
-    public void showSelectHostDialog(String[] hosts) {
-        new AlertDialog.Builder(mActivity)
-                .setCancelable(false)
-                .setSingleChoiceItems(hosts, 0, this)
-                .setTitle("选择主机")
-                .setNegativeButton("取消", this)
-                .setPositiveButton("确定", this)
-                .setOnKeyListener(this)
-                .show();
-    }
-
-    @Override
     public void onClick(DialogInterface dialog, int which) {
 
     }
@@ -109,5 +100,17 @@ public class MigrateFragment extends BaseFragment<IMigratePresenter>
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void showSelectProfileDialog(String[] profile) {
+        new AlertDialog.Builder(mActivity)
+                .setCancelable(false)
+                .setSingleChoiceItems(profile, 0, this)
+                .setTitle("选择主机")
+                .setNegativeButton("取消", this)
+                .setPositiveButton("确定", this)
+                .setOnKeyListener(this)
+                .show();
     }
 }

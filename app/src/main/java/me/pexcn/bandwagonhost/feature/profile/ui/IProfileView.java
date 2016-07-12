@@ -35,9 +35,11 @@ public interface IProfileView {
 
     void showList(List<Profile> profiles);
 
-    void showInsertHostDialog();
+    void showInsertProfileDialog();
 
     void showPopupMenu(View view);
 
     void showTips(String msg, int duration);
+
+    void hideTips();
 }

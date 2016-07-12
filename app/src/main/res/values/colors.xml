@@ -7,4 +7,8 @@
     <color name="fabMenuNormal">@color/colorAccent</color>
     <color name="fabMenuPressed">@color/fabMenuNormal</color>
     <color name="fabMenuRipple">#0D8B4E</color>
+
+    <color name="fabNormal">@color/colorPrimary</color>
+    <color name="fabPressed">@color/fabNormal</color>
+    <color name="fabRipple">#3848A0</color>
 </resources>

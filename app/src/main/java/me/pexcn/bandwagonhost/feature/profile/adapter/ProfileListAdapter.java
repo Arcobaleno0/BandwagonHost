@@ -34,11 +34,11 @@ import me.pexcn.bandwagonhost.bean.Profile;
 /**
  * Created by pexcn on 2016-07-01.
  */
-public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHolder>
+public class ProfileListAdapter extends RecyclerView.Adapter<ProfileListAdapter.ViewHolder>
         implements View.OnClickListener, View.OnLongClickListener {
     private List<Profile> mProfiles;
 
-    public ProfileAdapter(List<Profile> profiles) {
+    public ProfileListAdapter(List<Profile> profiles) {
         this.mProfiles = profiles;
     }
 
@@ -52,14 +52,8 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-//        if (curItem == 0) {
-//            ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-//            holder.itemView.setLayoutParams(params);
-//            holder.itemView.setPadding(0, 20, 0, 0);
-//        }
         holder.mTextView.setText(mProfiles.get(position).title);
     }
-
 
     @Override
     public int getItemCount() {

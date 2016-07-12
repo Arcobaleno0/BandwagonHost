@@ -23,5 +23,5 @@ package me.pexcn.bandwagonhost.feature.migrate.ui;
  * Created by pexcn on 2016-06-29.
  */
 public interface IMigrateView {
-    void showSelectHostDialog(String[] hosts);
+    void showSelectProfileDialog(String[] profile);
 }

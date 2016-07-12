@@ -100,7 +100,7 @@ public class MainActivity extends BaseActivity<IMainPresenter> implements IMainV
             case R.id.nav_about:
                 showAboutDialog();
                 break;
-            case R.id.nav_hostmanager:
+            case R.id.nav_profile:
             case R.id.nav_migrate:
             case R.id.nav_extra:
                 if (!item.isChecked()) {
