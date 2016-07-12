@@ -19,6 +19,7 @@
 
 package me.pexcn.bandwagonhost.feature.migrate.presenter;
 
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 
 import me.pexcn.bandwagonhost.base.presenter.BasePresenter;
@@ -29,7 +30,8 @@ import me.pexcn.bandwagonhost.feature.migrate.ui.IMigrateView;
 /**
  * Created by pexcn on 2016-06-30.
  */
-public class MigratePresenter extends BasePresenter<IMigrateView, IMigrateModel> implements IMigratePresenter {
+public class MigratePresenter extends BasePresenter<IMigrateView, IMigrateModel>
+        implements IMigratePresenter {
     public MigratePresenter(IMigrateView view) {
         super(view);
     }
@@ -41,7 +43,10 @@ public class MigratePresenter extends BasePresenter<IMigrateView, IMigrateModel>
 
     @Override
     public void prepare() {
-
-        // mView.showSelectHostDialog(mModel.getProfiletTitle());
+        if (mModel.isEmpty()) {
+            mView.showTips("无主机\n请回到 \"主机管理\" 页面添加主机", Snackbar.LENGTH_INDEFINITE);
+        } else if (!mModel.isSelectedProfile()) {
+            mView.showTips("未选择主机，请先选择主机", Snackbar.LENGTH_INDEFINITE);
+        }
     }
 }

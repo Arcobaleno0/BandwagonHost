@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * Created by pexcn on 2016-06-30.
  */
-public interface IDatabase<T, TT> {
+public interface IDatabase<T> {
     void insert(T t);
 
     void remove(int id);
@@ -33,7 +33,7 @@ public interface IDatabase<T, TT> {
 
     List<T> queryAll();
 
-    List<TT> queryAll(String field);
+    List queryAll(String field);
 
     void update(T t);
 

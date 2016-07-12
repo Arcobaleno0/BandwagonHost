@@ -46,9 +46,9 @@ public class ProfilePresenter extends BasePresenter<IProfileView, IProfileModel>
     @Override
     public void prepare() {
         if (mModel.isEmpty()) {
-            mView.showTips("无数据\n" + "点击右下角的 + 号以添加主机", Snackbar.LENGTH_INDEFINITE);
+            mView.showTips("无数据\n" + "请先点击右下角的按钮添加主机", Snackbar.LENGTH_INDEFINITE);
         } else {
-            mView.showList(mModel.getProfileList());
+            mView.showProfileList(mModel.getProfileList());
         }
     }
 

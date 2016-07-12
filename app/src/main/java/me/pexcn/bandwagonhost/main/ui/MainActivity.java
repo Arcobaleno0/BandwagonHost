@@ -122,6 +122,16 @@ public class MainActivity extends BaseActivity<IMainPresenter> implements IMainV
     }
 
     @Override
+    public void showTips(String msg, int duration) {
+
+    }
+
+    @Override
+    public void hideTips() {
+
+    }
+
+    @Override
     protected void onDestroy() {
         // TODO: remove it?
         if (ProfileDatabase.getInstance(this).isOpen()) {

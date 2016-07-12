@@ -41,12 +41,17 @@ public class MigrateModel implements IMigrateModel {
     private Context mContext;
     private ProfileDatabase mDatabase;
 
-    private String IS_SELECTED_PROFILE = Constants.MIGRATE.PREFERENCES.IS_SELECTED_PROFILE_KEY;
-    private String CURRENT_PROFILE_KEY = Constants.MIGRATE.PREFERENCES.CURRENT_PROFILE_KEY;
+    private String IS_SELECTED_PROFILE = Constants.MIGRATE.PREFERENCES.KEY_IS_SELECTED_PROFILE;
+    private String CURRENT_PROFILE_KEY = Constants.MIGRATE.PREFERENCES.KEY_CURRENT_PROFILE;
 
     public MigrateModel(Context context) {
         this.mContext = context;
         this.mDatabase = ProfileDatabase.getInstance(mContext);
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return mDatabase.isEmpty();
     }
 
     @Override

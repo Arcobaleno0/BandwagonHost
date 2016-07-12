@@ -160,12 +160,11 @@ public class ProfileFragment extends BaseFragment<IProfilePresenter>
     }
 
     @Override
-    public void showList(List<Profile> profiles) {
+    public void showProfileList(List<Profile> profiles) {
         mProfiles.addAll(profiles);
         mAdapter.notifyDataSetChanged();
     }
 
-    @SuppressWarnings("ConstantConditions")
     @Override
     public void showTips(String msg, int duration) {
         mSnackbar.setText(msg).setDuration(duration).setAction("确定", this).show();

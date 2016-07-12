@@ -39,8 +39,8 @@ public interface Constants {
 
     interface MIGRATE {
         interface PREFERENCES {
-            String IS_SELECTED_PROFILE_KEY = "IsSelectedProfile";
-            String CURRENT_PROFILE_KEY = "CurrentProfile";
+            String KEY_IS_SELECTED_PROFILE = "IsSelectedProfile";
+            String KEY_CURRENT_PROFILE = "CurrentProfile";
         }
     }
 }

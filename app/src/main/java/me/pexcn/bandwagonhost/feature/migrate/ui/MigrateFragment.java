@@ -74,8 +74,13 @@ public class MigrateFragment extends BaseFragment<IMigratePresenter>
 
     @SuppressWarnings("ConstantConditions")
     @Override
-    protected void showTips(String msg, int duration) {
+    public void showTips(String msg, int duration) {
         Snackbar.make(getView(), msg, duration).setAction("确定", this).show();
+    }
+
+    @Override
+    public void hideTips() {
+
     }
 
     @Override

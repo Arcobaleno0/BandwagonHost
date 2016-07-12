@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="10dp"
+        app:layout_behavior="me.pexcn.bandwagonhost.widget.FloatingActionMenuBehavior"
         app:menu_colorNormal="@color/fabMenuNormal"
         app:menu_colorPressed="@color/fabMenuPressed"
         app:menu_colorRipple="@color/fabMenuRipple"

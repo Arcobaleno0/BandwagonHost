@@ -37,7 +37,6 @@ public abstract class BaseFragment<P extends IBasePresenter> extends Fragment {
     protected P mPresenter;
 
     // TODO: 抽取getArgs
-    // TODO: initData位置
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,7 +72,4 @@ public abstract class BaseFragment<P extends IBasePresenter> extends Fragment {
     abstract protected void initView(View view, @Nullable Bundle savedInstanceState);
 
     abstract protected void initData();
-
-    // TODO: 移动到接口
-    abstract protected void showTips(String msg, int duration);
 }

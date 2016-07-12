@@ -33,7 +33,7 @@ import me.pexcn.bandwagonhost.bean.Profile;
 /**
  * Created by pexcn on 2016-06-30.
  */
-public class ProfileDatabase implements IDatabase<Profile, Integer> {
+public class ProfileDatabase implements IDatabase<Profile> {
     private static final String TABLE_NAME = Constants.PROFILE.DATABASE.TABLE_NAME;
     private static final String TABLE_COLUMN_ID = Constants.PROFILE.DATABASE.TABLE_COLUMN_ID;
     private static final String TABLE_COLUMN_TITLE = Constants.PROFILE.DATABASE.TABLE_COLUMN_TITLE;

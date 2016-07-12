@@ -53,7 +53,12 @@ public class ExtraFragment extends BaseFragment<IExtraPresenter> implements IExt
     }
 
     @Override
-    protected void showTips(String msg, int duration) {
+    public void showTips(String msg, int duration) {
+
+    }
+
+    @Override
+    public void hideTips() {
 
     }
 }

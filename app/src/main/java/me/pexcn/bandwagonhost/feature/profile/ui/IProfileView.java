@@ -19,27 +19,24 @@
 
 package me.pexcn.bandwagonhost.feature.profile.ui;
 
-import android.view.View;
+        import android.view.View;
 
-import java.util.List;
+        import java.util.List;
 
-import me.pexcn.bandwagonhost.bean.Profile;
+        import me.pexcn.bandwagonhost.base.ui.IBaseView;
+        import me.pexcn.bandwagonhost.bean.Profile;
 
 /**
  * Created by pexcn on 2016-06-29.
  */
-public interface IProfileView {
+public interface IProfileView extends IBaseView {
     void insertItem(Profile profile);
 
     void removeItem(int position);
 
-    void showList(List<Profile> profiles);
+    void showProfileList(List<Profile> profiles);
 
     void showInsertProfileDialog();
 
     void showPopupMenu(View view);
-
-    void showTips(String msg, int duration);
-
-    void hideTips();
 }
