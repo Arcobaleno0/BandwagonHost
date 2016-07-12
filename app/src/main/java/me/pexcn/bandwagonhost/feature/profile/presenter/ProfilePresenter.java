@@ -48,20 +48,20 @@ public class ProfilePresenter extends BasePresenter<IProfileView, IProfileModel>
         if (mModel.isEmpty()) {
             mView.showTips("无数据\n" + "点击右下角的 + 号以添加主机", Snackbar.LENGTH_INDEFINITE);
         } else {
-            mView.showList(mModel.loadList());
+            mView.showList(mModel.getProfileList());
         }
     }
 
     @Override
-    public void insertHost(Profile profile) {
-        mModel.insertHost(profile);
+    public void insertProfile(Profile profile) {
+        mModel.insertProfile(profile);
         mView.insertItem(profile);
         mView.showTips(profile.title + " " + "添加成功", Snackbar.LENGTH_LONG);
     }
 
     @Override
-    public void removeHost(int id, int position) {
-        mModel.removeHost(id);
+    public void removeProfile(int id, int position) {
+        mModel.removeProfile(id);
         mView.removeItem(position);
     }
 

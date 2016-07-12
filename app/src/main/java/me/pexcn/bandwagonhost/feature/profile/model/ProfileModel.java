@@ -49,17 +49,17 @@ public class ProfileModel implements IProfileModel {
     }
 
     @Override
-    public void insertHost(Profile profile) {
+    public void insertProfile(Profile profile) {
         mDatabase.insert(profile);
     }
 
     @Override
-    public void removeHost(int id) {
+    public void removeProfile(int id) {
         mDatabase.remove(id);
     }
 
     @Override
-    public List<Profile> loadList() {
+    public List<Profile> getProfileList() {
         return mDatabase.queryAll();
     }
 

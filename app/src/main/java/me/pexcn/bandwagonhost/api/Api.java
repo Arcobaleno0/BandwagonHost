@@ -27,13 +27,13 @@ public interface Api {
 
     interface PROFILE {
         String GET_INFO = BASE_URL + "/API_getServiceInfo";
-
         String RESTART_VPS = BASE_URL + "/restart";
         String SET_PTR_RECORD = BASE_URL + "/setPTR";
     }
 
     interface MIGRATE {
-
+        String GET_LOCATTIONS = BASE_URL + "/migrate/getLocations";
+        String START_MIGRATE = "/migrate/start";
     }
 
     interface EXTRA {

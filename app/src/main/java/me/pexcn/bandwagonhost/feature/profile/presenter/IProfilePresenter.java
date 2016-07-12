@@ -30,9 +30,9 @@ import me.pexcn.bandwagonhost.bean.Profile;
 public interface IProfilePresenter extends IBasePresenter {
     void prepare();
 
-    void insertHost(Profile profile);
+    void insertProfile(Profile profile);
 
-    void removeHost(int id, int position);
+    void removeProfile(int id, int position);
 
     List<Integer> getIds();
 }

@@ -19,9 +19,23 @@
 
 package me.pexcn.bandwagonhost.feature.migrate.model;
 
+import me.pexcn.bandwagonhost.bean.Profile;
+
 /**
  * Created by pexcn on 2016-07-03.
  */
 public interface IMigrateModel {
+    void fetchLocations(Profile profile, OnFetchLocationsListener listener);
+
+    interface OnFetchLocationsListener {
+        void OnSuccess(String json);
+
+        void OnFailure(Exception e);
+    }
+
     String[] getProfileTitle();
+
+    boolean isSelectedProfile();
+
+    void selectProfile(Profile profile);
 }

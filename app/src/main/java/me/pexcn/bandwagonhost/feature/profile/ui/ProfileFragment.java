@@ -103,7 +103,7 @@ public class ProfileFragment extends BaseFragment<IProfilePresenter>
                 // TODO: 应该可以优化
                 ArrayList<Integer> ids = (ArrayList<Integer>) mPresenter.getIds();
                 int currentItem = viewHolder.getAdapterPosition();
-                mPresenter.removeHost(ids.get(currentItem), currentItem);
+                mPresenter.removeProfile(ids.get(currentItem), currentItem);
             }
         }).attachToRecyclerView(mRecyclerView);
     }
@@ -183,7 +183,7 @@ public class ProfileFragment extends BaseFragment<IProfilePresenter>
                 showInsertProfileDialog();
                 break;
             case android.R.id.button1:
-                verifyInputProcessor();
+                insertProfile();
                 break;
             case R.id.cv_item:
 
@@ -191,7 +191,7 @@ public class ProfileFragment extends BaseFragment<IProfilePresenter>
         }
     }
 
-    private void verifyInputProcessor() {
+    private void insertProfile() {
         Profile profile = new Profile();
         profile.title = mTitle.getText().toString();
         profile.veid = mVeid.getText().toString();
@@ -207,7 +207,7 @@ public class ProfileFragment extends BaseFragment<IProfilePresenter>
                 mKey.setError("KEY 不能为空");
             }
         } else {
-            mPresenter.insertHost(profile);
+            mPresenter.insertProfile(profile);
             mDialog.dismiss();
         }
     }

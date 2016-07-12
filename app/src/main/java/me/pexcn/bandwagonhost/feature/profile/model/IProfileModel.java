@@ -29,11 +29,11 @@ import me.pexcn.bandwagonhost.bean.Profile;
 public interface IProfileModel {
     boolean isEmpty();
 
-    void insertHost(Profile profile);
+    void insertProfile(Profile profile);
 
-    void removeHost(int id);
+    void removeProfile(int id);
 
-    List<Profile> loadList();
+    List<Profile> getProfileList();
 
     List<Integer> getIds();
 }
