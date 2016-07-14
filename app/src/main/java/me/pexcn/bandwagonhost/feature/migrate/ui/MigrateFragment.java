@@ -42,8 +42,7 @@ import me.pexcn.bandwagonhost.feature.migrate.presenter.MigratePresenter;
  * Created by pexcn on 2016-06-29.
  */
 public class MigrateFragment extends BaseFragment<IMigratePresenter>
-        implements IMigrateView, View.OnClickListener,
-        DialogInterface.OnClickListener, DialogInterface.OnKeyListener, OnMapReadyCallback {
+        implements IMigrateView, View.OnClickListener, DialogInterface.OnClickListener, DialogInterface.OnKeyListener, OnMapReadyCallback {
     private SupportMapFragment mMapFragment;
     private FloatingActionMenu mFloatingActionMenu;
     private FloatingActionButton mSelectProfile;

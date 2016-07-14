@@ -28,7 +28,7 @@ import me.pexcn.bandwagonhost.Constants;
 import me.pexcn.bandwagonhost.api.Api;
 import me.pexcn.bandwagonhost.bean.Profile;
 import me.pexcn.bandwagonhost.database.ProfileDatabase;
-import me.pexcn.bandwagonhost.utils.Network;
+import me.pexcn.bandwagonhost.utils.HttpUtils;
 import me.pexcn.bandwagonhost.utils.common.PreferencesUtils;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -57,7 +57,7 @@ public class MigrateModel implements IMigrateModel {
     @Override
     public void fetchLocations(Profile profile, final OnFetchLocationsListener listener) {
         String url = Api.MIGRATE.GET_LOCATTIONS + "?veid=" + profile.veid + "&api_key=" + profile.key;
-        Network.get(url, new Callback() {
+        HttpUtils.get(url, new Callback() {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 listener.OnSuccess(response.body().string());

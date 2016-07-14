@@ -17,23 +17,17 @@
  *
  */
 
-package me.pexcn.bandwagonhost.utils;
+package me.pexcn.bandwagonhost.api;
 
-import me.pexcn.bandwagonhost.utils.common.OkHttpUtils;
-import okhttp3.Callback;
+import me.pexcn.bandwagonhost.bean.Locations;
+import retrofit2.Call;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 /**
- * Created by pexcn on 2016-07-01.
+ * Created by pexcn on 2016-07-14.
  */
-public class Network {
-    private Network() {
-    }
-
-    public static String get(String url) {
-        return OkHttpUtils.get(url);
-    }
-
-    public static void get(String url, Callback callback) {
-        OkHttpUtils.get(url, callback);
-    }
+public interface LocationsService {
+    @GET(Api.MIGRATE.GET_LOCATTIONS)
+    Call<Locations> getLocations(@Query(Api.VEID) int veid, @Query(Api.KEY) String key);
 }

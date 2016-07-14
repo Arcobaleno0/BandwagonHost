@@ -24,19 +24,63 @@ package me.pexcn.bandwagonhost.api;
  */
 public interface Api {
     String BASE_URL = "https://api.64clouds.com/v1";
+    String VEID = "veid";
+    String KEY = "api_key";
 
     interface PROFILE {
-        String GET_INFO = BASE_URL + "/API_getServiceInfo";
-        String RESTART_VPS = BASE_URL + "/restart";
-        String SET_PTR_RECORD = BASE_URL + "/setPTR";
+        String START = BASE_URL + "/start";
+        String STOP = BASE_URL + "/stop";
+        String RESTART = BASE_URL + "/restart";
+        String KILL = BASE_URL + "/kill";
+
+        String GET_INFO = BASE_URL + "/getServiceInfo";
+        String GET_ALL_INFO = BASE_URL + "/getLiveServiceInfo";
+        String GET_AVAILABLE_OS = BASE_URL + "/getAvailableOS";
+
+        String REINSTALL_OS = BASE_URL + "/reinstallOS";
+        String RESET_ROOT_PASSWORD = BASE_URL + "/resetRootPassword";
+
+        @Deprecated
+        String GET_USAGE_GRAPHS = BASE_URL + "/getUsageGraphs";
+        String GET_RAW_USAGE_STATS = BASE_URL + "/getRawUsageStats";
+
+        String SET_HOSTNAME = BASE_URL + "/setHostname";
+        String SET_PTR = BASE_URL + "/setPTR";
+
+        interface IPV6 {
+            String ADD = BASE_URL + "/ipv6/add";
+            String DELETE = BASE_URL + "/ipv6/delete";
+        }
+
+        interface BASIC_SHELL {
+            String CD = BASE_URL + "/basicShell/cd";
+            String EXEC = BASE_URL + "/basicShell/exec";
+        }
+
+        interface SHELL_SCRIPT {
+            String EXEC = BASE_URL + "/shellScript/exec";
+        }
+
+        String GET_SUSPENSION_DETAILS = BASE_URL + "/getSuspensionDetails";
+        String UNSUSPEND = BASE_URL + "/unsuspend";
+        String GET_RATE_LIMIT_STATUS = BASE_URL + "/getRateLimitStatus";
     }
 
     interface MIGRATE {
         String GET_LOCATTIONS = BASE_URL + "/migrate/getLocations";
-        String START_MIGRATE = "/migrate/start";
+        String START = BASE_URL + "/migrate/start";
+        String CLONE_FROM_EXTERNAL_SERVER = BASE_URL + "/cloneFromExternalServer";
     }
 
     interface EXTRA {
-        String CREATE_SNAPSHOT = BASE_URL + "/snapshot/create";
+        interface SNAPSHOT {
+            String CREATE = BASE_URL + "/snapshot/create";
+            String LIST = BASE_URL + "/snapshot/list";
+            String DELETE = BASE_URL + "/snapshot/delete";
+            String RESTORE = BASE_URL + "/snapshot/restore";
+            String TOGGLE_STICKY = BASE_URL + "/snapshot/toggleSticky";
+            String EXPORT = BASE_URL + "/snapshot/export";
+            String IMPORT = BASE_URL + "/snapshot/import";
+        }
     }
 }

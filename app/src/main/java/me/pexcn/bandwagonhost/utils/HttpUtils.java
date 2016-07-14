@@ -17,24 +17,23 @@
  *
  */
 
-package me.pexcn.bandwagonhost.bean;
+package me.pexcn.bandwagonhost.utils;
 
-import java.util.List;
+import me.pexcn.bandwagonhost.utils.common.OkHttpUtils;
+import okhttp3.Callback;
 
 /**
- * Created by pexcn on 2016-07-12.
+ * Created by pexcn on 2016-07-01.
  */
-public class Locations {
-    public int error;
-    public String currentLocation;
-    public Descriptions descriptions;
-    public List<String> locations;
+public class HttpUtils {
+    private HttpUtils() {
+    }
 
-    public static class Descriptions {
-        public String USCA_2;
-        public String USCA_FMT;
-        public String USAZ_2;
-        public String USFL_2;
-        public String EUNL_3;
+    public static String get(String url) {
+        return OkHttpUtils.get(url);
+    }
+
+    public static void get(String url, Callback callback) {
+        OkHttpUtils.get(url, callback);
     }
 }
