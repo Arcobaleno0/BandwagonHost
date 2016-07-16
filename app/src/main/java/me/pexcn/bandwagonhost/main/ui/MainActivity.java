@@ -28,7 +28,7 @@ import android.view.MenuItem;
 
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.base.ui.BaseActivity;
-import me.pexcn.bandwagonhost.database.ProfileDatabase;
+import me.pexcn.bandwagonhost.database.DatabaseManager;
 import me.pexcn.bandwagonhost.main.presenter.IMainPresenter;
 import me.pexcn.bandwagonhost.main.presenter.MainPresenter;
 
@@ -134,8 +134,8 @@ public class MainActivity extends BaseActivity<IMainPresenter> implements IMainV
     @Override
     protected void onDestroy() {
         // TODO: remove it?
-        if (ProfileDatabase.getInstance(this).isOpen()) {
-            ProfileDatabase.getInstance(this).close();
+        if (DatabaseManager.getInstance(this).isOpen()) {
+            DatabaseManager.getInstance(this).close();
         }
         super.onDestroy();
     }

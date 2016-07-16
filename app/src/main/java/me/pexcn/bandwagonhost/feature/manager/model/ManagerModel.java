@@ -24,8 +24,8 @@ import android.content.Context;
 import java.util.List;
 
 import me.pexcn.bandwagonhost.Constants;
-import me.pexcn.bandwagonhost.feature.manager.bean.Profile;
-import me.pexcn.bandwagonhost.database.ProfileDatabase;
+import me.pexcn.bandwagonhost.database.DatabaseManager;
+import me.pexcn.bandwagonhost.bean.Profile;
 
 /**
  * Created by pexcn on 2016-07-01.
@@ -35,35 +35,35 @@ public class ManagerModel implements IManagerModel {
      * TODO: 优化数据库查询操作
      */
     private Context mContext;
-    private ProfileDatabase mDatabase;
+    private DatabaseManager mDatabaseManager;
 
     public ManagerModel(Context context) {
         this.mContext = context;
-        this.mDatabase = ProfileDatabase.getInstance(mContext);
+        this.mDatabaseManager = DatabaseManager.getInstance(mContext);
     }
 
     @Override
     public boolean isEmptyProfile() {
-        return mDatabase.isEmpty();
+        return mDatabaseManager.isEmpty();
     }
 
     @Override
     public void insertProfile(Profile profile) {
-        mDatabase.insert(profile);
+        mDatabaseManager.insert(profile);
     }
 
     @Override
     public void removeProfile(int id) {
-        mDatabase.remove(id);
+        mDatabaseManager.remove(id);
     }
 
     @Override
     public List<Profile> getProfileList() {
-        return mDatabase.queryAll();
+        return mDatabaseManager.queryAll();
     }
 
     @Override
     public List<Integer> getProfileIds() {
-        return mDatabase.queryAll(Constants.MANAGER.DATABASE.TABLE_COLUMN_ID);
+        return mDatabaseManager.queryAll(Constants.DATABASE.TABLE_COLUMN_ID);
     }
 }

@@ -67,7 +67,7 @@ public interface Api {
     }
 
     interface MIGRATE {
-        String GET_LOCATTIONS = BASE_URL + "migrate/getLocations";
+        String GET_LOCATIONS = BASE_URL + "migrate/getLocations";
         String START = BASE_URL + "migrate/start";
         String CLONE_FROM_EXTERNAL_SERVER = BASE_URL + "cloneFromExternalServer";
     }
@@ -82,5 +82,9 @@ public interface Api {
             String EXPORT = BASE_URL + "snapshot/export";
             String IMPORT = BASE_URL + "snapshot/import";
         }
+    }
+
+    interface PARAMS {
+        String LOCATION = "location";
     }
 }

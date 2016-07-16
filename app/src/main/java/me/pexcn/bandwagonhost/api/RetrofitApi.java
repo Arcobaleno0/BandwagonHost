@@ -17,31 +17,27 @@
  *
  */
 
-package me.pexcn.bandwagonhost.base.database;
+package me.pexcn.bandwagonhost.api;
 
-import java.util.List;
+import me.pexcn.bandwagonhost.bean.Locations;
+import me.pexcn.bandwagonhost.bean.MigrateResult;
+import retrofit2.Call;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 /**
- * Created by pexcn on 2016-06-30.
+ * Created by pexcn on 2016-07-14.
  */
-public interface IDatabase<T> {
-    void insert(T t);
+public interface RetrofitApi {
+    interface MIGRATE {
+        interface LOCATIONS {
+            @GET(Api.MIGRATE.GET_LOCATIONS)
+            Call<Locations> getLocations(@Query(Api.VEID) int veid, @Query(Api.KEY) String key);
+        }
 
-    void remove(int id);
-
-    T query(int id);
-
-    List<T> queryAll();
-
-    List queryAll(String field);
-
-    void update(T t);
-
-    void open();
-
-    void close();
-
-    boolean isOpen();
-
-    boolean isEmpty();
+        interface START {
+            @GET(Api.MIGRATE.START)
+            Call<MigrateResult> startMigrate(@Query(Api.VEID) int veid, @Query(Api.KEY) String key, @Query(Api.PARAMS.LOCATION) String location);
+        }
+    }
 }

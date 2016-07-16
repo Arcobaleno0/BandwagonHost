@@ -37,4 +37,8 @@ public class Locations {
         public String USFL_2;
         public String EUNL_3;
     }
+
+    // extra
+    public String message;
+    public String additionalErrorInfo;
 }

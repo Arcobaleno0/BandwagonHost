@@ -22,7 +22,6 @@ package me.pexcn.bandwagonhost.feature.migrate.presenter;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 
-import me.pexcn.bandwagonhost.api.LocationsServiceImpl;
 import me.pexcn.bandwagonhost.base.presenter.BasePresenter;
 import me.pexcn.bandwagonhost.feature.migrate.model.IMigrateModel;
 import me.pexcn.bandwagonhost.feature.migrate.model.MigrateModel;
@@ -49,7 +48,5 @@ public class MigratePresenter extends BasePresenter<IMigrateView, IMigrateModel>
         } else if (!mModel.isSelectedProfile()) {
             mView.showTips("未选择主机，请先选择主机", Snackbar.LENGTH_INDEFINITE);
         }
-
-        new LocationsServiceImpl().getLocations(263095, "private_zVnWR45ekzEN5uxdSfL3P0th");
     }
 }

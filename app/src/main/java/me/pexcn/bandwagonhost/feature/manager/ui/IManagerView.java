@@ -24,7 +24,7 @@ import android.view.View;
 import java.util.List;
 
 import me.pexcn.bandwagonhost.base.ui.IBaseView;
-import me.pexcn.bandwagonhost.feature.manager.bean.Profile;
+import me.pexcn.bandwagonhost.bean.Profile;
 
 /**
  * Created by pexcn on 2016-06-29.

@@ -22,7 +22,7 @@ package me.pexcn.bandwagonhost.feature.manager.presenter;
 import java.util.List;
 
 import me.pexcn.bandwagonhost.base.presenter.IBasePresenter;
-import me.pexcn.bandwagonhost.feature.manager.bean.Profile;
+import me.pexcn.bandwagonhost.bean.Profile;
 
 /**
  * Created by pexcn on 2016-06-30.

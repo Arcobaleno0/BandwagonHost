@@ -28,41 +28,41 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.pexcn.bandwagonhost.Constants;
-import me.pexcn.bandwagonhost.base.database.IDatabase;
-import me.pexcn.bandwagonhost.feature.manager.bean.Profile;
+import me.pexcn.bandwagonhost.bean.Profile;
 
 /**
  * Created by pexcn on 2016-06-30.
  */
-public class ProfileDatabase implements IDatabase<Profile> {
-    private static final String TABLE_NAME = Constants.MANAGER.DATABASE.TABLE_NAME;
-    private static final String TABLE_COLUMN_ID = Constants.MANAGER.DATABASE.TABLE_COLUMN_ID;
-    private static final String TABLE_COLUMN_TITLE = Constants.MANAGER.DATABASE.TABLE_COLUMN_TITLE;
-    private static final String TABLE_COLUMN_VEID = Constants.MANAGER.DATABASE.TABLE_COLUMN_VEID;
-    private static final String TABLE_COLUMN_KEY = Constants.MANAGER.DATABASE.TABLE_COLUMN_KEY;
+public class DatabaseManager {
 
-    private ProfileDatabaseHelper mHelper;
+    /**
+     * TODO: 重构数据库
+     */
+
+    private static final String TABLE_NAME = Constants.DATABASE.TABLE_NAME;
+    private static final String TABLE_COLUMN_ID = Constants.DATABASE.TABLE_COLUMN_ID;
+    private static final String TABLE_COLUMN_TITLE = Constants.DATABASE.TABLE_COLUMN_TITLE;
+    private static final String TABLE_COLUMN_VEID = Constants.DATABASE.TABLE_COLUMN_VEID;
+    private static final String TABLE_COLUMN_KEY = Constants.DATABASE.TABLE_COLUMN_KEY;
+
+    private DatabaseHelper mHelper;
     private SQLiteDatabase mDatabase;
+    private static DatabaseManager mInstance;
 
-    // TODO: 重构数据库
-
-    private ProfileDatabase(Context context) {
-        mHelper = new ProfileDatabaseHelper(context);
+    private DatabaseManager(Context context) {
+        mHelper = new DatabaseHelper(context);
         mDatabase = mHelper.getWritableDatabase();
     }
 
-    private static ProfileDatabase mInstance;
-
-    public static ProfileDatabase getInstance(Context context) {
+    public static DatabaseManager getInstance(Context context) {
         if (mInstance == null) {
-            mInstance = new ProfileDatabase(context);
+            mInstance = new DatabaseManager(context);
         } else {
             mInstance.open();
         }
         return mInstance;
     }
 
-    @Override
     public void insert(Profile profile) {
         ContentValues values = new ContentValues();
         values.put(TABLE_COLUMN_TITLE, profile.title);
@@ -71,18 +71,15 @@ public class ProfileDatabase implements IDatabase<Profile> {
         mDatabase.insert(TABLE_NAME, null, values);
     }
 
-    @Override
     public void remove(int id) {
         mDatabase.delete(TABLE_NAME, TABLE_COLUMN_ID + " = " + id, null);
     }
 
-    @Override
     public Profile query(int id) {
 
         return null;
     }
 
-    @Override
     public List<Profile> queryAll() {
         ArrayList<Profile> profiles = new ArrayList<>();
         String[] columns = {
@@ -104,7 +101,6 @@ public class ProfileDatabase implements IDatabase<Profile> {
         return profiles;
     }
 
-    @Override
     public List<Integer> queryAll(String field) {
         ArrayList<Integer> fields = new ArrayList<>();
         Cursor cursor = mDatabase.rawQuery("SELECT " + field + " FROM " + TABLE_NAME, null);
@@ -115,7 +111,6 @@ public class ProfileDatabase implements IDatabase<Profile> {
         return fields;
     }
 
-    @Override
     public void update(Profile profile) {
         ContentValues values = new ContentValues();
         values.put(TABLE_COLUMN_TITLE, profile.title);
@@ -124,22 +119,18 @@ public class ProfileDatabase implements IDatabase<Profile> {
         mDatabase.update(TABLE_NAME, values, TABLE_COLUMN_ID + "=" + profile._id, null);
     }
 
-    @Override
     public void open() {
         mDatabase = mHelper.getWritableDatabase();
     }
 
-    @Override
     public void close() {
         mDatabase.close();
     }
 
-    @Override
     public boolean isOpen() {
         return mDatabase.isOpen();
     }
 
-    @Override
     public boolean isEmpty() {
         boolean isEmpty = true;
         Cursor cursor = mDatabase.rawQuery("SELECT * FROM " + TABLE_NAME, null);

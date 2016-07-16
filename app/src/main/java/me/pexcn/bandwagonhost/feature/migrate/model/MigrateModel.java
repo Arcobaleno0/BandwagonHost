@@ -21,58 +21,41 @@ package me.pexcn.bandwagonhost.feature.migrate.model;
 
 import android.content.Context;
 
-import java.io.IOException;
 import java.util.List;
 
 import me.pexcn.bandwagonhost.Constants;
-import me.pexcn.bandwagonhost.api.Api;
-import me.pexcn.bandwagonhost.feature.manager.bean.Profile;
-import me.pexcn.bandwagonhost.database.ProfileDatabase;
-import me.pexcn.bandwagonhost.utils.HttpUtils;
+import me.pexcn.bandwagonhost.database.DatabaseManager;
+import me.pexcn.bandwagonhost.bean.Profile;
 import me.pexcn.bandwagonhost.utils.common.PreferencesUtils;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
 
 /**
  * Created by pexcn on 2016-07-03.
  */
 public class MigrateModel implements IMigrateModel {
     private Context mContext;
-    private ProfileDatabase mDatabase;
+    private DatabaseManager mDatabaseManager;
 
-    private String IS_SELECTED_PROFILE = Constants.MIGRATE.PREFERENCES.KEY_IS_SELECTED_PROFILE;
-    private String CURRENT_PROFILE_KEY = Constants.MIGRATE.PREFERENCES.KEY_CURRENT_PROFILE;
+    private String IS_SELECTED_PROFILE = Constants.PREFERENCE.KEY_IS_SELECTED_PROFILE;
+    private String CURRENT_PROFILE_KEY = Constants.PREFERENCE.KEY_CURRENT_PROFILE;
 
     public MigrateModel(Context context) {
         this.mContext = context;
-        this.mDatabase = ProfileDatabase.getInstance(mContext);
+        this.mDatabaseManager = DatabaseManager.getInstance(mContext);
     }
 
     @Override
     public boolean isEmpty() {
-        return mDatabase.isEmpty();
+        return mDatabaseManager.isEmpty();
     }
 
     @Override
     public void fetchLocations(Profile profile, final OnFetchLocationsListener listener) {
-        String url = Api.MIGRATE.GET_LOCATTIONS + "?veid=" + profile.veid + "&api_key=" + profile.key;
-        HttpUtils.get(url, new Callback() {
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                listener.OnSuccess(response.body().string());
-            }
 
-            @Override
-            public void onFailure(Call call, IOException e) {
-                listener.OnFailure(e);
-            }
-        });
     }
 
     @Override
     public String[] getProfileTitle() {
-        List<Profile> profiles = mDatabase.queryAll();
+        List<Profile> profiles = mDatabaseManager.queryAll();
         String[] titles = new String[profiles.size()];
         for (int i = 0; i < profiles.size(); i++) {
             titles[i] = profiles.get(i).title;

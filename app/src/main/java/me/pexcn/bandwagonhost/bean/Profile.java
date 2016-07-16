@@ -17,17 +17,23 @@
  *
  */
 
-package me.pexcn.bandwagonhost.api;
-
-import me.pexcn.bandwagonhost.bean.Locations;
-import retrofit2.Call;
-import retrofit2.http.GET;
-import retrofit2.http.Query;
+package me.pexcn.bandwagonhost.bean;
 
 /**
- * Created by pexcn on 2016-07-14.
+ * Created by pexcn on 2016-06-30.
  */
-public interface LocationsService {
-    @GET(Api.MIGRATE.GET_LOCATTIONS)
-    Call<Locations> getLocations(@Query(Api.VEID) int veid, @Query(Api.KEY) String key);
+public class Profile {
+    public int _id;
+    public String title;
+    public String veid;
+    public String key;
+
+    public Profile() {
+    }
+
+    public Profile(String title, String veid, String key) {
+        this.title = title;
+        this.veid = veid;
+        this.key = key;
+    }
 }

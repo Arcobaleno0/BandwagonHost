@@ -25,7 +25,7 @@ import android.support.v4.app.Fragment;
 import java.util.List;
 
 import me.pexcn.bandwagonhost.base.presenter.BasePresenter;
-import me.pexcn.bandwagonhost.feature.manager.bean.Profile;
+import me.pexcn.bandwagonhost.bean.Profile;
 import me.pexcn.bandwagonhost.feature.manager.model.ManagerModel;
 import me.pexcn.bandwagonhost.feature.manager.model.IManagerModel;
 import me.pexcn.bandwagonhost.feature.manager.ui.IManagerView;

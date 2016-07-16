@@ -21,7 +21,7 @@ package me.pexcn.bandwagonhost.feature.manager.model;
 
 import java.util.List;
 
-import me.pexcn.bandwagonhost.feature.manager.bean.Profile;
+import me.pexcn.bandwagonhost.bean.Profile;
 
 /**
  * Created by pexcn on 2016-07-01.

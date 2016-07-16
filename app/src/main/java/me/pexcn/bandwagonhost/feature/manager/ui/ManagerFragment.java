@@ -42,7 +42,7 @@ import java.util.List;
 
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.base.ui.BaseFragment;
-import me.pexcn.bandwagonhost.feature.manager.bean.Profile;
+import me.pexcn.bandwagonhost.bean.Profile;
 import me.pexcn.bandwagonhost.feature.manager.adapter.ProfileListAdapter;
 import me.pexcn.bandwagonhost.feature.manager.presenter.IManagerPresenter;
 import me.pexcn.bandwagonhost.feature.manager.presenter.ManagerPresenter;

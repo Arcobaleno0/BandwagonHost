@@ -28,14 +28,14 @@ import me.pexcn.bandwagonhost.Constants;
 /**
  * Created by pexcn on 2016-06-30.
  */
-public class ProfileDatabaseHelper extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME = Constants.MANAGER.DATABASE.DATABASE_NAME;
-    private static final int DATABASE_VERSION = Constants.MANAGER.DATABASE.DATABASE_VERSION;
-    private static final String TABLE_NAME = Constants.MANAGER.DATABASE.TABLE_NAME;
-    private static final String TABLE_COLUMN_ID = Constants.MANAGER.DATABASE.TABLE_COLUMN_ID;
-    private static final String TABLE_COLUMN_TITLE = Constants.MANAGER.DATABASE.TABLE_COLUMN_TITLE;
-    private static final String TABLE_COLUMN_VEID = Constants.MANAGER.DATABASE.TABLE_COLUMN_VEID;
-    private static final String TABLE_COLUMN_KEY = Constants.MANAGER.DATABASE.TABLE_COLUMN_KEY;
+public class DatabaseHelper extends SQLiteOpenHelper {
+    private static final String DATABASE_NAME = Constants.DATABASE.DATABASE_NAME;
+    private static final int DATABASE_VERSION = Constants.DATABASE.DATABASE_VERSION;
+    private static final String TABLE_NAME = Constants.DATABASE.TABLE_NAME;
+    private static final String TABLE_COLUMN_ID = Constants.DATABASE.TABLE_COLUMN_ID;
+    private static final String TABLE_COLUMN_TITLE = Constants.DATABASE.TABLE_COLUMN_TITLE;
+    private static final String TABLE_COLUMN_VEID = Constants.DATABASE.TABLE_COLUMN_VEID;
+    private static final String TABLE_COLUMN_KEY = Constants.DATABASE.TABLE_COLUMN_KEY;
 
     private static final String CREATE_TABLE =
             "create table if not exists " + TABLE_NAME + "("
@@ -44,7 +44,7 @@ public class ProfileDatabaseHelper extends SQLiteOpenHelper {
                     + TABLE_COLUMN_VEID + " VARCHAR, "
                     + TABLE_COLUMN_KEY + " VARCHAR)";
 
-    public ProfileDatabaseHelper(Context context) {
+    public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -58,7 +58,6 @@ public class ProfileDatabaseHelper extends SQLiteOpenHelper {
         switch (oldVersion) {
             case 1:
             case 2:
-                // TODO
                 break;
         }
     }
