@@ -11,6 +11,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitHelper {
     private static Retrofit mInstance;
 
+    private RetrofitHelper() {
+    }
+
     public static Retrofit getInstance() {
         if (mInstance == null) {
             mInstance = new Retrofit.Builder()
