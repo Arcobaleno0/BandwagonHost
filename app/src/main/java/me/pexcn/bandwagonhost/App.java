@@ -1,6 +1,6 @@
 /*
  * BandwagonHost - A bandwagonhost.com client for Android
- * Copyright (C) 2016 Xingyu Chen (pexcn) <pexcn97@gmail.com>
+ * Copyright (C) 2016 Xingyu Chen <pexcn97@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

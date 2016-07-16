@@ -1,6 +1,6 @@
 /*
  * BandwagonHost - A bandwagonhost.com client for Android
- * Copyright (C) 2016 Xingyu Chen (pexcn) <pexcn97@gmail.com>
+ * Copyright (C) 2016 Xingyu Chen <pexcn97@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,23 +17,23 @@
  *
  */
 
-package me.pexcn.bandwagonhost.bean;
+package me.pexcn.bandwagonhost.feature.manager.model;
+
+import java.util.List;
+
+import me.pexcn.bandwagonhost.feature.manager.bean.Profile;
 
 /**
- * Created by pexcn on 2016-06-30.
+ * Created by pexcn on 2016-07-01.
  */
-public class Profile {
-    public int _id;
-    public String title;
-    public String veid;
-    public String key;
+public interface IManagerModel {
+    boolean isEmptyProfile();
 
-    public Profile() {
-    }
+    void insertProfile(Profile profile);
 
-    public Profile(String title, String veid, String key) {
-        this.title = title;
-        this.veid = veid;
-        this.key = key;
-    }
+    void removeProfile(int id);
+
+    List<Profile> getProfileList();
+
+    List<Integer> getProfileIds();
 }

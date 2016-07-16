@@ -1,6 +1,6 @@
 /*
  * BandwagonHost - A bandwagonhost.com client for Android
- * Copyright (C) 2016 Xingyu Chen (pexcn) <pexcn97@gmail.com>
+ * Copyright (C) 2016 Xingyu Chen <pexcn97@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,13 +29,13 @@ import me.pexcn.bandwagonhost.Constants;
  * Created by pexcn on 2016-06-30.
  */
 public class ProfileDatabaseHelper extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME = Constants.PROFILE.DATABASE.DATABASE_NAME;
-    private static final int DATABASE_VERSION = Constants.PROFILE.DATABASE.DATABASE_VERSION;
-    private static final String TABLE_NAME = Constants.PROFILE.DATABASE.TABLE_NAME;
-    private static final String TABLE_COLUMN_ID = Constants.PROFILE.DATABASE.TABLE_COLUMN_ID;
-    private static final String TABLE_COLUMN_TITLE = Constants.PROFILE.DATABASE.TABLE_COLUMN_TITLE;
-    private static final String TABLE_COLUMN_VEID = Constants.PROFILE.DATABASE.TABLE_COLUMN_VEID;
-    private static final String TABLE_COLUMN_KEY = Constants.PROFILE.DATABASE.TABLE_COLUMN_KEY;
+    private static final String DATABASE_NAME = Constants.MANAGER.DATABASE.DATABASE_NAME;
+    private static final int DATABASE_VERSION = Constants.MANAGER.DATABASE.DATABASE_VERSION;
+    private static final String TABLE_NAME = Constants.MANAGER.DATABASE.TABLE_NAME;
+    private static final String TABLE_COLUMN_ID = Constants.MANAGER.DATABASE.TABLE_COLUMN_ID;
+    private static final String TABLE_COLUMN_TITLE = Constants.MANAGER.DATABASE.TABLE_COLUMN_TITLE;
+    private static final String TABLE_COLUMN_VEID = Constants.MANAGER.DATABASE.TABLE_COLUMN_VEID;
+    private static final String TABLE_COLUMN_KEY = Constants.MANAGER.DATABASE.TABLE_COLUMN_KEY;
 
     private static final String CREATE_TABLE =
             "create table if not exists " + TABLE_NAME + "("

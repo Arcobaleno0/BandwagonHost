@@ -1,6 +1,6 @@
 /*
  * BandwagonHost - A bandwagonhost.com client for Android
- * Copyright (C) 2016 Xingyu Chen (pexcn) <pexcn97@gmail.com>
+ * Copyright (C) 2016 Xingyu Chen <pexcn97@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
  *
  */
 
-package me.pexcn.bandwagonhost.feature.profile.ui;
+package me.pexcn.bandwagonhost.feature.manager.ui;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
@@ -42,17 +42,17 @@ import java.util.List;
 
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.base.ui.BaseFragment;
-import me.pexcn.bandwagonhost.bean.Profile;
-import me.pexcn.bandwagonhost.feature.profile.adapter.ProfileListAdapter;
-import me.pexcn.bandwagonhost.feature.profile.presenter.IProfilePresenter;
-import me.pexcn.bandwagonhost.feature.profile.presenter.ProfilePresenter;
+import me.pexcn.bandwagonhost.feature.manager.bean.Profile;
+import me.pexcn.bandwagonhost.feature.manager.adapter.ProfileListAdapter;
+import me.pexcn.bandwagonhost.feature.manager.presenter.IManagerPresenter;
+import me.pexcn.bandwagonhost.feature.manager.presenter.ManagerPresenter;
 import me.pexcn.bandwagonhost.utils.TextFilter;
 
 /**
  * Created by pexcn on 2016-06-29.
  */
-public class ProfileFragment extends BaseFragment<IProfilePresenter>
-        implements IProfileView, View.OnClickListener, DialogInterface.OnKeyListener,
+public class ManagerFragment extends BaseFragment<IManagerPresenter>
+        implements IManagerView, View.OnClickListener, DialogInterface.OnKeyListener,
         ProfileListAdapter.OnItemClickListener, ProfileListAdapter.OnItemLongClickListener,
         PopupMenu.OnMenuItemClickListener {
 
@@ -73,8 +73,8 @@ public class ProfileFragment extends BaseFragment<IProfilePresenter>
     }
 
     @Override
-    protected IProfilePresenter getPresenter() {
-        return new ProfilePresenter(this);
+    protected IManagerPresenter getPresenter() {
+        return new ManagerPresenter(this);
     }
 
     @SuppressWarnings("ConstantConditions")
@@ -101,7 +101,7 @@ public class ProfileFragment extends BaseFragment<IProfilePresenter>
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 // TODO: 应该可以优化
-                ArrayList<Integer> ids = (ArrayList<Integer>) mPresenter.getIds();
+                ArrayList<Integer> ids = (ArrayList<Integer>) mPresenter.getProfileIds();
                 int currentItem = viewHolder.getAdapterPosition();
                 mPresenter.removeProfile(ids.get(currentItem), currentItem);
             }

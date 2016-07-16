@@ -1,6 +1,6 @@
 /*
  * BandwagonHost - A bandwagonhost.com client for Android
- * Copyright (C) 2016 Xingyu Chen (pexcn) <pexcn97@gmail.com>
+ * Copyright (C) 2016 Xingyu Chen <pexcn97@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,9 +23,9 @@ package me.pexcn.bandwagonhost;
  * Created by pexcn on 2016-06-29.
  */
 public interface Constants {
-    String UNKNOWN = "unknown";
+    // String UNKNOWN = "unknown";
 
-    interface PROFILE {
+    interface MANAGER {
         interface DATABASE {
             String DATABASE_NAME = "profile.db";
             int DATABASE_VERSION = 1;

@@ -1,6 +1,6 @@
 /*
  * BandwagonHost - A bandwagonhost.com client for Android
- * Copyright (C) 2016 Xingyu Chen (pexcn) <pexcn97@gmail.com>
+ * Copyright (C) 2016 Xingyu Chen <pexcn97@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@ package me.pexcn.bandwagonhost.main.presenter;
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.base.presenter.BasePresenter;
 import me.pexcn.bandwagonhost.feature.extra.ui.ExtraFragment;
-import me.pexcn.bandwagonhost.feature.profile.ui.ProfileFragment;
+import me.pexcn.bandwagonhost.feature.manager.ui.ManagerFragment;
 import me.pexcn.bandwagonhost.feature.migrate.ui.MigrateFragment;
 import me.pexcn.bandwagonhost.main.ui.IMainView;
 
@@ -43,7 +43,7 @@ public class MainPresenter extends BasePresenter<IMainView, Object> implements I
     public void prepare() {
         mView.setToolbarTitle("主机管理");
         mView.setNavCheckedItem(R.id.nav_profile);
-        mView.switchFragment(new ProfileFragment());
+        mView.switchFragment(new ManagerFragment());
     }
 
     @Override
@@ -52,7 +52,7 @@ public class MainPresenter extends BasePresenter<IMainView, Object> implements I
             case R.id.nav_profile:
                 mView.setToolbarTitle("主机管理");
                 mView.setNavCheckedItem(id);
-                mView.switchFragment(new ProfileFragment());
+                mView.switchFragment(new ManagerFragment());
                 break;
             case R.id.nav_migrate:
                 mView.setToolbarTitle("切换机房");

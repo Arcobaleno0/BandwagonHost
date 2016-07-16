@@ -1,6 +1,6 @@
 /*
  * BandwagonHost - A bandwagonhost.com client for Android
- * Copyright (C) 2016 Xingyu Chen (pexcn) <pexcn97@gmail.com>
+ * Copyright (C) 2016 Xingyu Chen <pexcn97@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,34 +17,33 @@
  *
  */
 
-package me.pexcn.bandwagonhost.feature.profile.model;
+package me.pexcn.bandwagonhost.feature.manager.model;
 
 import android.content.Context;
 
 import java.util.List;
 
 import me.pexcn.bandwagonhost.Constants;
-import me.pexcn.bandwagonhost.bean.Profile;
+import me.pexcn.bandwagonhost.feature.manager.bean.Profile;
 import me.pexcn.bandwagonhost.database.ProfileDatabase;
 
 /**
  * Created by pexcn on 2016-07-01.
  */
-public class ProfileModel implements IProfileModel {
+public class ManagerModel implements IManagerModel {
     /**
      * TODO: 优化数据库查询操作
      */
-
     private Context mContext;
     private ProfileDatabase mDatabase;
 
-    public ProfileModel(Context context) {
+    public ManagerModel(Context context) {
         this.mContext = context;
         this.mDatabase = ProfileDatabase.getInstance(mContext);
     }
 
     @Override
-    public boolean isEmpty() {
+    public boolean isEmptyProfile() {
         return mDatabase.isEmpty();
     }
 
@@ -64,7 +63,7 @@ public class ProfileModel implements IProfileModel {
     }
 
     @Override
-    public List<Integer> getIds() {
-        return mDatabase.queryAll(Constants.PROFILE.DATABASE.TABLE_COLUMN_ID);
+    public List<Integer> getProfileIds() {
+        return mDatabase.queryAll(Constants.MANAGER.DATABASE.TABLE_COLUMN_ID);
     }
 }

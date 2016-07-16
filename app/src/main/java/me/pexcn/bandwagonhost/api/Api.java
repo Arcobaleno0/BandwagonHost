@@ -1,6 +1,6 @@
 /*
  * BandwagonHost - A bandwagonhost.com client for Android
- * Copyright (C) 2016 Xingyu Chen (pexcn) <pexcn97@gmail.com>
+ * Copyright (C) 2016 Xingyu Chen <pexcn97@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,64 +23,64 @@ package me.pexcn.bandwagonhost.api;
  * Created by pexcn on 2016-06-29.
  */
 public interface Api {
-    String BASE_URL = "https://api.64clouds.com/v1";
+    String BASE_URL = "https://api.64clouds.com/v1/";
     String VEID = "veid";
     String KEY = "api_key";
 
-    interface PROFILE {
-        String START = BASE_URL + "/start";
-        String STOP = BASE_URL + "/stop";
-        String RESTART = BASE_URL + "/restart";
-        String KILL = BASE_URL + "/kill";
+    interface MANAGER {
+        String START = BASE_URL + "start";
+        String STOP = BASE_URL + "stop";
+        String RESTART = BASE_URL + "restart";
+        String KILL = BASE_URL + "kill";
 
-        String GET_INFO = BASE_URL + "/getServiceInfo";
-        String GET_ALL_INFO = BASE_URL + "/getLiveServiceInfo";
-        String GET_AVAILABLE_OS = BASE_URL + "/getAvailableOS";
+        String GET_INFO = BASE_URL + "getServiceInfo";
+        String GET_ALL_INFO = BASE_URL + "getLiveServiceInfo";
+        String GET_AVAILABLE_OS = BASE_URL + "getAvailableOS";
 
-        String REINSTALL_OS = BASE_URL + "/reinstallOS";
-        String RESET_ROOT_PASSWORD = BASE_URL + "/resetRootPassword";
+        String REINSTALL_OS = BASE_URL + "reinstallOS";
+        String RESET_ROOT_PASSWORD = BASE_URL + "resetRootPassword";
 
         @Deprecated
-        String GET_USAGE_GRAPHS = BASE_URL + "/getUsageGraphs";
-        String GET_RAW_USAGE_STATS = BASE_URL + "/getRawUsageStats";
+        String GET_USAGE_GRAPHS = BASE_URL + "getUsageGraphs";
+        String GET_RAW_USAGE_STATS = BASE_URL + "getRawUsageStats";
 
-        String SET_HOSTNAME = BASE_URL + "/setHostname";
-        String SET_PTR = BASE_URL + "/setPTR";
+        String SET_HOSTNAME = BASE_URL + "setHostname";
+        String SET_PTR = BASE_URL + "setPTR";
 
         interface IPV6 {
-            String ADD = BASE_URL + "/ipv6/add";
-            String DELETE = BASE_URL + "/ipv6/delete";
+            String ADD = BASE_URL + "ipv6/add";
+            String DELETE = BASE_URL + "ipv6/delete";
         }
 
         interface BASIC_SHELL {
-            String CD = BASE_URL + "/basicShell/cd";
-            String EXEC = BASE_URL + "/basicShell/exec";
+            String CD = BASE_URL + "basicShell/cd";
+            String EXEC = BASE_URL + "basicShell/exec";
         }
 
         interface SHELL_SCRIPT {
-            String EXEC = BASE_URL + "/shellScript/exec";
+            String EXEC = BASE_URL + "shellScript/exec";
         }
 
-        String GET_SUSPENSION_DETAILS = BASE_URL + "/getSuspensionDetails";
-        String UNSUSPEND = BASE_URL + "/unsuspend";
-        String GET_RATE_LIMIT_STATUS = BASE_URL + "/getRateLimitStatus";
+        String GET_SUSPENSION_DETAILS = BASE_URL + "getSuspensionDetails";
+        String UNSUSPEND = BASE_URL + "unsuspend";
+        String GET_RATE_LIMIT_STATUS = BASE_URL + "getRateLimitStatus";
     }
 
     interface MIGRATE {
-        String GET_LOCATTIONS = BASE_URL + "/migrate/getLocations";
-        String START = BASE_URL + "/migrate/start";
-        String CLONE_FROM_EXTERNAL_SERVER = BASE_URL + "/cloneFromExternalServer";
+        String GET_LOCATTIONS = BASE_URL + "migrate/getLocations";
+        String START = BASE_URL + "migrate/start";
+        String CLONE_FROM_EXTERNAL_SERVER = BASE_URL + "cloneFromExternalServer";
     }
 
     interface EXTRA {
         interface SNAPSHOT {
-            String CREATE = BASE_URL + "/snapshot/create";
-            String LIST = BASE_URL + "/snapshot/list";
-            String DELETE = BASE_URL + "/snapshot/delete";
-            String RESTORE = BASE_URL + "/snapshot/restore";
-            String TOGGLE_STICKY = BASE_URL + "/snapshot/toggleSticky";
-            String EXPORT = BASE_URL + "/snapshot/export";
-            String IMPORT = BASE_URL + "/snapshot/import";
+            String CREATE = BASE_URL + "snapshot/create";
+            String LIST = BASE_URL + "snapshot/list";
+            String DELETE = BASE_URL + "snapshot/delete";
+            String RESTORE = BASE_URL + "snapshot/restore";
+            String TOGGLE_STICKY = BASE_URL + "snapshot/toggleSticky";
+            String EXPORT = BASE_URL + "snapshot/export";
+            String IMPORT = BASE_URL + "snapshot/import";
         }
     }
 }

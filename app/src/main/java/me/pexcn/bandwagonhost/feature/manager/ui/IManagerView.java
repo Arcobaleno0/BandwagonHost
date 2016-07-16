@@ -1,6 +1,6 @@
 /*
  * BandwagonHost - A bandwagonhost.com client for Android
- * Copyright (C) 2016 Xingyu Chen (pexcn) <pexcn97@gmail.com>
+ * Copyright (C) 2016 Xingyu Chen <pexcn97@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,19 +17,19 @@
  *
  */
 
-package me.pexcn.bandwagonhost.feature.profile.ui;
+package me.pexcn.bandwagonhost.feature.manager.ui;
 
-        import android.view.View;
+import android.view.View;
 
-        import java.util.List;
+import java.util.List;
 
-        import me.pexcn.bandwagonhost.base.ui.IBaseView;
-        import me.pexcn.bandwagonhost.bean.Profile;
+import me.pexcn.bandwagonhost.base.ui.IBaseView;
+import me.pexcn.bandwagonhost.feature.manager.bean.Profile;
 
 /**
  * Created by pexcn on 2016-06-29.
  */
-public interface IProfileView extends IBaseView {
+public interface IManagerView extends IBaseView {
     void insertItem(Profile profile);
 
     void removeItem(int position);

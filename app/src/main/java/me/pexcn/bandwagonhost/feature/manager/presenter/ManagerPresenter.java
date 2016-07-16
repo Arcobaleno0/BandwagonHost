@@ -1,6 +1,6 @@
 /*
  * BandwagonHost - A bandwagonhost.com client for Android
- * Copyright (C) 2016 Xingyu Chen (pexcn) <pexcn97@gmail.com>
+ * Copyright (C) 2016 Xingyu Chen <pexcn97@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
  *
  */
 
-package me.pexcn.bandwagonhost.feature.profile.presenter;
+package me.pexcn.bandwagonhost.feature.manager.presenter;
 
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -25,27 +25,27 @@ import android.support.v4.app.Fragment;
 import java.util.List;
 
 import me.pexcn.bandwagonhost.base.presenter.BasePresenter;
-import me.pexcn.bandwagonhost.bean.Profile;
-import me.pexcn.bandwagonhost.feature.profile.model.ProfileModel;
-import me.pexcn.bandwagonhost.feature.profile.model.IProfileModel;
-import me.pexcn.bandwagonhost.feature.profile.ui.IProfileView;
+import me.pexcn.bandwagonhost.feature.manager.bean.Profile;
+import me.pexcn.bandwagonhost.feature.manager.model.ManagerModel;
+import me.pexcn.bandwagonhost.feature.manager.model.IManagerModel;
+import me.pexcn.bandwagonhost.feature.manager.ui.IManagerView;
 
 /**
  * Created by pexcn on 2016-06-30.
  */
-public class ProfilePresenter extends BasePresenter<IProfileView, IProfileModel> implements IProfilePresenter {
-    public ProfilePresenter(IProfileView view) {
+public class ManagerPresenter extends BasePresenter<IManagerView, IManagerModel> implements IManagerPresenter {
+    public ManagerPresenter(IManagerView view) {
         super(view);
     }
 
     @Override
-    protected IProfileModel getModel() {
-        return new ProfileModel(((Fragment) mView).getActivity());
+    protected IManagerModel getModel() {
+        return new ManagerModel(((Fragment) mView).getActivity());
     }
 
     @Override
     public void prepare() {
-        if (mModel.isEmpty()) {
+        if (mModel.isEmptyProfile()) {
             mView.showTips("无数据\n" + "请先点击右下角的按钮添加主机", Snackbar.LENGTH_INDEFINITE);
         } else {
             mView.showProfileList(mModel.getProfileList());
@@ -66,7 +66,7 @@ public class ProfilePresenter extends BasePresenter<IProfileView, IProfileModel>
     }
 
     @Override
-    public List<Integer> getIds() {
-        return mModel.getIds();
+    public List<Integer> getProfileIds() {
+        return mModel.getProfileIds();
     }
 }

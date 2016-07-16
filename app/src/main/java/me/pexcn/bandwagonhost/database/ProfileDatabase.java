@@ -1,6 +1,6 @@
 /*
  * BandwagonHost - A bandwagonhost.com client for Android
- * Copyright (C) 2016 Xingyu Chen (pexcn) <pexcn97@gmail.com>
+ * Copyright (C) 2016 Xingyu Chen <pexcn97@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,17 +28,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.pexcn.bandwagonhost.Constants;
-import me.pexcn.bandwagonhost.bean.Profile;
+import me.pexcn.bandwagonhost.base.database.IDatabase;
+import me.pexcn.bandwagonhost.feature.manager.bean.Profile;
 
 /**
  * Created by pexcn on 2016-06-30.
  */
 public class ProfileDatabase implements IDatabase<Profile> {
-    private static final String TABLE_NAME = Constants.PROFILE.DATABASE.TABLE_NAME;
-    private static final String TABLE_COLUMN_ID = Constants.PROFILE.DATABASE.TABLE_COLUMN_ID;
-    private static final String TABLE_COLUMN_TITLE = Constants.PROFILE.DATABASE.TABLE_COLUMN_TITLE;
-    private static final String TABLE_COLUMN_VEID = Constants.PROFILE.DATABASE.TABLE_COLUMN_VEID;
-    private static final String TABLE_COLUMN_KEY = Constants.PROFILE.DATABASE.TABLE_COLUMN_KEY;
+    private static final String TABLE_NAME = Constants.MANAGER.DATABASE.TABLE_NAME;
+    private static final String TABLE_COLUMN_ID = Constants.MANAGER.DATABASE.TABLE_COLUMN_ID;
+    private static final String TABLE_COLUMN_TITLE = Constants.MANAGER.DATABASE.TABLE_COLUMN_TITLE;
+    private static final String TABLE_COLUMN_VEID = Constants.MANAGER.DATABASE.TABLE_COLUMN_VEID;
+    private static final String TABLE_COLUMN_KEY = Constants.MANAGER.DATABASE.TABLE_COLUMN_KEY;
 
     private ProfileDatabaseHelper mHelper;
     private SQLiteDatabase mDatabase;
@@ -50,15 +51,15 @@ public class ProfileDatabase implements IDatabase<Profile> {
         mDatabase = mHelper.getWritableDatabase();
     }
 
-    private static ProfileDatabase database;
+    private static ProfileDatabase mInstance;
 
     public static ProfileDatabase getInstance(Context context) {
-        if (database == null) {
-            database = new ProfileDatabase(context);
+        if (mInstance == null) {
+            mInstance = new ProfileDatabase(context);
         } else {
-            database.open();
+            mInstance.open();
         }
-        return database;
+        return mInstance;
     }
 
     @Override

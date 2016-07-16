@@ -1,6 +1,6 @@
 /*
  * BandwagonHost - A bandwagonhost.com client for Android
- * Copyright (C) 2016 Xingyu Chen (pexcn) <pexcn97@gmail.com>
+ * Copyright (C) 2016 Xingyu Chen <pexcn97@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,22 +17,31 @@
  *
  */
 
-package me.pexcn.bandwagonhost.feature.profile.presenter;
+package me.pexcn.bandwagonhost.base.database;
 
 import java.util.List;
-
-import me.pexcn.bandwagonhost.base.presenter.IBasePresenter;
-import me.pexcn.bandwagonhost.bean.Profile;
 
 /**
  * Created by pexcn on 2016-06-30.
  */
-public interface IProfilePresenter extends IBasePresenter {
-    void prepare();
+public interface IDatabase<T> {
+    void insert(T t);
 
-    void insertProfile(Profile profile);
+    void remove(int id);
 
-    void removeProfile(int id, int position);
+    T query(int id);
 
-    List<Integer> getIds();
+    List<T> queryAll();
+
+    List queryAll(String field);
+
+    void update(T t);
+
+    void open();
+
+    void close();
+
+    boolean isOpen();
+
+    boolean isEmpty();
 }

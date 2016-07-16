@@ -1,6 +1,6 @@
 /*
  * BandwagonHost - A bandwagonhost.com client for Android
- * Copyright (C) 2016 Xingyu Chen (pexcn) <pexcn97@gmail.com>
+ * Copyright (C) 2016 Xingyu Chen <pexcn97@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
  *
  */
 
-package me.pexcn.bandwagonhost.feature.profile.adapter;
+package me.pexcn.bandwagonhost.feature.manager.adapter;
 
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -29,7 +29,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import me.pexcn.bandwagonhost.R;
-import me.pexcn.bandwagonhost.bean.Profile;
+import me.pexcn.bandwagonhost.feature.manager.bean.Profile;
 
 /**
  * Created by pexcn on 2016-07-01.
@@ -72,7 +72,6 @@ public class ProfileListAdapter extends RecyclerView.Adapter<ProfileListAdapter.
     /**
      * Implement OnItemClickListener and OnItemLongClickListener.
      */
-
     private OnItemClickListener mOnClickListener;
     private OnItemLongClickListener mOnLongClickListener;
 
