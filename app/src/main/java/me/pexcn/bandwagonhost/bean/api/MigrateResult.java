@@ -1,4 +1,4 @@
-package me.pexcn.bandwagonhost.bean;
+package me.pexcn.bandwagonhost.bean.api;
 
 import java.util.List;
 

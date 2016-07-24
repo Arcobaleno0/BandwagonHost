@@ -17,28 +17,23 @@
  *
  */
 
-package me.pexcn.bandwagonhost.bean;
+package me.pexcn.bandwagonhost.api;
 
-import java.util.List;
+import me.pexcn.bandwagonhost.bean.api.Locations;
+import me.pexcn.bandwagonhost.bean.api.MigrateResult;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
+import rx.Observable;
 
 /**
- * Created by pexcn on 2016-07-12.
+ * Created by pexcn on 2016-07-14.
  */
-public class Locations {
-    public int error;
-    public String currentLocation;
-    public Descriptions descriptions;
-    public List<String> locations;
+public interface ApiService {
+    interface LocationService {
+        @GET(Api.Migrate.GET_LOCATIONS)
+        Observable<Locations> getLocations(@Query(Api.VEID) int veid, @Query(Api.KEY) String key);
 
-    public static class Descriptions {
-        public String USCA_2;
-        public String USCA_FMT;
-        public String USAZ_2;
-        public String USFL_2;
-        public String EUNL_3;
+        @GET(Api.Migrate.START)
+        Observable<MigrateResult> startMigrate(@Query(Api.VEID) int veid, @Query(Api.KEY) String key, @Query(Api.Params.LOCATION) String location);
     }
-
-    // extra
-    public String message;
-    public String additionalErrorInfo;
 }

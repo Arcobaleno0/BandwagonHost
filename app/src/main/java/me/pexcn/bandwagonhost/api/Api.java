@@ -27,7 +27,7 @@ public interface Api {
     String VEID = "veid";
     String KEY = "api_key";
 
-    interface MANAGER {
+    interface Manager {
         String START = BASE_URL + "start";
         String STOP = BASE_URL + "stop";
         String RESTART = BASE_URL + "restart";
@@ -47,17 +47,17 @@ public interface Api {
         String SET_HOSTNAME = BASE_URL + "setHostname";
         String SET_PTR = BASE_URL + "setPTR";
 
-        interface IPV6 {
+        interface IPv6 {
             String ADD = BASE_URL + "ipv6/add";
             String DELETE = BASE_URL + "ipv6/delete";
         }
 
-        interface BASIC_SHELL {
+        interface BasicShell {
             String CD = BASE_URL + "basicShell/cd";
             String EXEC = BASE_URL + "basicShell/exec";
         }
 
-        interface SHELL_SCRIPT {
+        interface ShellScript {
             String EXEC = BASE_URL + "shellScript/exec";
         }
 
@@ -66,14 +66,14 @@ public interface Api {
         String GET_RATE_LIMIT_STATUS = BASE_URL + "getRateLimitStatus";
     }
 
-    interface MIGRATE {
+    interface Migrate {
         String GET_LOCATIONS = BASE_URL + "migrate/getLocations";
         String START = BASE_URL + "migrate/start";
-        String CLONE_FROM_EXTERNAL_SERVER = BASE_URL + "cloneFromExternalServer";
+        String CLONE_FROM_EXTERNAL_SERVER = BASE_URL + "cloneFromExternalServer"; // ignore
     }
 
-    interface EXTRA {
-        interface SNAPSHOT {
+    interface Extra {
+        interface Snapshot {
             String CREATE = BASE_URL + "snapshot/create";
             String LIST = BASE_URL + "snapshot/list";
             String DELETE = BASE_URL + "snapshot/delete";
@@ -84,7 +84,7 @@ public interface Api {
         }
     }
 
-    interface PARAMS {
+    interface Params {
         String LOCATION = "location";
     }
 }

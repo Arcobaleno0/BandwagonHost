@@ -17,27 +17,28 @@
  *
  */
 
-package me.pexcn.bandwagonhost.api;
+package me.pexcn.bandwagonhost.bean.api;
 
-import me.pexcn.bandwagonhost.bean.Locations;
-import me.pexcn.bandwagonhost.bean.MigrateResult;
-import retrofit2.Call;
-import retrofit2.http.GET;
-import retrofit2.http.Query;
+import java.util.List;
 
 /**
- * Created by pexcn on 2016-07-14.
+ * Created by pexcn on 2016-07-12.
  */
-public interface RetrofitApi {
-    interface MIGRATE {
-        interface LOCATIONS {
-            @GET(Api.MIGRATE.GET_LOCATIONS)
-            Call<Locations> getLocations(@Query(Api.VEID) int veid, @Query(Api.KEY) String key);
-        }
+public class Locations {
+    public int error;
+    public String currentLocation;
+    public Descriptions descriptions;
+    public List<String> locations;
 
-        interface START {
-            @GET(Api.MIGRATE.START)
-            Call<MigrateResult> startMigrate(@Query(Api.VEID) int veid, @Query(Api.KEY) String key, @Query(Api.PARAMS.LOCATION) String location);
-        }
+    public static class Descriptions {
+        public String USCA_2;
+        public String USCA_FMT;
+        public String USAZ_2;
+        public String USFL_2;
+        public String EUNL_3;
     }
+
+    // extra
+    public String message;
+    public String additionalErrorInfo;
 }
