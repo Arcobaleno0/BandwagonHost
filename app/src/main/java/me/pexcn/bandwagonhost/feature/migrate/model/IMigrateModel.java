@@ -25,19 +25,11 @@ import me.pexcn.bandwagonhost.bean.Profile;
  * Created by pexcn on 2016-07-03.
  */
 public interface IMigrateModel {
-    boolean isEmpty();
+    boolean isProfileEmpty();
 
-    void fetchLocations(Profile profile, OnFetchLocationsListener listener);
+    boolean isProfileSelected();
 
-    interface OnFetchLocationsListener {
-        void OnSuccess(String json);
-
-        void OnFailure(Exception e);
-    }
-
-    String[] getProfileTitle();
-
-    boolean isSelectedProfile();
+    String[] getProfilesTitle();
 
     void selectProfile(Profile profile);
 }

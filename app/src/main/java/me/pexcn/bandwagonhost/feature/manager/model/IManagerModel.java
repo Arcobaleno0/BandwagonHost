@@ -27,7 +27,7 @@ import me.pexcn.bandwagonhost.bean.Profile;
  * Created by pexcn on 2016-07-01.
  */
 public interface IManagerModel {
-    boolean isEmptyProfile();
+    boolean isProfileEmpty();
 
     void insertProfile(Profile profile);
 

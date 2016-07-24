@@ -43,7 +43,7 @@ public class ManagerModel implements IManagerModel {
     }
 
     @Override
-    public boolean isEmptyProfile() {
+    public boolean isProfileEmpty() {
         return mDatabaseManager.isEmpty();
     }
 
@@ -64,6 +64,6 @@ public class ManagerModel implements IManagerModel {
 
     @Override
     public List<Integer> getProfileIds() {
-        return mDatabaseManager.queryAll(Constants.DATABASE.TABLE_COLUMN_ID);
+        return mDatabaseManager.queryAll(Constants.Databases.Profile.TABLE_COLUMN_ID);
     }
 }

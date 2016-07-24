@@ -23,19 +23,21 @@ package me.pexcn.bandwagonhost;
  * Created by pexcn on 2016-06-29.
  */
 public interface Constants {
-    interface DATABASE {
+    interface Databases {
         String DATABASE_NAME = "bandwagonhost.db";
         int DATABASE_VERSION = 1;
 
-        String TABLE_NAME = "profile";
-        String TABLE_COLUMN_ID = "_id";
-        String TABLE_COLUMN_TITLE = "title";
-        String TABLE_COLUMN_VEID = "veid";
-        String TABLE_COLUMN_KEY = "key";
+        interface Profile {
+            String TABLE_NAME = "profile";
+            String TABLE_COLUMN_ID = "_id";
+            String TABLE_COLUMN_TITLE = "title";
+            String TABLE_COLUMN_VEID = "veid";
+            String TABLE_COLUMN_KEY = "key";
+        }
     }
 
-    interface PREFERENCE {
-        String KEY_IS_SELECTED_PROFILE = "IsSelectedProfile";
+    interface Preferences {
+        String KEY_IS_PROFILE_SELECTED = "IsProfileSelected";
         String KEY_CURRENT_PROFILE = "CurrentProfile";
     }
 }

@@ -29,13 +29,13 @@ import me.pexcn.bandwagonhost.Constants;
  * Created by pexcn on 2016-06-30.
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME = Constants.DATABASE.DATABASE_NAME;
-    private static final int DATABASE_VERSION = Constants.DATABASE.DATABASE_VERSION;
-    private static final String TABLE_NAME = Constants.DATABASE.TABLE_NAME;
-    private static final String TABLE_COLUMN_ID = Constants.DATABASE.TABLE_COLUMN_ID;
-    private static final String TABLE_COLUMN_TITLE = Constants.DATABASE.TABLE_COLUMN_TITLE;
-    private static final String TABLE_COLUMN_VEID = Constants.DATABASE.TABLE_COLUMN_VEID;
-    private static final String TABLE_COLUMN_KEY = Constants.DATABASE.TABLE_COLUMN_KEY;
+    private static final String DATABASE_NAME = Constants.Databases.DATABASE_NAME;
+    private static final int DATABASE_VERSION = Constants.Databases.DATABASE_VERSION;
+    private static final String TABLE_NAME = Constants.Databases.Profile.TABLE_NAME;
+    private static final String TABLE_COLUMN_ID = Constants.Databases.Profile.TABLE_COLUMN_ID;
+    private static final String TABLE_COLUMN_TITLE = Constants.Databases.Profile.TABLE_COLUMN_TITLE;
+    private static final String TABLE_COLUMN_VEID = Constants.Databases.Profile.TABLE_COLUMN_VEID;
+    private static final String TABLE_COLUMN_KEY = Constants.Databases.Profile.TABLE_COLUMN_KEY;
 
     private static final String CREATE_TABLE =
             "create table if not exists " + TABLE_NAME + "("

@@ -26,4 +26,6 @@ import me.pexcn.bandwagonhost.base.ui.IBaseView;
  */
 public interface IMigrateView extends IBaseView {
     void showSelectProfileDialog(String[] profile);
+
+    void setToolbarTitle(String title);
 }

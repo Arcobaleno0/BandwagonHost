@@ -35,8 +35,8 @@ public class MigrateModel implements IMigrateModel {
     private Context mContext;
     private DatabaseManager mDatabaseManager;
 
-    private String IS_SELECTED_PROFILE = Constants.PREFERENCE.KEY_IS_SELECTED_PROFILE;
-    private String CURRENT_PROFILE_KEY = Constants.PREFERENCE.KEY_CURRENT_PROFILE;
+    private String IS_PROFILE_SELECTED = Constants.Preferences.KEY_IS_PROFILE_SELECTED;
+    private String CURRENT_PROFILE = Constants.Preferences.KEY_CURRENT_PROFILE;
 
     public MigrateModel(Context context) {
         this.mContext = context;
@@ -44,33 +44,29 @@ public class MigrateModel implements IMigrateModel {
     }
 
     @Override
-    public boolean isEmpty() {
+    public boolean isProfileEmpty() {
         return mDatabaseManager.isEmpty();
     }
 
     @Override
-    public void fetchLocations(Profile profile, final OnFetchLocationsListener listener) {
-
-    }
-
-    @Override
-    public String[] getProfileTitle() {
+    public String[] getProfilesTitle() {
         List<Profile> profiles = mDatabaseManager.queryAll();
-        String[] titles = new String[profiles.size()];
-        for (int i = 0; i < profiles.size(); i++) {
+        int size = profiles.size();
+        String[] titles = new String[size];
+        for (int i = 0; i < size; i++) {
             titles[i] = profiles.get(i).title;
         }
         return titles;
     }
 
     @Override
-    public boolean isSelectedProfile() {
-        return PreferencesUtils.getBoolean(IS_SELECTED_PROFILE, false);
+    public boolean isProfileSelected() {
+        return PreferencesUtils.getBoolean(IS_PROFILE_SELECTED, false);
     }
 
     @Override
     public void selectProfile(Profile profile) {
-        PreferencesUtils.setInt(CURRENT_PROFILE_KEY, profile._id);
-        PreferencesUtils.setBoolean(IS_SELECTED_PROFILE, true);
+        PreferencesUtils.setInt(CURRENT_PROFILE, profile._id);
+        PreferencesUtils.setBoolean(IS_PROFILE_SELECTED, true);
     }
 }

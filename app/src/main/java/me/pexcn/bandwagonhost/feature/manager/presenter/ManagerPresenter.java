@@ -45,7 +45,7 @@ public class ManagerPresenter extends BasePresenter<IManagerView, IManagerModel>
 
     @Override
     public void prepare() {
-        if (mModel.isEmptyProfile()) {
+        if (mModel.isProfileEmpty()) {
             mView.showTips("无数据\n" + "请先点击右下角的按钮添加主机", Snackbar.LENGTH_INDEFINITE);
         } else {
             mView.showProfileList(mModel.getProfileList());

@@ -37,6 +37,7 @@ import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.base.ui.BaseFragment;
 import me.pexcn.bandwagonhost.feature.migrate.presenter.IMigratePresenter;
 import me.pexcn.bandwagonhost.feature.migrate.presenter.MigratePresenter;
+import me.pexcn.bandwagonhost.main.ui.MainActivity;
 
 /**
  * Created by pexcn on 2016-06-29.
@@ -116,5 +117,10 @@ public class MigrateFragment extends BaseFragment<IMigratePresenter>
                 .setPositiveButton("确定", this)
                 .setOnKeyListener(this)
                 .show();
+    }
+
+    @Override
+    public void setToolbarTitle(String title) {
+        ((MainActivity) mActivity).setToolbarTitle(title);
     }
 }
