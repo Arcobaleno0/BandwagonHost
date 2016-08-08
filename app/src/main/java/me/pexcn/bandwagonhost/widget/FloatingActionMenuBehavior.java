@@ -15,6 +15,7 @@ import java.util.List;
 /**
  * Created by pexcn on 2016-07-12.
  */
+@SuppressWarnings("unused")
 public class FloatingActionMenuBehavior extends CoordinatorLayout.Behavior {
     private float mTranslationY;
 

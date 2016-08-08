@@ -62,6 +62,6 @@ public class ManagerModel implements IManagerModel {
 
     @Override
     public List<Integer> getHostIds() {
-        return mDatabaseManager.queryAll(Constants.Databases.Host.TABLE_COLUMN_ID);
+        return mDatabaseManager.queryAll(Constants.HOST_TABLE_COLUMN_ID);
     }
 }

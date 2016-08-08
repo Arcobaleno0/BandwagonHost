@@ -37,11 +37,11 @@ public class DatabaseManager {
      * TODO: 重构数据库
      */
 
-    private static final String TABLE_NAME = Constants.Databases.Host.TABLE_NAME;
-    private static final String TABLE_COLUMN_ID = Constants.Databases.Host.TABLE_COLUMN_ID;
-    private static final String TABLE_COLUMN_TITLE = Constants.Databases.Host.TABLE_COLUMN_TITLE;
-    private static final String TABLE_COLUMN_VEID = Constants.Databases.Host.TABLE_COLUMN_VEID;
-    private static final String TABLE_COLUMN_KEY = Constants.Databases.Host.TABLE_COLUMN_KEY;
+    private static final String TABLE_NAME = Constants.HOST_TABLE_NAME;
+    private static final String TABLE_COLUMN_ID = Constants.HOST_TABLE_COLUMN_ID;
+    private static final String TABLE_COLUMN_TITLE = Constants.HOST_TABLE_COLUMN_TITLE;
+    private static final String TABLE_COLUMN_VEID = Constants.HOST_TABLE_COLUMN_VEID;
+    private static final String TABLE_COLUMN_KEY = Constants.HOST_TABLE_COLUMN_KEY;
 
     private DatabaseHelper mHelper;
     private SQLiteDatabase mDatabase;

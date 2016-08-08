@@ -8,6 +8,7 @@ import me.pexcn.bandwagonhost.App;
 /**
  * Created by pexcn on 2016-06-29.
  */
+@SuppressWarnings("unused")
 public class PreferencesUtils {
     public static final SharedPreferences SHARED_PREFERENCES = PreferenceManager.getDefaultSharedPreferences(App.getContext());
 

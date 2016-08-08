@@ -26,6 +26,7 @@ import android.widget.EditText;
 /**
  * Created by pexcn on 2016-07-01.
  */
+@SuppressWarnings("unused")
 public class TextFilter implements InputFilter {
     private EditText mEditText;
     private Context mContext;

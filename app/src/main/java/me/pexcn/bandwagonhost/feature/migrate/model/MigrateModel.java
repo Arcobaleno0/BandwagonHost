@@ -34,8 +34,8 @@ public class MigrateModel implements IMigrateModel {
     private Context mContext;
     private DatabaseManager mDatabaseManager;
 
-    private String IS_PROFILE_SELECTED = Constants.Preferences.KEY_IS_HOST_SELECTED;
-    private String CURRENT_PROFILE = Constants.Preferences.KEY_CURRENT_HOST;
+    private String IS_PROFILE_SELECTED = Constants.PREF_IS_SELECTED_HOST;
+    private String CURRENT_PROFILE = Constants.PREF_CURRENT_HOST;
 
     public MigrateModel(Context context) {
         this.mContext = context;

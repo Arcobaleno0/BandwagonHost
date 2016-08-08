@@ -7,6 +7,7 @@ import me.pexcn.bandwagonhost.BuildConfig;
 /**
  * Created by pexcn on 2016-06-29.
  */
+@SuppressWarnings("unused")
 public class LogUtils {
     private static final String TAG = LogUtils.class.getSimpleName();
 
