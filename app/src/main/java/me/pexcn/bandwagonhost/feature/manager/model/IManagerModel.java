@@ -14,26 +14,25 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
 package me.pexcn.bandwagonhost.feature.manager.model;
 
 import java.util.List;
 
-import me.pexcn.bandwagonhost.bean.Profile;
+import me.pexcn.bandwagonhost.bean.Host;
 
 /**
  * Created by pexcn on 2016-07-01.
  */
 public interface IManagerModel {
-    boolean isProfileEmpty();
+    boolean isHostEmpty();
 
-    void insertProfile(Profile profile);
+    void insertHost(Host host);
 
-    void removeProfile(int id);
+    void removeHost(int id);
 
-    List<Profile> getProfileList();
+    List<Host> getHostList();
 
-    List<Integer> getProfileIds();
+    List<Integer> getHostIds();
 }

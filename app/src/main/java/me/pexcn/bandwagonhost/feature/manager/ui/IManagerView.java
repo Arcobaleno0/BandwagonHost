@@ -14,7 +14,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
 package me.pexcn.bandwagonhost.feature.manager.ui;
@@ -24,19 +23,19 @@ import android.view.View;
 import java.util.List;
 
 import me.pexcn.bandwagonhost.base.ui.IBaseView;
-import me.pexcn.bandwagonhost.bean.Profile;
+import me.pexcn.bandwagonhost.bean.Host;
 
 /**
  * Created by pexcn on 2016-06-29.
  */
 public interface IManagerView extends IBaseView {
-    void insertItem(Profile profile);
+    void insertItem(Host host);
 
     void removeItem(int position);
 
-    void showProfileList(List<Profile> profiles);
+    void showHostList(List<Host> hosts);
 
-    void showInsertProfileDialog();
+    void showAddHostDialog();
 
     void showPopupMenu(View view);
 }

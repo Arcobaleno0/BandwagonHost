@@ -14,7 +14,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
 package me.pexcn.bandwagonhost.database;
@@ -28,7 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.pexcn.bandwagonhost.Constants;
-import me.pexcn.bandwagonhost.bean.Profile;
 
 /**
  * Created by pexcn on 2016-06-30.
@@ -39,11 +37,11 @@ public class DatabaseManager {
      * TODO: 重构数据库
      */
 
-    private static final String TABLE_NAME = Constants.Databases.Profile.TABLE_NAME;
-    private static final String TABLE_COLUMN_ID = Constants.Databases.Profile.TABLE_COLUMN_ID;
-    private static final String TABLE_COLUMN_TITLE = Constants.Databases.Profile.TABLE_COLUMN_TITLE;
-    private static final String TABLE_COLUMN_VEID = Constants.Databases.Profile.TABLE_COLUMN_VEID;
-    private static final String TABLE_COLUMN_KEY = Constants.Databases.Profile.TABLE_COLUMN_KEY;
+    private static final String TABLE_NAME = Constants.Databases.Host.TABLE_NAME;
+    private static final String TABLE_COLUMN_ID = Constants.Databases.Host.TABLE_COLUMN_ID;
+    private static final String TABLE_COLUMN_TITLE = Constants.Databases.Host.TABLE_COLUMN_TITLE;
+    private static final String TABLE_COLUMN_VEID = Constants.Databases.Host.TABLE_COLUMN_VEID;
+    private static final String TABLE_COLUMN_KEY = Constants.Databases.Host.TABLE_COLUMN_KEY;
 
     private DatabaseHelper mHelper;
     private SQLiteDatabase mDatabase;
@@ -63,11 +61,11 @@ public class DatabaseManager {
         return mInstance;
     }
 
-    public void insert(Profile profile) {
+    public void insert(me.pexcn.bandwagonhost.bean.Host host) {
         ContentValues values = new ContentValues();
-        values.put(TABLE_COLUMN_TITLE, profile.title);
-        values.put(TABLE_COLUMN_VEID, profile.veid);
-        values.put(TABLE_COLUMN_KEY, profile.key);
+        values.put(TABLE_COLUMN_TITLE, host.title);
+        values.put(TABLE_COLUMN_VEID, host.veid);
+        values.put(TABLE_COLUMN_KEY, host.key);
         mDatabase.insert(TABLE_NAME, null, values);
     }
 
@@ -75,13 +73,13 @@ public class DatabaseManager {
         mDatabase.delete(TABLE_NAME, TABLE_COLUMN_ID + " = " + id, null);
     }
 
-    public Profile query(int id) {
+    public me.pexcn.bandwagonhost.bean.Host query(int id) {
 
         return null;
     }
 
-    public List<Profile> queryAll() {
-        ArrayList<Profile> profiles = new ArrayList<>();
+    public List<me.pexcn.bandwagonhost.bean.Host> queryAll() {
+        ArrayList<me.pexcn.bandwagonhost.bean.Host> hosts = new ArrayList<>();
         String[] columns = {
                 TABLE_COLUMN_ID,
                 TABLE_COLUMN_TITLE,
@@ -90,15 +88,15 @@ public class DatabaseManager {
         };
         Cursor cursor = mDatabase.query(TABLE_NAME, columns, null, null, null, null, null);
         while (cursor.moveToNext()) {
-            Profile profile = new Profile();
-            profile._id = cursor.getInt(cursor.getColumnIndex(TABLE_COLUMN_ID));
-            profile.title = cursor.getString(cursor.getColumnIndex(TABLE_COLUMN_TITLE));
-            profile.veid = cursor.getString(cursor.getColumnIndex(TABLE_COLUMN_VEID));
-            profile.key = cursor.getString(cursor.getColumnIndex(TABLE_COLUMN_KEY));
-            profiles.add(profile);
+            me.pexcn.bandwagonhost.bean.Host host = new me.pexcn.bandwagonhost.bean.Host();
+            host._id = cursor.getInt(cursor.getColumnIndex(TABLE_COLUMN_ID));
+            host.title = cursor.getString(cursor.getColumnIndex(TABLE_COLUMN_TITLE));
+            host.veid = cursor.getString(cursor.getColumnIndex(TABLE_COLUMN_VEID));
+            host.key = cursor.getString(cursor.getColumnIndex(TABLE_COLUMN_KEY));
+            hosts.add(host);
         }
         cursor.close();
-        return profiles;
+        return hosts;
     }
 
     public List<Integer> queryAll(String field) {
@@ -111,12 +109,12 @@ public class DatabaseManager {
         return fields;
     }
 
-    public void update(Profile profile) {
+    public void update(me.pexcn.bandwagonhost.bean.Host host) {
         ContentValues values = new ContentValues();
-        values.put(TABLE_COLUMN_TITLE, profile.title);
-        values.put(TABLE_COLUMN_VEID, profile.veid);
-        values.put(TABLE_COLUMN_KEY, profile.key);
-        mDatabase.update(TABLE_NAME, values, TABLE_COLUMN_ID + "=" + profile._id, null);
+        values.put(TABLE_COLUMN_TITLE, host.title);
+        values.put(TABLE_COLUMN_VEID, host.veid);
+        values.put(TABLE_COLUMN_KEY, host.key);
+        mDatabase.update(TABLE_NAME, values, TABLE_COLUMN_ID + "=" + host._id, null);
     }
 
     public void open() {

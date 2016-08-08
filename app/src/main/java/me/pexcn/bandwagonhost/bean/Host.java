@@ -14,7 +14,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
 package me.pexcn.bandwagonhost.bean;
@@ -22,16 +21,16 @@ package me.pexcn.bandwagonhost.bean;
 /**
  * Created by pexcn on 2016-06-30.
  */
-public class Profile {
+public class Host {
     public int _id;
     public String title;
     public String veid;
     public String key;
 
-    public Profile() {
+    public Host() {
     }
 
-    public Profile(String title, String veid, String key) {
+    public Host(String title, String veid, String key) {
         this.title = title;
         this.veid = veid;
         this.key = key;

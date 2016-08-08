@@ -14,7 +14,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
 package me.pexcn.bandwagonhost.feature.manager.presenter;
@@ -25,7 +24,7 @@ import android.support.v4.app.Fragment;
 import java.util.List;
 
 import me.pexcn.bandwagonhost.base.presenter.BasePresenter;
-import me.pexcn.bandwagonhost.bean.Profile;
+import me.pexcn.bandwagonhost.bean.Host;
 import me.pexcn.bandwagonhost.feature.manager.model.IManagerModel;
 import me.pexcn.bandwagonhost.feature.manager.model.ManagerModel;
 import me.pexcn.bandwagonhost.feature.manager.ui.IManagerView;
@@ -45,28 +44,28 @@ public class ManagerPresenter extends BasePresenter<IManagerView, IManagerModel>
 
     @Override
     public void prepare() {
-        if (mModel.isProfileEmpty()) {
+        if (mModel.isHostEmpty()) {
             mView.showTips("无数据\n" + "请先点击右下角的按钮添加主机", Snackbar.LENGTH_INDEFINITE);
         } else {
-            mView.showProfileList(mModel.getProfileList());
+            mView.showHostList(mModel.getHostList());
         }
     }
 
     @Override
-    public void insertProfile(Profile profile) {
-        mModel.insertProfile(profile);
-        mView.insertItem(profile);
-        mView.showTips(profile.title + " " + "添加成功", Snackbar.LENGTH_LONG);
+    public void insertHost(Host host) {
+        mModel.insertHost(host);
+        mView.insertItem(host);
+        mView.showTips(host.title + " " + "添加成功", Snackbar.LENGTH_LONG);
     }
 
     @Override
-    public void removeProfile(int id, int position) {
-        mModel.removeProfile(id);
+    public void removeHost(int id, int position) {
+        mModel.removeHost(id);
         mView.removeItem(position);
     }
 
     @Override
-    public List<Integer> getProfileIds() {
-        return mModel.getProfileIds();
+    public List<Integer> getHostIds() {
+        return mModel.getHostIds();
     }
 }

@@ -14,7 +14,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
 package me.pexcn.bandwagonhost.feature.migrate.ui;
@@ -108,7 +107,7 @@ public class MigrateFragment extends BaseFragment<IMigratePresenter>
     }
 
     @Override
-    public void showSelectProfileDialog(String[] profile) {
+    public void showSelectHostDialog(String[] profile) {
         new AlertDialog.Builder(mActivity)
                 .setCancelable(false)
                 .setSingleChoiceItems(profile, 0, this)

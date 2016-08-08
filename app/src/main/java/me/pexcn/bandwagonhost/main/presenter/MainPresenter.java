@@ -14,7 +14,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
 package me.pexcn.bandwagonhost.main.presenter;
@@ -42,14 +41,14 @@ public class MainPresenter extends BasePresenter<IMainView, Object> implements I
     @Override
     public void prepare() {
         mView.setToolbarTitle("主机管理");
-        mView.setNavCheckedItem(R.id.nav_profile);
+        mView.setNavCheckedItem(R.id.nav_manager);
         mView.switchFragment(new ManagerFragment());
     }
 
     @Override
     public void switchModule(int id) {
         switch (id) {
-            case R.id.nav_profile:
+            case R.id.nav_manager:
                 mView.setToolbarTitle("主机管理");
                 mView.setNavCheckedItem(id);
                 mView.switchFragment(new ManagerFragment());

@@ -14,7 +14,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
 package me.pexcn.bandwagonhost.feature.manager.adapter;
@@ -29,17 +28,17 @@ import android.widget.TextView;
 import java.util.List;
 
 import me.pexcn.bandwagonhost.R;
-import me.pexcn.bandwagonhost.bean.Profile;
+import me.pexcn.bandwagonhost.bean.Host;
 
 /**
  * Created by pexcn on 2016-07-01.
  */
-public class ProfileListAdapter extends RecyclerView.Adapter<ProfileListAdapter.ViewHolder>
+public class HostListAdapter extends RecyclerView.Adapter<HostListAdapter.ViewHolder>
         implements View.OnClickListener, View.OnLongClickListener {
-    private List<Profile> mProfiles;
+    private List<Host> mHosts;
 
-    public ProfileListAdapter(List<Profile> profiles) {
-        this.mProfiles = profiles;
+    public HostListAdapter(List<Host> hosts) {
+        this.mHosts = hosts;
     }
 
     @Override
@@ -52,12 +51,12 @@ public class ProfileListAdapter extends RecyclerView.Adapter<ProfileListAdapter.
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mTextView.setText(mProfiles.get(position).title);
+        holder.mTextView.setText(mHosts.get(position).title);
     }
 
     @Override
     public int getItemCount() {
-        return mProfiles.size();
+        return mHosts.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

@@ -14,7 +14,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
 package me.pexcn.bandwagonhost.feature.migrate.ui;
@@ -25,7 +24,7 @@ import me.pexcn.bandwagonhost.base.ui.IBaseView;
  * Created by pexcn on 2016-06-29.
  */
 public interface IMigrateView extends IBaseView {
-    void showSelectProfileDialog(String[] profile);
+    void showSelectHostDialog(String[] profile);
 
     void setToolbarTitle(String title);
 }

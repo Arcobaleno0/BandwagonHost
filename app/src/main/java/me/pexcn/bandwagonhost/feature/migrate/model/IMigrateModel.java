@@ -14,22 +14,21 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
 package me.pexcn.bandwagonhost.feature.migrate.model;
 
-import me.pexcn.bandwagonhost.bean.Profile;
+import me.pexcn.bandwagonhost.bean.Host;
 
 /**
  * Created by pexcn on 2016-07-03.
  */
 public interface IMigrateModel {
-    boolean isProfileEmpty();
+    boolean isHostEmpty();
 
-    boolean isProfileSelected();
+    boolean isHostSelected();
 
-    String[] getProfilesTitle();
+    String[] getHostsTitle();
 
-    void selectProfile(Profile profile);
+    void selectHost(Host host);
 }

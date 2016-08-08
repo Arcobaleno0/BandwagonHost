@@ -14,7 +14,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
 package me.pexcn.bandwagonhost.feature.manager.model;
@@ -25,7 +24,6 @@ import java.util.List;
 
 import me.pexcn.bandwagonhost.Constants;
 import me.pexcn.bandwagonhost.database.DatabaseManager;
-import me.pexcn.bandwagonhost.bean.Profile;
 
 /**
  * Created by pexcn on 2016-07-01.
@@ -43,27 +41,27 @@ public class ManagerModel implements IManagerModel {
     }
 
     @Override
-    public boolean isProfileEmpty() {
+    public boolean isHostEmpty() {
         return mDatabaseManager.isEmpty();
     }
 
     @Override
-    public void insertProfile(Profile profile) {
-        mDatabaseManager.insert(profile);
+    public void insertHost(me.pexcn.bandwagonhost.bean.Host host) {
+        mDatabaseManager.insert(host);
     }
 
     @Override
-    public void removeProfile(int id) {
+    public void removeHost(int id) {
         mDatabaseManager.remove(id);
     }
 
     @Override
-    public List<Profile> getProfileList() {
+    public List<me.pexcn.bandwagonhost.bean.Host> getHostList() {
         return mDatabaseManager.queryAll();
     }
 
     @Override
-    public List<Integer> getProfileIds() {
-        return mDatabaseManager.queryAll(Constants.Databases.Profile.TABLE_COLUMN_ID);
+    public List<Integer> getHostIds() {
+        return mDatabaseManager.queryAll(Constants.Databases.Host.TABLE_COLUMN_ID);
     }
 }

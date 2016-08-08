@@ -14,7 +14,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
 package me.pexcn.bandwagonhost.feature.manager.ui;
@@ -42,8 +41,8 @@ import java.util.List;
 
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.base.ui.BaseFragment;
-import me.pexcn.bandwagonhost.bean.Profile;
-import me.pexcn.bandwagonhost.feature.manager.adapter.ProfileListAdapter;
+import me.pexcn.bandwagonhost.bean.Host;
+import me.pexcn.bandwagonhost.feature.manager.adapter.HostListAdapter;
 import me.pexcn.bandwagonhost.feature.manager.presenter.IManagerPresenter;
 import me.pexcn.bandwagonhost.feature.manager.presenter.ManagerPresenter;
 import me.pexcn.bandwagonhost.utils.TextFilter;
@@ -53,12 +52,12 @@ import me.pexcn.bandwagonhost.utils.TextFilter;
  */
 public class ManagerFragment extends BaseFragment<IManagerPresenter>
         implements IManagerView, View.OnClickListener, DialogInterface.OnKeyListener,
-        ProfileListAdapter.OnItemClickListener, ProfileListAdapter.OnItemLongClickListener,
+        HostListAdapter.OnItemClickListener, HostListAdapter.OnItemLongClickListener,
         PopupMenu.OnMenuItemClickListener {
 
     private RecyclerView mRecyclerView;
-    private ProfileListAdapter mAdapter;
-    private List<Profile> mProfiles;
+    private HostListAdapter mAdapter;
+    private List<Host> mHosts;
 
     private FloatingActionButton mFab;
     private AlertDialog mDialog;
@@ -83,8 +82,8 @@ public class ManagerFragment extends BaseFragment<IManagerPresenter>
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rcv_list);
         mFab = (FloatingActionButton) view.findViewById(R.id.fab);
 
-        mProfiles = new ArrayList<>();
-        mAdapter = new ProfileListAdapter(mProfiles);
+        mHosts = new ArrayList<>();
+        mAdapter = new HostListAdapter(mHosts);
         mAdapter.setOnItemClickListener(this);
         mAdapter.setOnItemLongClickListener(this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
@@ -101,9 +100,9 @@ public class ManagerFragment extends BaseFragment<IManagerPresenter>
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 // TODO: 应该可以优化
-                ArrayList<Integer> ids = (ArrayList<Integer>) mPresenter.getProfileIds();
+                ArrayList<Integer> ids = (ArrayList<Integer>) mPresenter.getHostIds();
                 int currentItem = viewHolder.getAdapterPosition();
-                mPresenter.removeProfile(ids.get(currentItem), currentItem);
+                mPresenter.removeHost(ids.get(currentItem), currentItem);
             }
         }).attachToRecyclerView(mRecyclerView);
     }
@@ -114,7 +113,7 @@ public class ManagerFragment extends BaseFragment<IManagerPresenter>
     }
 
     @Override
-    public void showInsertProfileDialog() {
+    public void showAddHostDialog() {
         @SuppressLint("InflateParams") View view = getLayoutInflater(null).inflate(R.layout.dialog_add_profile, null);
         mTitle = (TextInputEditText) view.findViewById(R.id.et_title);
         mVeid = (TextInputEditText) view.findViewById(R.id.et_veid);
@@ -146,22 +145,22 @@ public class ManagerFragment extends BaseFragment<IManagerPresenter>
     }
 
     @Override
-    public void insertItem(Profile profile) {
-        mProfiles.add(profile);
-        mAdapter.notifyItemInserted(mProfiles.size());
+    public void insertItem(Host host) {
+        mHosts.add(host);
+        mAdapter.notifyItemInserted(mHosts.size());
         // TODO: Scroll to position
-        // mRecyclerView.smoothScrollToPosition(mProfiles.size());
+        // mRecyclerView.smoothScrollToPosition(mHosts.size());
     }
 
     @Override
     public void removeItem(int position) {
-        mProfiles.remove(position);
+        mHosts.remove(position);
         mAdapter.notifyItemRemoved(position);
     }
 
     @Override
-    public void showProfileList(List<Profile> profiles) {
-        mProfiles.addAll(profiles);
+    public void showHostList(List<Host> hosts) {
+        mHosts.addAll(hosts);
         mAdapter.notifyDataSetChanged();
     }
 
@@ -179,7 +178,7 @@ public class ManagerFragment extends BaseFragment<IManagerPresenter>
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fab:
-                showInsertProfileDialog();
+                showAddHostDialog();
                 break;
             case android.R.id.button1:
                 insertProfile();
@@ -191,22 +190,22 @@ public class ManagerFragment extends BaseFragment<IManagerPresenter>
     }
 
     private void insertProfile() {
-        Profile profile = new Profile();
-        profile.title = mTitle.getText().toString();
-        profile.veid = mVeid.getText().toString();
-        profile.key = mKey.getText().toString();
-        if ("".equals(profile.title) || "".equals(profile.veid) || "".equals(profile.key)) {
-            if ("".equals(profile.title)) {
+        Host host = new Host();
+        host.title = mTitle.getText().toString();
+        host.veid = mVeid.getText().toString();
+        host.key = mKey.getText().toString();
+        if ("".equals(host.title) || "".equals(host.veid) || "".equals(host.key)) {
+            if ("".equals(host.title)) {
                 mTitle.setError("标题不能为空");
             }
-            if ("".equals(profile.veid)) {
+            if ("".equals(host.veid)) {
                 mVeid.setError("VEID 不能为空");
             }
-            if ("".equals(profile.key)) {
+            if ("".equals(host.key)) {
                 mKey.setError("KEY 不能为空");
             }
         } else {
-            mPresenter.insertProfile(profile);
+            mPresenter.insertHost(host);
             mDialog.dismiss();
         }
     }

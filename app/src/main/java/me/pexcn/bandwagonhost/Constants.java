@@ -14,7 +14,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
 package me.pexcn.bandwagonhost;
@@ -27,8 +26,8 @@ public interface Constants {
         String DATABASE_NAME = "bandwagonhost.db";
         int DATABASE_VERSION = 1;
 
-        interface Profile {
-            String TABLE_NAME = "profile";
+        interface Host {
+            String TABLE_NAME = "host";
             String TABLE_COLUMN_ID = "_id";
             String TABLE_COLUMN_TITLE = "title";
             String TABLE_COLUMN_VEID = "veid";
@@ -37,7 +36,7 @@ public interface Constants {
     }
 
     interface Preferences {
-        String KEY_IS_PROFILE_SELECTED = "IsProfileSelected";
-        String KEY_CURRENT_PROFILE = "CurrentProfile";
+        String KEY_IS_HOST_SELECTED = "IsHostSelected";
+        String KEY_CURRENT_HOST = "CurrentHost";
     }
 }

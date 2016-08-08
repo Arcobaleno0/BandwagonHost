@@ -14,7 +14,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
 package me.pexcn.bandwagonhost.main.ui;
@@ -100,7 +99,7 @@ public class MainActivity extends BaseActivity<IMainPresenter> implements IMainV
             case R.id.nav_about:
                 showAboutDialog();
                 break;
-            case R.id.nav_profile:
+            case R.id.nav_manager:
             case R.id.nav_migrate:
             case R.id.nav_extra:
                 if (!item.isChecked()) {

@@ -14,7 +14,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
 package me.pexcn.bandwagonhost.api;
@@ -42,6 +41,7 @@ public interface Api {
 
         @Deprecated
         String GET_USAGE_GRAPHS = BASE_URL + "getUsageGraphs";
+
         String GET_RAW_USAGE_STATS = BASE_URL + "getRawUsageStats";
 
         String SET_HOSTNAME = BASE_URL + "setHostname";

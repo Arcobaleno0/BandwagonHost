@@ -14,7 +14,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
 package me.pexcn.bandwagonhost.database;
@@ -31,11 +30,11 @@ import me.pexcn.bandwagonhost.Constants;
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = Constants.Databases.DATABASE_NAME;
     private static final int DATABASE_VERSION = Constants.Databases.DATABASE_VERSION;
-    private static final String TABLE_NAME = Constants.Databases.Profile.TABLE_NAME;
-    private static final String TABLE_COLUMN_ID = Constants.Databases.Profile.TABLE_COLUMN_ID;
-    private static final String TABLE_COLUMN_TITLE = Constants.Databases.Profile.TABLE_COLUMN_TITLE;
-    private static final String TABLE_COLUMN_VEID = Constants.Databases.Profile.TABLE_COLUMN_VEID;
-    private static final String TABLE_COLUMN_KEY = Constants.Databases.Profile.TABLE_COLUMN_KEY;
+    private static final String TABLE_NAME = Constants.Databases.Host.TABLE_NAME;
+    private static final String TABLE_COLUMN_ID = Constants.Databases.Host.TABLE_COLUMN_ID;
+    private static final String TABLE_COLUMN_TITLE = Constants.Databases.Host.TABLE_COLUMN_TITLE;
+    private static final String TABLE_COLUMN_VEID = Constants.Databases.Host.TABLE_COLUMN_VEID;
+    private static final String TABLE_COLUMN_KEY = Constants.Databases.Host.TABLE_COLUMN_KEY;
 
     private static final String CREATE_TABLE =
             "create table if not exists " + TABLE_NAME + "("

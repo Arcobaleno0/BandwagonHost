@@ -14,7 +14,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
 package me.pexcn.bandwagonhost.feature.migrate.model;
@@ -24,8 +23,8 @@ import android.content.Context;
 import java.util.List;
 
 import me.pexcn.bandwagonhost.Constants;
+import me.pexcn.bandwagonhost.bean.Host;
 import me.pexcn.bandwagonhost.database.DatabaseManager;
-import me.pexcn.bandwagonhost.bean.Profile;
 import me.pexcn.bandwagonhost.utils.common.PreferencesUtils;
 
 /**
@@ -35,8 +34,8 @@ public class MigrateModel implements IMigrateModel {
     private Context mContext;
     private DatabaseManager mDatabaseManager;
 
-    private String IS_PROFILE_SELECTED = Constants.Preferences.KEY_IS_PROFILE_SELECTED;
-    private String CURRENT_PROFILE = Constants.Preferences.KEY_CURRENT_PROFILE;
+    private String IS_PROFILE_SELECTED = Constants.Preferences.KEY_IS_HOST_SELECTED;
+    private String CURRENT_PROFILE = Constants.Preferences.KEY_CURRENT_HOST;
 
     public MigrateModel(Context context) {
         this.mContext = context;
@@ -44,29 +43,29 @@ public class MigrateModel implements IMigrateModel {
     }
 
     @Override
-    public boolean isProfileEmpty() {
+    public boolean isHostEmpty() {
         return mDatabaseManager.isEmpty();
     }
 
     @Override
-    public String[] getProfilesTitle() {
-        List<Profile> profiles = mDatabaseManager.queryAll();
-        int size = profiles.size();
+    public String[] getHostsTitle() {
+        List<Host> hosts = mDatabaseManager.queryAll();
+        int size = hosts.size();
         String[] titles = new String[size];
         for (int i = 0; i < size; i++) {
-            titles[i] = profiles.get(i).title;
+            titles[i] = hosts.get(i).title;
         }
         return titles;
     }
 
     @Override
-    public boolean isProfileSelected() {
+    public boolean isHostSelected() {
         return PreferencesUtils.getBoolean(IS_PROFILE_SELECTED, false);
     }
 
     @Override
-    public void selectProfile(Profile profile) {
-        PreferencesUtils.setInt(CURRENT_PROFILE, profile._id);
+    public void selectHost(Host host) {
+        PreferencesUtils.setInt(CURRENT_PROFILE, host._id);
         PreferencesUtils.setBoolean(IS_PROFILE_SELECTED, true);
     }
 }
