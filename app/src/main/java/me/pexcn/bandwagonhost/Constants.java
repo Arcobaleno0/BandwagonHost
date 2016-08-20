@@ -23,15 +23,11 @@ package me.pexcn.bandwagonhost;
  */
 public interface Constants {
     // Database
-    String DATABASE_NAME = "bandwagonhost.db";
-    int DATABASE_VERSION = 1;
-    String HOST_TABLE_NAME = "host";
-    String HOST_TABLE_COLUMN_ID = "_id";
-    String HOST_TABLE_COLUMN_TITLE = "title";
-    String HOST_TABLE_COLUMN_VEID = "veid";
-    String HOST_TABLE_COLUMN_KEY = "key";
-
-    // Preference
-    String PREF_IS_SELECTED_HOST = "IsSelectedHost";
-    String PREF_CURRENT_HOST = "CurrentHost";
+    String DB_NAME = "bandwagonhost.db";
+    int DB_VERSION = 1;
+    String TABLE_NAME_HOST = "host";
+    String TABLE_COLUMN_HOST_ID = "id";
+    String TABLE_COLUMN_HOST_TITLE = "title";
+    String TABLE_COLUMN_HOST_VEID = "veid";
+    String TABLE_COLUMN_HOST_KEY = "key";
 }

@@ -34,6 +34,7 @@ public abstract class BaseActivity<P extends IBasePresenter> extends AppCompatAc
     protected Toolbar mToolbar;
     protected P mPresenter;
 
+    @SuppressWarnings("ConstantConditions")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +44,6 @@ public abstract class BaseActivity<P extends IBasePresenter> extends AppCompatAc
         setSupportActionBar(mToolbar);
 
         if (hasParentActivity()) {
-            assert getSupportActionBar() != null;
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 

@@ -19,14 +19,12 @@
 package me.pexcn.bandwagonhost.feature.manager.presenter;
 
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 
 import java.util.List;
 
 import me.pexcn.bandwagonhost.base.presenter.BasePresenter;
-import me.pexcn.bandwagonhost.bean.Host;
+import me.pexcn.bandwagonhost.database.Host;
 import me.pexcn.bandwagonhost.feature.manager.model.IManagerModel;
-import me.pexcn.bandwagonhost.feature.manager.model.ManagerModel;
 import me.pexcn.bandwagonhost.feature.manager.ui.IManagerView;
 
 /**
@@ -39,7 +37,7 @@ public class ManagerPresenter extends BasePresenter<IManagerView, IManagerModel>
 
     @Override
     protected IManagerModel getModel() {
-        return new ManagerModel(((Fragment) mView).getActivity());
+        return null;
     }
 
     @Override

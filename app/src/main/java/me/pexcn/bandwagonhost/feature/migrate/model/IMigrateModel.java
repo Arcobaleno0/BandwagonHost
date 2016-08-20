@@ -18,7 +18,7 @@
 
 package me.pexcn.bandwagonhost.feature.migrate.model;
 
-import me.pexcn.bandwagonhost.bean.Host;
+import me.pexcn.bandwagonhost.database.Host;
 
 /**
  * Created by pexcn on 2016-07-03.

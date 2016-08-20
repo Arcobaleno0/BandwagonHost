@@ -16,28 +16,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package me.pexcn.bandwagonhost.bean.api;
+package me.pexcn.bandwagonhost.database;
 
-import java.util.List;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
+import me.pexcn.bandwagonhost.Constants;
 
 /**
- * Created by pexcn on 2016-07-12.
+ * Created by pexcn on 2016-06-30.
  */
-public class Locations {
-    public int error;
-    public String currentLocation;
-    public Descriptions descriptions;
-    public List<String> locations;
-
-    public static class Descriptions {
-        public String USCA_2;
-        public String USCA_FMT;
-        public String USAZ_2;
-        public String USFL_2;
-        public String EUNL_3;
-    }
-
-    // extra
-    public String message;
-    public String additionalErrorInfo;
+@DatabaseTable(tableName = Constants.TABLE_NAME_HOST)
+public class Host {
+    @DatabaseField(columnName = Constants.TABLE_COLUMN_HOST_ID, generatedId = true)
+    public int id;
+    @DatabaseField(columnName = Constants.TABLE_COLUMN_HOST_TITLE, canBeNull = false)
+    public String title;
+    @DatabaseField(columnName = Constants.TABLE_COLUMN_HOST_VEID, canBeNull = false)
+    public String veid;
+    @DatabaseField(columnName = Constants.TABLE_COLUMN_HOST_KEY, canBeNull = false)
+    public String key;
 }

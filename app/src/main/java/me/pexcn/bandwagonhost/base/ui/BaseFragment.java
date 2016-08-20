@@ -35,7 +35,7 @@ public abstract class BaseFragment<P extends IBasePresenter> extends Fragment {
     protected Activity mActivity;
     protected P mPresenter;
 
-    // TODO: 抽取getArgs
+    // TODO: 抽取 getArgs
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

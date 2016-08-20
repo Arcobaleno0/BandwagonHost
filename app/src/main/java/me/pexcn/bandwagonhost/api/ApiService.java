@@ -18,8 +18,8 @@
 
 package me.pexcn.bandwagonhost.api;
 
-import me.pexcn.bandwagonhost.bean.api.Locations;
-import me.pexcn.bandwagonhost.bean.api.MigrateResult;
+import me.pexcn.bandwagonhost.api.bean.Locations;
+import me.pexcn.bandwagonhost.api.bean.MigrateResult;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import rx.Observable;

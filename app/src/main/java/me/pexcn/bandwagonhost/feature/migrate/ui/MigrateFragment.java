@@ -28,22 +28,19 @@ import android.view.View;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.base.ui.BaseFragment;
 import me.pexcn.bandwagonhost.feature.migrate.presenter.IMigratePresenter;
 import me.pexcn.bandwagonhost.feature.migrate.presenter.MigratePresenter;
-import me.pexcn.bandwagonhost.main.ui.MainActivity;
 
 /**
  * Created by pexcn on 2016-06-29.
  */
 public class MigrateFragment extends BaseFragment<IMigratePresenter>
-        implements IMigrateView, View.OnClickListener, DialogInterface.OnClickListener, DialogInterface.OnKeyListener, OnMapReadyCallback {
-    private SupportMapFragment mMapFragment;
+                implements IMigrateView, View.OnClickListener, DialogInterface.OnClickListener, DialogInterface.OnKeyListener {
+        //        implements IMigrateView, View.OnClickListener, DialogInterface.OnClickListener, DialogInterface.OnKeyListener, OnMapReadyCallback {
+    //private SupportMapFragment mMapFragment;
     private FloatingActionMenu mFloatingActionMenu;
     private FloatingActionButton mSelectProfile;
     private FloatingActionButton mSwitchDataCenter;
@@ -60,10 +57,10 @@ public class MigrateFragment extends BaseFragment<IMigratePresenter>
 
     @Override
     protected void initView(View view, @Nullable Bundle savedInstanceState) {
-        mMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
-        mFloatingActionMenu = (FloatingActionMenu) view.findViewById(R.id.fab_menu);
-        mMapFragment.onCreate(savedInstanceState);
-        mMapFragment.getMapAsync(this);
+//        mMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+//        mFloatingActionMenu = (FloatingActionMenu) view.findViewById(R.id.fab_menu);
+//        mMapFragment.onCreate(savedInstanceState);
+//        mMapFragment.getMapAsync(this);
     }
 
     @Override
@@ -82,10 +79,10 @@ public class MigrateFragment extends BaseFragment<IMigratePresenter>
 
     }
 
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-
-    }
+//    @Override
+//    public void onMapReady(GoogleMap googleMap) {
+//
+//    }
 
     @Override
     public void onClick(View v) {
@@ -120,6 +117,8 @@ public class MigrateFragment extends BaseFragment<IMigratePresenter>
 
     @Override
     public void setToolbarTitle(String title) {
-        ((MainActivity) mActivity).setToolbarTitle(title);
+
     }
+
+
 }

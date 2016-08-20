@@ -18,50 +18,37 @@
 
 package me.pexcn.bandwagonhost.feature.manager.model;
 
-import android.content.Context;
-
 import java.util.List;
 
-import me.pexcn.bandwagonhost.Constants;
-import me.pexcn.bandwagonhost.database.DatabaseManager;
+import me.pexcn.bandwagonhost.database.Host;
 
 /**
  * Created by pexcn on 2016-07-01.
  */
 public class ManagerModel implements IManagerModel {
-    /**
-     * TODO: 优化数据库查询操作
-     */
-    private Context mContext;
-    private DatabaseManager mDatabaseManager;
-
-    public ManagerModel(Context context) {
-        this.mContext = context;
-        this.mDatabaseManager = DatabaseManager.getInstance(mContext);
-    }
 
     @Override
     public boolean isHostEmpty() {
-        return mDatabaseManager.isEmpty();
+        return false;
     }
 
     @Override
-    public void insertHost(me.pexcn.bandwagonhost.bean.Host host) {
-        mDatabaseManager.insert(host);
+    public void insertHost(Host host) {
+
     }
 
     @Override
     public void removeHost(int id) {
-        mDatabaseManager.remove(id);
+
     }
 
     @Override
-    public List<me.pexcn.bandwagonhost.bean.Host> getHostList() {
-        return mDatabaseManager.queryAll();
+    public List<Host> getHostList() {
+        return null;
     }
 
     @Override
     public List<Integer> getHostIds() {
-        return mDatabaseManager.queryAll(Constants.HOST_TABLE_COLUMN_ID);
+        return null;
     }
 }

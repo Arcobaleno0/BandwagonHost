@@ -16,18 +16,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package me.pexcn.bandwagonhost.bean.api;
+package me.pexcn.bandwagonhost.api.bean;
 
 import java.util.List;
 
 /**
- * Created by pexcn on 2016-07-16.
+ * Created by pexcn on 2016-07-12.
  */
-public class MigrateResult {
+public class Locations {
     public int error;
-    public String notificationEmail;
-    public List<String> newIps;
+    public String currentLocation;
+    public Descriptions descriptions;
+    public List<String> locations;
+
+    public static class Descriptions {
+        public String USCA_2;
+        public String USCA_FMT;
+        public String USAZ_2;
+        public String USFL_2;
+        public String EUNL_3;
+    }
 
     // extra
     public String message;
+    public String additionalErrorInfo;
 }

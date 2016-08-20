@@ -18,40 +18,33 @@
 
 package me.pexcn.bandwagonhost.main.ui;
 
-import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.view.MenuItem;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+
+import java.util.List;
 
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.base.ui.BaseActivity;
-import me.pexcn.bandwagonhost.database.DatabaseManager;
+import me.pexcn.bandwagonhost.database.Host;
+import me.pexcn.bandwagonhost.main.adapter.HostListAdapter;
 import me.pexcn.bandwagonhost.main.presenter.IMainPresenter;
 import me.pexcn.bandwagonhost.main.presenter.MainPresenter;
 
 /**
  * Created by pexcn on 2016-06-29.
  */
-public class MainActivity extends BaseActivity<IMainPresenter> implements IMainView, NavigationView.OnNavigationItemSelectedListener {
-    private DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle mDrawerToggle;
-    private NavigationView mNavigationView;
+public class MainActivity extends BaseActivity<IMainPresenter> implements IMainView {
+    private RecyclerView mRecyclerView;
+    private HostListAdapter mAdapter;
+    private List<Host> mHosts;
 
-    @SuppressWarnings("ConstantConditions")
-    @Override
-    protected void init() {
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.drawer_open, R.string.drawer_close);
-        mDrawerToggle.syncState();
-        mDrawerLayout.addDrawerListener(mDrawerToggle);
+    private FloatingActionButton mFab;
 
-        mNavigationView = (NavigationView) findViewById(R.id.nav_view);
-        mNavigationView.setNavigationItemSelectedListener(this);
+    private Snackbar mSnackbar;
 
-        mPresenter.prepare();
-    }
+    private IMainPresenter mPresenter;
 
     @Override
     protected int getLayoutId() {
@@ -68,74 +61,78 @@ public class MainActivity extends BaseActivity<IMainPresenter> implements IMainV
         return false;
     }
 
-    @SuppressWarnings("ConstantConditions")
     @Override
-    public void setToolbarTitle(String title) {
-        getSupportActionBar().setTitle(title);
+    protected void init() {
+        mPresenter = new MainPresenter(this);
+        mSnackbar = Snackbar.make(findViewById(R.id.coordinator), "", Snackbar.LENGTH_INDEFINITE);
+
+        mPresenter.prepare();
     }
 
     @Override
-    public void setNavCheckedItem(int id) {
-        mNavigationView.setCheckedItem(id);
+    public void insertItem(Host host) {
+        mHosts.add(host);
+        mAdapter.notifyItemInserted(mHosts.size());
     }
 
     @Override
-    public void switchFragment(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_content, fragment).commit();
+    public void removeItem(int position) {
+        mHosts.remove(position);
+        mAdapter.notifyItemRemoved(position);
     }
 
     @Override
-    public void showAboutDialog() {
-
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        switch (id) {
-            case R.id.nav_settings:
-
-                break;
-            case R.id.nav_about:
-                showAboutDialog();
-                break;
-            case R.id.nav_manager:
-            case R.id.nav_migrate:
-            case R.id.nav_extra:
-                if (!item.isChecked()) {
-                    mPresenter.switchModule(id);
-                }
-                break;
+    public void showList(List<Host> hosts) {
+        if (mHosts.isEmpty()) {
+            mHosts.clear();
         }
-        mDrawerLayout.closeDrawer(GravityCompat.START);
-        return true;
+        mHosts.addAll(hosts);
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override
-    public void onBackPressed() {
-        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
-            mDrawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+    public void showDialog() {
+//        View view = getLayoutInflater().inflate(R.layout.dialog_add_host, (ViewGroup) findViewById(android.R.id.content));
+//        new AlertDialog.Builder(this)
+//                .setView(view)
+//                .setCancelable(false)
+//                .setTitle("添加主机")
+//                .setNegativeButton("取消", null)
+//                .setPositiveButton("确定", null)
+//                .setOnKeyListener(null)
+//                .show();
+    }
+
+    @Override
+    public void showPopupMenu(View view) {
+//        PopupMenu popupMenu = new PopupMenu(this, view, Gravity.END);
+//        popupMenu.inflate(R.menu.menu_popupmenu);
+//        popupMenu.setOnMenuItemClickListener(item -> {
+//            switch (item.getItemId()) {
+//                case R.id.menu_update:
+//
+//                    return true;
+//                case R.id.menu_remove:
+//
+//                    return true;
+//            }
+//            return false;
+//        });
+//        popupMenu.show();
+    }
+
+    @Override
+    public void showEmptyView() {
+
     }
 
     @Override
     public void showTips(String msg, int duration) {
-
+        mSnackbar.setText(msg).setAction("确定", null).show();
     }
 
     @Override
     public void hideTips() {
-
-    }
-
-    @Override
-    protected void onDestroy() {
-        // TODO: remove it?
-        if (DatabaseManager.getInstance(this).isOpen()) {
-            DatabaseManager.getInstance(this).close();
-        }
-        super.onDestroy();
+        mSnackbar.dismiss();
     }
 }

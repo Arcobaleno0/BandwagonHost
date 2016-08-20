@@ -18,19 +18,26 @@
 
 package me.pexcn.bandwagonhost.main.ui;
 
-import android.support.v4.app.Fragment;
+import android.view.View;
+
+import java.util.List;
 
 import me.pexcn.bandwagonhost.base.ui.IBaseView;
+import me.pexcn.bandwagonhost.database.Host;
 
 /**
  * Created by pexcn on 2016-06-29.
  */
 public interface IMainView extends IBaseView {
-    void setToolbarTitle(String title);
+    void insertItem(Host host);
 
-    void setNavCheckedItem(int id);
+    void removeItem(int position);
 
-    void switchFragment(Fragment fragment);
+    void showList(List<Host> hosts);
 
-    void showAboutDialog();
+    void showDialog();
+
+    void showPopupMenu(View view);
+
+    void showEmptyView();
 }

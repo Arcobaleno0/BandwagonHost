@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package me.pexcn.bandwagonhost.feature.manager.adapter;
+package me.pexcn.bandwagonhost.main.adapter;
 
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -28,7 +28,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import me.pexcn.bandwagonhost.R;
-import me.pexcn.bandwagonhost.bean.Host;
+import me.pexcn.bandwagonhost.database.Host;
 
 /**
  * Created by pexcn on 2016-07-01.

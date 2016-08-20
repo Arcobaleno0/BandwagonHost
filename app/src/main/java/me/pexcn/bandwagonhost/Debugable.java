@@ -16,23 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package me.pexcn.bandwagonhost.feature.manager.model;
-
-import java.util.List;
-
-import me.pexcn.bandwagonhost.database.Host;
+package me.pexcn.bandwagonhost;
 
 /**
- * Created by pexcn on 2016-07-01.
+ * Created by pexcn on 2016-08-21.
  */
-public interface IManagerModel {
-    boolean isHostEmpty();
-
-    void insertHost(Host host);
-
-    void removeHost(int id);
-
-    List<Host> getHostList();
-
-    List<Integer> getHostIds();
+public interface Debugable {
+    boolean DEBUG = BuildConfig.DEBUG;
 }

@@ -16,23 +16,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package me.pexcn.bandwagonhost.bean;
+package me.pexcn.bandwagonhost.api.bean;
+
+import java.util.List;
 
 /**
- * Created by pexcn on 2016-06-30.
+ * Created by pexcn on 2016-07-16.
  */
-public class Host {
-    public int _id;
-    public String title;
-    public String veid;
-    public String key;
+public class MigrateResult {
+    public int error;
+    public String notificationEmail;
+    public List<String> newIps;
 
-    public Host() {
-    }
-
-    public Host(String title, String veid, String key) {
-        this.title = title;
-        this.veid = veid;
-        this.key = key;
-    }
+    // extra
+    public String message;
 }

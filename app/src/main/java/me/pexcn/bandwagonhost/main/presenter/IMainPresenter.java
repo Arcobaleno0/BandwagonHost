@@ -25,6 +25,4 @@ import me.pexcn.bandwagonhost.base.presenter.IBasePresenter;
  */
 public interface IMainPresenter extends IBasePresenter {
     void prepare();
-
-    void switchModule(int id);
 }

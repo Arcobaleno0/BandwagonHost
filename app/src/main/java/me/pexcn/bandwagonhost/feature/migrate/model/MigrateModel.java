@@ -18,54 +18,31 @@
 
 package me.pexcn.bandwagonhost.feature.migrate.model;
 
-import android.content.Context;
-
-import java.util.List;
-
-import me.pexcn.bandwagonhost.Constants;
-import me.pexcn.bandwagonhost.bean.Host;
-import me.pexcn.bandwagonhost.database.DatabaseManager;
-import me.pexcn.bandwagonhost.utils.common.PreferencesUtils;
+import me.pexcn.bandwagonhost.database.Host;
 
 /**
  * Created by pexcn on 2016-07-03.
  */
 public class MigrateModel implements IMigrateModel {
-    private Context mContext;
-    private DatabaseManager mDatabaseManager;
 
-    private String IS_PROFILE_SELECTED = Constants.PREF_IS_SELECTED_HOST;
-    private String CURRENT_PROFILE = Constants.PREF_CURRENT_HOST;
-
-    public MigrateModel(Context context) {
-        this.mContext = context;
-        this.mDatabaseManager = DatabaseManager.getInstance(mContext);
-    }
 
     @Override
     public boolean isHostEmpty() {
-        return mDatabaseManager.isEmpty();
-    }
-
-    @Override
-    public String[] getHostsTitle() {
-        List<Host> hosts = mDatabaseManager.queryAll();
-        int size = hosts.size();
-        String[] titles = new String[size];
-        for (int i = 0; i < size; i++) {
-            titles[i] = hosts.get(i).title;
-        }
-        return titles;
+        return false;
     }
 
     @Override
     public boolean isHostSelected() {
-        return PreferencesUtils.getBoolean(IS_PROFILE_SELECTED, false);
+        return false;
+    }
+
+    @Override
+    public String[] getHostsTitle() {
+        return new String[0];
     }
 
     @Override
     public void selectHost(Host host) {
-        PreferencesUtils.setInt(CURRENT_PROFILE, host._id);
-        PreferencesUtils.setBoolean(IS_PROFILE_SELECTED, true);
+
     }
 }

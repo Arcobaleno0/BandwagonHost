@@ -18,51 +18,42 @@
 
 package me.pexcn.bandwagonhost.main.presenter;
 
-import me.pexcn.bandwagonhost.R;
+import android.support.design.widget.Snackbar;
+
+import java.util.List;
+
 import me.pexcn.bandwagonhost.base.presenter.BasePresenter;
-import me.pexcn.bandwagonhost.feature.extra.ui.ExtraFragment;
-import me.pexcn.bandwagonhost.feature.manager.ui.ManagerFragment;
-import me.pexcn.bandwagonhost.feature.migrate.ui.MigrateFragment;
+import me.pexcn.bandwagonhost.database.Host;
+import me.pexcn.bandwagonhost.main.model.IMainModel;
+import me.pexcn.bandwagonhost.main.model.MainModel;
 import me.pexcn.bandwagonhost.main.ui.IMainView;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by pexcn on 2016-06-29.
  */
-public class MainPresenter extends BasePresenter<IMainView, Object> implements IMainPresenter {
+public class MainPresenter extends BasePresenter<IMainView, IMainModel> implements IMainPresenter {
     public MainPresenter(IMainView view) {
         super(view);
     }
 
     @Override
-    protected Object getModel() {
-        return null;
+    protected IMainModel getModel() {
+        return new MainModel();
     }
 
     @Override
     public void prepare() {
-        mView.setToolbarTitle("主机管理");
-        mView.setNavCheckedItem(R.id.nav_manager);
-        mView.switchFragment(new ManagerFragment());
-    }
+        Observable.create((Observable.OnSubscribe<List<Host>>) subscriber -> {
+            subscriber.onNext(mModel.queryAllHost());
+            subscriber.onCompleted();
+        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(hosts -> {
+            if (hosts.size() == 0) {
 
-    @Override
-    public void switchModule(int id) {
-        switch (id) {
-            case R.id.nav_manager:
-                mView.setToolbarTitle("主机管理");
-                mView.setNavCheckedItem(id);
-                mView.switchFragment(new ManagerFragment());
-                break;
-            case R.id.nav_migrate:
-                mView.setToolbarTitle("切换机房");
-                mView.setNavCheckedItem(id);
-                mView.switchFragment(new MigrateFragment());
-                break;
-            case R.id.nav_extra:
-                mView.setToolbarTitle("额外功能");
-                mView.setNavCheckedItem(id);
-                mView.switchFragment(new ExtraFragment());
-                break;
-        }
+                mView.showTips("无数据，请点击右下角的按钮添加", Snackbar.LENGTH_INDEFINITE);
+            }
+        });
     }
 }

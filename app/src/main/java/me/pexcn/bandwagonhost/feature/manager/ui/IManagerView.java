@@ -23,7 +23,7 @@ import android.view.View;
 import java.util.List;
 
 import me.pexcn.bandwagonhost.base.ui.IBaseView;
-import me.pexcn.bandwagonhost.bean.Host;
+import me.pexcn.bandwagonhost.database.Host;
 
 /**
  * Created by pexcn on 2016-06-29.
