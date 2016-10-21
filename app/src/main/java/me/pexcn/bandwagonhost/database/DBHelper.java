@@ -28,14 +28,14 @@ import com.j256.ormlite.table.TableUtils;
 import java.sql.SQLException;
 
 import me.pexcn.bandwagonhost.Constants;
-import me.pexcn.bandwagonhost.Debugable;
+import me.pexcn.bandwagonhost.bean.database.Host;
 
 /**
  * Created by pexcn on 2016-06-30.
  */
-public class DBHelper extends OrmLiteSqliteOpenHelper implements Debugable {
-    private static final String DB_NAME = Constants.DB_NAME;
-    private static final int DB_VERSION = Constants.DB_VERSION;
+public class DBHelper extends OrmLiteSqliteOpenHelper {
+    private static final String DB_NAME = Constants.Database.DB_NAME;
+    private static final int DB_VERSION = Constants.Database.DB_VERSION;
 
     private static DBHelper sInstance;
 
@@ -55,9 +55,7 @@ public class DBHelper extends OrmLiteSqliteOpenHelper implements Debugable {
         try {
             TableUtils.createTable(connectionSource, Host.class);
         } catch (SQLException e) {
-            if (DEBUG) {
-                e.printStackTrace();
-            }
+            e.printStackTrace();
         }
     }
 

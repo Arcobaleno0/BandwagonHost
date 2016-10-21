@@ -21,6 +21,7 @@ package me.pexcn.bandwagonhost.api;
 /**
  * Created by pexcn on 2016-06-29.
  */
+@SuppressWarnings("unused")
 public interface Api {
     String BASE_URL = "https://api.64clouds.com/v1/";
     String VEID = "veid";
@@ -41,7 +42,6 @@ public interface Api {
 
         @Deprecated
         String GET_USAGE_GRAPHS = BASE_URL + "getUsageGraphs";
-
         String GET_RAW_USAGE_STATS = BASE_URL + "getRawUsageStats";
 
         String SET_HOSTNAME = BASE_URL + "setHostname";

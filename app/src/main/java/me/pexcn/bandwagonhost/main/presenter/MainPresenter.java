@@ -18,18 +18,11 @@
 
 package me.pexcn.bandwagonhost.main.presenter;
 
-import android.support.design.widget.Snackbar;
-
-import java.util.List;
-
-import me.pexcn.bandwagonhost.base.presenter.BasePresenter;
-import me.pexcn.bandwagonhost.database.Host;
+import me.pexcn.bandwagonhost.bean.database.Host;
 import me.pexcn.bandwagonhost.main.model.IMainModel;
 import me.pexcn.bandwagonhost.main.model.MainModel;
 import me.pexcn.bandwagonhost.main.ui.IMainView;
-import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import me.pexcn.simpleutils.base.mvp.presenter.BasePresenter;
 
 /**
  * Created by pexcn on 2016-06-29.
@@ -40,20 +33,31 @@ public class MainPresenter extends BasePresenter<IMainView, IMainModel> implemen
     }
 
     @Override
-    protected IMainModel getModel() {
+    public IMainModel createModel() {
         return new MainModel();
     }
 
     @Override
     public void prepare() {
-        Observable.create((Observable.OnSubscribe<List<Host>>) subscriber -> {
-            subscriber.onNext(mModel.queryAllHost());
-            subscriber.onCompleted();
-        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(hosts -> {
-            if (hosts.size() == 0) {
+        if (getModel().isEmpty()) {
+            getView().setEmptyView(true);
+        }
+    }
 
-                mView.showTips("无数据，请点击右下角的按钮添加", Snackbar.LENGTH_INDEFINITE);
-            }
-        });
+    @Override
+    public void addHost(Host host) {
+        getView().insertItem(host);
+        getModel().addHost(host);
+//        getView().showTips(host.title + " 已添加", Snackbar.LENGTH_LONG);
+    }
+
+    @Override
+    public void deleteHost(int id) {
+
+    }
+
+    @Override
+    public void updateHost(Host host) {
+
     }
 }

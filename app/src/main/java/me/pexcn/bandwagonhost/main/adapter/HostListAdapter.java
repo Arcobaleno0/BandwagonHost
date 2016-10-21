@@ -28,7 +28,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import me.pexcn.bandwagonhost.R;
-import me.pexcn.bandwagonhost.database.Host;
+import me.pexcn.bandwagonhost.bean.database.Host;
 
 /**
  * Created by pexcn on 2016-07-01.

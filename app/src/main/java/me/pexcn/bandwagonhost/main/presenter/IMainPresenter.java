@@ -18,11 +18,20 @@
 
 package me.pexcn.bandwagonhost.main.presenter;
 
-import me.pexcn.bandwagonhost.base.presenter.IBasePresenter;
+import me.pexcn.bandwagonhost.bean.database.Host;
+import me.pexcn.bandwagonhost.main.model.IMainModel;
+import me.pexcn.bandwagonhost.main.ui.IMainView;
+import me.pexcn.simpleutils.base.mvp.presenter.IBasePresenter;
 
 /**
  * Created by pexcn on 2016-06-29.
  */
-public interface IMainPresenter extends IBasePresenter {
+public interface IMainPresenter extends IBasePresenter<IMainView, IMainModel> {
     void prepare();
+
+    void addHost(Host host);
+
+    void deleteHost(int id);
+
+    void updateHost(Host host);
 }

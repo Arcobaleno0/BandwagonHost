@@ -22,22 +22,21 @@ import android.view.View;
 
 import java.util.List;
 
-import me.pexcn.bandwagonhost.base.ui.IBaseView;
-import me.pexcn.bandwagonhost.database.Host;
+import me.pexcn.bandwagonhost.bean.database.Host;
+import me.pexcn.bandwagonhost.main.presenter.IMainPresenter;
+import me.pexcn.simpleutils.base.mvp.view.IBaseView;
 
 /**
  * Created by pexcn on 2016-06-29.
  */
-public interface IMainView extends IBaseView {
+public interface IMainView extends IBaseView<IMainPresenter> {
     void insertItem(Host host);
 
     void removeItem(int position);
 
     void showList(List<Host> hosts);
 
-    void showDialog();
-
     void showPopupMenu(View view);
 
-    void showEmptyView();
+    void setEmptyView(boolean isShow);
 }

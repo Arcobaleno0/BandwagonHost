@@ -25,12 +25,12 @@ import com.j256.ormlite.dao.Dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import me.pexcn.bandwagonhost.Debugable;
+import me.pexcn.bandwagonhost.bean.database.Host;
 
 /**
  * Created by pexcn on 2016-08-09.
  */
-public class HostManager implements Debugable {
+public class HostManager {
     private Dao<Host, Integer> mDao;
 
     private static HostManager sInstance;
@@ -47,9 +47,7 @@ public class HostManager implements Debugable {
         try {
             mDao = helper.getDao(Host.class);
         } catch (SQLException e) {
-            if (DEBUG) {
-                e.printStackTrace();
-            }
+            e.printStackTrace();
         }
     }
 
@@ -57,9 +55,7 @@ public class HostManager implements Debugable {
         try {
             mDao.create(host);
         } catch (SQLException e) {
-            if (DEBUG) {
-                e.printStackTrace();
-            }
+            e.printStackTrace();
         }
     }
 
@@ -67,9 +63,7 @@ public class HostManager implements Debugable {
         try {
             mDao.deleteById(id);
         } catch (SQLException e) {
-            if (DEBUG) {
-                e.printStackTrace();
-            }
+            e.printStackTrace();
         }
     }
 
@@ -77,9 +71,8 @@ public class HostManager implements Debugable {
         try {
             mDao.update(host);
         } catch (SQLException e) {
-            if (DEBUG) {
-                e.printStackTrace();
-            }
+            e.printStackTrace();
+
         }
     }
 
@@ -87,9 +80,7 @@ public class HostManager implements Debugable {
         try {
             return mDao.queryForId(id);
         } catch (SQLException e) {
-            if (DEBUG) {
-                e.printStackTrace();
-            }
+            e.printStackTrace();
         }
         return null;
     }
@@ -98,9 +89,7 @@ public class HostManager implements Debugable {
         try {
             return mDao.queryForAll();
         } catch (SQLException e) {
-            if (DEBUG) {
-                e.printStackTrace();
-            }
+            e.printStackTrace();
         }
         return null;
     }

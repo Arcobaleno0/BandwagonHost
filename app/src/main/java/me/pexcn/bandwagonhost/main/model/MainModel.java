@@ -1,10 +1,9 @@
 package me.pexcn.bandwagonhost.main.model;
 
-import java.util.List;
 
-import me.pexcn.bandwagonhost.App;
-import me.pexcn.bandwagonhost.database.Host;
+import me.pexcn.bandwagonhost.bean.database.Host;
 import me.pexcn.bandwagonhost.database.HostManager;
+import me.pexcn.simpleutils.SimpleUtils;
 
 /**
  * Created by pexcn on 2016-08-09.
@@ -13,7 +12,12 @@ public class MainModel implements IMainModel {
     private HostManager mHostManager;
 
     public MainModel() {
-        mHostManager = HostManager.getInstance(App.getContext());
+        mHostManager = HostManager.getInstance(SimpleUtils.getAppContext());
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return mHostManager.queryAll().size() == 0;
     }
 
     @Override
@@ -29,10 +33,5 @@ public class MainModel implements IMainModel {
     @Override
     public void updateHost(Host host) {
 
-    }
-
-    @Override
-    public List<Host> queryAllHost() {
-        return mHostManager.queryAll();
     }
 }

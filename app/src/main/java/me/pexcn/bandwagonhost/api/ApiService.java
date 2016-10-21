@@ -2,7 +2,7 @@
  * BandwagonHost - A bandwagonhost.com client for Android
  * Copyright (C) 2016 Xingyu Chen <pexcn97@gmail.com>
  *
- * This program is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it an d/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
@@ -18,8 +18,8 @@
 
 package me.pexcn.bandwagonhost.api;
 
-import me.pexcn.bandwagonhost.api.bean.Locations;
-import me.pexcn.bandwagonhost.api.bean.MigrateResult;
+import me.pexcn.bandwagonhost.bean.api.Locations;
+import me.pexcn.bandwagonhost.bean.api.MigrateResult;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import rx.Observable;
