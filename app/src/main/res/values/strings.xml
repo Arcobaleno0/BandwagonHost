@@ -6,4 +6,5 @@
     <string name="dialog_title_text">Title</string>
     <string name="dialog_veid_text">VEID</string>
     <string name="dialog_key_text">KEY</string>
+    <string name="dialog_text_not_be_empty">not be empty</string>
 </resources>
