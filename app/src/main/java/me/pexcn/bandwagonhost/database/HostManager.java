@@ -72,7 +72,6 @@ public class HostManager {
             mDao.update(host);
         } catch (SQLException e) {
             e.printStackTrace();
-
         }
     }
 

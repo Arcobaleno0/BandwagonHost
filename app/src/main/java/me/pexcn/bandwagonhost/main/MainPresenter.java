@@ -16,51 +16,37 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package me.pexcn.bandwagonhost.manager.presenter;
+package me.pexcn.bandwagonhost.main;
 
-import java.util.List;
-
+import me.pexcn.android.base.mvp.BasePresenter;
 import me.pexcn.bandwagonhost.bean.database.Host;
-import me.pexcn.bandwagonhost.manager.model.IManagerModel;
-import me.pexcn.bandwagonhost.manager.ui.IManagerView;
-import me.pexcn.simpleutils.base.mvp.presenter.BasePresenter;
 
 /**
- * Created by pexcn on 2016-06-30.
+ * Created by pexcn on 2016-06-29.
  */
-public class ManagerPresenter extends BasePresenter<IManagerView, IManagerModel> implements IManagerPresenter {
-    public ManagerPresenter(IManagerView view) {
+public class MainPresenter extends BasePresenter<MainContract.View, MainContract.Model> implements MainContract.Presenter {
+    public MainPresenter(MainContract.View view) {
         super(view);
     }
 
     @Override
-    public IManagerModel createModel() {
-        return null;
+    public MainContract.Model createModel() {
+        return new MainModel();
     }
 
     @Override
-    public void prepare() {
-        if (getModel().isHostEmpty()) {
+    public void start() {
 
-        } else {
-            getView().showHostList(getModel().getHostList());
-        }
     }
 
     @Override
     public void insertHost(Host host) {
         getModel().insertHost(host);
-        getView().insertItem(host);
+
     }
 
     @Override
-    public void removeHost(int id, int position) {
-        getModel().removeHost(id);
-        getView().removeItem(position);
-    }
+    public void removeHost(int position) {
 
-    @Override
-    public List<Integer> getHostIds() {
-        return getModel().getHostIds();
     }
 }

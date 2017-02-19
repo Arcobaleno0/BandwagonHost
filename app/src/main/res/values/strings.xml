@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">BandwagonHost</string>
-    <string name="drawer_open">Open</string>
-    <string name="drawer_close">Close</string>
+
+    <string name="activity_add_host_title">Add Host</string>
+
+    <string name="dialog_title_text">Title</string>
+    <string name="dialog_veid_text">VEID</string>
+    <string name="dialog_key_text">KEY</string>
 </resources>

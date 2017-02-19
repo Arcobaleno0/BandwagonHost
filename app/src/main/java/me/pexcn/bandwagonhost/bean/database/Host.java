@@ -26,14 +26,14 @@ import me.pexcn.bandwagonhost.Constants;
 /**
  * Created by pexcn on 2016-06-30.
  */
-@DatabaseTable(tableName = Constants.Database.TABLE_NAME_HOST)
+@DatabaseTable(tableName = Constants.TABLE_NAME)
 public class Host {
-    @DatabaseField(columnName = Constants.Database.TABLE_COLUMN_HOST_ID, generatedId = true)
+    @DatabaseField(columnName = Constants.TABLE_COLUMN_ID, generatedId = true)
     public int id;
-    @DatabaseField(columnName = Constants.Database.TABLE_COLUMN_HOST_TITLE, canBeNull = false)
+    @DatabaseField(columnName = Constants.TABLE_COLUMN_TITLE, canBeNull = false)
     public String title;
-    @DatabaseField(columnName = Constants.Database.TABLE_COLUMN_HOST_VEID, canBeNull = false)
+    @DatabaseField(columnName = Constants.TABLE_COLUMN_VEID, canBeNull = false)
     public String veid;
-    @DatabaseField(columnName = Constants.Database.TABLE_COLUMN_HOST_KEY, canBeNull = false)
+    @DatabaseField(columnName = Constants.TABLE_COLUMN_KEY, canBeNull = false)
     public String key;
 }

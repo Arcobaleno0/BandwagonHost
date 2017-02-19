@@ -18,21 +18,9 @@
 
 package me.pexcn.bandwagonhost.api;
 
-import me.pexcn.bandwagonhost.bean.api.Locations;
-import me.pexcn.bandwagonhost.bean.api.MigrateResult;
-import retrofit2.http.GET;
-import retrofit2.http.Query;
-import rx.Observable;
-
 /**
  * Created by pexcn on 2016-07-14.
  */
 public interface ApiService {
-    interface LocationService {
-        @GET(Api.Migrate.GET_LOCATIONS)
-        Observable<Locations> getLocations(@Query(Api.VEID) int veid, @Query(Api.KEY) String key);
 
-        @GET(Api.Migrate.START)
-        Observable<MigrateResult> startMigrate(@Query(Api.VEID) int veid, @Query(Api.KEY) String key, @Query(Api.Params.LOCATION) String location);
-    }
 }
