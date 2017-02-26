@@ -47,6 +47,7 @@
             android:id="@+id/et_key"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
             android:hint="@string/dialog_key_text"
             android:inputType="textPassword"
             android:maxLines="1" />

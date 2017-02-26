@@ -19,7 +19,6 @@
 package me.pexcn.bandwagonhost;
 
 import android.app.Application;
-import android.support.v7.app.AppCompatDelegate;
 
 import me.pexcn.simpleutils.SimpleUtils;
 
@@ -27,10 +26,6 @@ import me.pexcn.simpleutils.SimpleUtils;
  * Created by pexcn on 2016-06-29.
  */
 public class App extends Application {
-    static {
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-    }
-
     @Override
     public void onCreate() {
         super.onCreate();

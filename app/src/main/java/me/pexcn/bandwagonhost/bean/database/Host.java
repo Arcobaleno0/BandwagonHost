@@ -18,6 +18,9 @@
 
 package me.pexcn.bandwagonhost.bean.database;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 

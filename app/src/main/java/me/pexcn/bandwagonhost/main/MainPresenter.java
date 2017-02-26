@@ -18,8 +18,13 @@
 
 package me.pexcn.bandwagonhost.main;
 
+import java.util.List;
+
 import me.pexcn.android.base.mvp.BasePresenter;
 import me.pexcn.bandwagonhost.bean.database.Host;
+import me.pexcn.simpleutils.common.LogUtils;
+import rx.Observable;
+import rx.functions.Func1;
 
 /**
  * Created by pexcn on 2016-06-29.
@@ -36,17 +41,24 @@ public class MainPresenter extends BasePresenter<MainContract.View, MainContract
 
     @Override
     public void start() {
-
+        LogUtils.d("MVP start()...");
     }
 
     @Override
     public void insertHost(Host host) {
         getModel().insertHost(host);
-
+        getView().insertItem(host);
     }
 
     @Override
     public void removeHost(int position) {
+        getModel().removeHost(position);
+        getView().removeItem(position);
+    }
 
+    @Override
+    public void loadHostList() {
+        getModel().getAllHosts()
+                .flatMap((Func1<List<Host>, Observable<?>>) Observable::from);
     }
 }

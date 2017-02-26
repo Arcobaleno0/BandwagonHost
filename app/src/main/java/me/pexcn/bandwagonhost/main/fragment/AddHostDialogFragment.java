@@ -1,6 +1,7 @@
 package me.pexcn.bandwagonhost.main.fragment;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -20,8 +21,7 @@ import me.pexcn.bandwagonhost.bean.database.Host;
 /**
  * Created by pexcn on 2017-02-19.
  */
-public class AddHostDialogFragment extends DialogFragment
-        implements DialogInterface.OnKeyListener {
+public class AddHostDialogFragment extends DialogFragment {
     private AlertDialog mDialog;
     private TextInputEditText mTitle;
     private TextInputEditText mVeid;
@@ -29,9 +29,16 @@ public class AddHostDialogFragment extends DialogFragment
     private TextInputLayout mTitleLayout;
     private TextInputLayout mVeidLayout;
     private TextInputLayout mKeyLayout;
+    private AddHostListener mListener;
 
     public static AddHostDialogFragment newInstance() {
         return new AddHostDialogFragment();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mListener = (AddHostListener) getActivity();
     }
 
     @NonNull
@@ -51,27 +58,25 @@ public class AddHostDialogFragment extends DialogFragment
                 .setTitle(getResources().getString(R.string.activity_add_host_title))
                 .setNegativeButton(getResources().getString(android.R.string.cancel), null)
                 .setPositiveButton(getResources().getString(android.R.string.ok), null)
-                .setOnKeyListener(this)
+                .setOnKeyListener((dialog, keyCode, event) -> {
+                    if (keyCode == KeyEvent.KEYCODE_BACK
+                            && event.getAction() == KeyEvent.ACTION_UP
+                            && !event.isCanceled()) {
+                        dialog.dismiss();
+                        return true;
+                    }
+                    return false;
+                })
                 .create();
         mDialog.setOnShowListener(dialog -> mDialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(v -> {
             if (mTitle.length() == 0 || mVeid.length() == 0 || mKey.length() == 0) {
                 handleAndFixInput();
             } else {
                 handleAddHost();
+                dialog.dismiss();
             }
         }));
         return mDialog;
-    }
-
-    @Override
-    public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK
-                && event.getAction() == KeyEvent.ACTION_UP
-                && !event.isCanceled()) {
-            dialog.cancel();
-            return true;
-        }
-        return false;
     }
 
     private void handleAndFixInput() {
@@ -102,9 +107,10 @@ public class AddHostDialogFragment extends DialogFragment
         host.title = mTitle.getText().toString();
         host.veid = mVeid.getText().toString();
         host.key = mKey.getText().toString();
+        mListener.onAddedHost(host);
     }
 
-    private class AddHostDialogTextWatcher implements TextWatcher {
+    class AddHostDialogTextWatcher implements TextWatcher {
         static final int TYPE_TITLE = 1;
         static final int TYPE_VEID = 2;
         static final int TYPE_KEY = 3;
@@ -144,5 +150,9 @@ public class AddHostDialogFragment extends DialogFragment
                     break;
             }
         }
+    }
+
+    public interface AddHostListener {
+        void onAddedHost(Host host);
     }
 }

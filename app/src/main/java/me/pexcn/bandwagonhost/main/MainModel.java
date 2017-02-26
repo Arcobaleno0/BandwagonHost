@@ -1,9 +1,14 @@
 package me.pexcn.bandwagonhost.main;
 
 
+import android.support.annotation.NonNull;
+
+import java.util.List;
+
 import me.pexcn.bandwagonhost.bean.database.Host;
 import me.pexcn.bandwagonhost.database.HostManager;
 import me.pexcn.simpleutils.SimpleUtils;
+import rx.Observable;
 
 /**
  * Created by pexcn on 2016-08-09.
@@ -16,7 +21,7 @@ public class MainModel implements MainContract.Model {
     }
 
     @Override
-    public void insertHost(Host host) {
+    public void insertHost(@NonNull Host host) {
 
     }
 
@@ -25,9 +30,13 @@ public class MainModel implements MainContract.Model {
 
     }
 
-//    @Override
-//    public boolean isEmpty() {
-//        return mHostManager.queryAll().size() == 0;
-//    }
+    @Override
+    public Observable<List<Host>> getAllHosts() {
+        return null;
+    }
 
+    @Override
+    public Observable<Host> getHost() {
+        return null;
+    }
 }

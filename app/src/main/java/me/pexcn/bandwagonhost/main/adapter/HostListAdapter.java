@@ -94,9 +94,9 @@ public class HostListAdapter extends RecyclerView.Adapter<HostListAdapter.ViewHo
         this.mOnLongClickListener = listener;
     }
 
-    public interface OnItemClickListener extends View.OnClickListener {
+    interface OnItemClickListener extends View.OnClickListener {
     }
 
-    public interface OnItemLongClickListener extends View.OnLongClickListener {
+    interface OnItemLongClickListener extends View.OnLongClickListener {
     }
 }

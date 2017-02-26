@@ -37,12 +37,12 @@ import me.pexcn.bandwagonhost.main.fragment.AddHostDialogFragment;
  * Created by pexcn on 2016-06-29.
  */
 public class MainActivity extends BaseActivity<MainContract.Presenter>
-        implements MainContract.View, View.OnClickListener {
+        implements MainContract.View, View.OnClickListener,
+        AddHostDialogFragment.AddHostListener {
     private RecyclerView mHostList;
     private HostListAdapter mHostListAdapter;
     private List<Host> mHosts;
     private FloatingActionButton mAddHostFab;
-    private AddHostDialogFragment mAddHostDialog;
 
     @Override
     protected MainContract.Presenter createPresenter() {
@@ -81,6 +81,11 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
     }
 
     @Override
+    public void showList() {
+
+    }
+
+    @Override
     public void setEmptyView(boolean showable) {
         final LinearLayout emptyView = (LinearLayout) findViewById(R.id.view_empty);
         if (showable) {
@@ -92,8 +97,8 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
 
     @Override
     public void showAddHostDialog() {
-        AddHostDialogFragment.newInstance()
-                .show(getSupportFragmentManager(), "AddHostDialogFragment");
+        AddHostDialogFragment.newInstance().show(getSupportFragmentManager(),
+                AddHostDialogFragment.class.getSimpleName());
     }
 
     @Override
@@ -106,21 +111,9 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
     public void onClick(View v) {
 
     }
+
+    @Override
+    public void onAddedHost(Host host) {
+        insertItem(host);
+    }
 }
-
-//    @Override
-//    public void showFullList(List<Host> hosts) {
-//        if (!mHosts.isEmpty()) {
-//            mHosts.clear();
-//        }
-//        mHosts.addAll(hosts);
-//        mHostListAdapter.notifyDataSetChanged();
-//    }
-
-//    @Override
-//    public void showLongClickItemMenu(View view) {
-//        PopupMenu popupMenu = new PopupMenu(this, view, Gravity.END);
-//        popupMenu.inflate(R.menu.menu_popupmenu);
-//        popupMenu.setOnMenuItemClickListener(this);
-//        popupMenu.show();
-//    }
