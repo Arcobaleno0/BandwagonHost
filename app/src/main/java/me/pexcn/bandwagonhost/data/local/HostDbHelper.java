@@ -30,20 +30,20 @@ import java.sql.SQLException;
 /**
  * Created by pexcn on 2016-06-30.
  */
-public class HostDbHelper extends OrmLiteSqliteOpenHelper {
+public class HostDBHelper extends OrmLiteSqliteOpenHelper {
     private static final String DB_NAME = "bandwagonhost.db";
     private static final int DB_VERSION = 1;
 
-    private static HostDbHelper sInstance;
+    private static HostDBHelper sInstance;
 
-    public static HostDbHelper getInstance(Context context) {
+    public static HostDBHelper getInstance(Context context) {
         if (sInstance == null) {
-            sInstance = new HostDbHelper(context);
+            sInstance = new HostDBHelper(context);
         }
         return sInstance;
     }
 
-    private HostDbHelper(Context context) {
+    private HostDBHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 

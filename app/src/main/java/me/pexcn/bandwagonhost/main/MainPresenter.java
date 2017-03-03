@@ -58,4 +58,9 @@ public class MainPresenter extends BasePresenter<MainContract.View, MainContract
             }
         });
     }
+
+    @Override
+    public void deleteHost(int id) {
+
+    }
 }

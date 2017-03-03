@@ -41,7 +41,7 @@ public class HostManager {
     }
 
     private HostManager(Context context) {
-        HostDbHelper helper = HostDbHelper.getInstance(context);
+        HostDBHelper helper = HostDBHelper.getInstance(context);
         try {
             mDao = helper.getDao(Host.class);
         } catch (SQLException e) {

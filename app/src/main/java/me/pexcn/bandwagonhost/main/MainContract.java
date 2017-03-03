@@ -16,6 +16,8 @@ public class MainContract implements BaseContract {
     interface View extends BaseContract.View<MainContract.Presenter> {
         void addItem(@NonNull Host host);
 
+        void deleteItem(int id);
+
         void showAddHostDialog();
 
         void showEmptyView(boolean shown);
@@ -27,10 +29,14 @@ public class MainContract implements BaseContract {
 
     interface Presenter extends BaseContract.Presenter<MainContract.View, MainContract.Model> {
         void addHost(@NonNull Host host);
+
+        void deleteHost(int id);
     }
 
     interface Model extends BaseContract.Model {
         void addHost(@NonNull Host host, OnCompletedListener listener);
+
+        void deleteHost(int id, OnCompletedListener listener);
 
         boolean isEmpty();
 

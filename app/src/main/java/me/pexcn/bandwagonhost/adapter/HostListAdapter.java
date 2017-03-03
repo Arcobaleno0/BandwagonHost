@@ -18,7 +18,6 @@
 
 package me.pexcn.bandwagonhost.adapter;
 
-import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,70 +32,65 @@ import me.pexcn.bandwagonhost.data.local.Host;
 /**
  * Created by pexcn on 2016-07-01.
  */
-public class HostListAdapter extends RecyclerView.Adapter<HostListAdapter.ViewHolder>
-        implements View.OnClickListener, View.OnLongClickListener {
+public class HostListAdapter extends RecyclerView.Adapter<HostListAdapter.ViewHolder> {
     private List<Host> mHosts;
 
     public HostListAdapter(List<Host> hosts) {
         this.mHosts = hosts;
+//        this.setHasStableIds(true);
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_profile, parent, false);
-        view.setOnClickListener(this);
-        view.setOnLongClickListener(this);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        holder.itemView.setOnClickListener(v -> mOnClick.onItemClick(v, holder.getAdapterPosition()));
+        holder.itemView.setOnLongClickListener(v -> {
+            mOnLongClick.onItemLongClick(v, holder.getAdapterPosition());
+            return true;
+        });
         holder.mTextView.setText(mHosts.get(position).title);
     }
+
+//    @Override
+//    public long getItemId(int position) {
+//        return super.getItemId(position);
+//    }
 
     @Override
     public int getItemCount() {
         return mHosts.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
         TextView mTextView;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
             mTextView = (TextView) itemView.findViewById(R.id.tv_title);
         }
     }
 
-    /**
-     * Implement OnItemClickListener and OnItemLongClickListener.
-     */
-    private OnItemClickListener mOnClickListener;
-    private OnItemLongClickListener mOnLongClickListener;
+    private OnItemClickListener mOnClick;
+    private OnItemLongClickListener mOnLongClick;
 
-    @Override
-    public void onClick(View v) {
-        if (mOnClickListener != null) {
-            mOnClickListener.onClick(v);
-        }
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.mOnClick = listener;
     }
 
-    @Override
-    public boolean onLongClick(View v) {
-        return mOnLongClickListener != null && mOnLongClickListener.onLongClick(v);
+    public void setOnItemLongClickListener(OnItemLongClickListener listener) {
+        this.mOnLongClick = listener;
     }
 
-    public void setOnItemClickListener(@Nullable OnItemClickListener listener) {
-        this.mOnClickListener = listener;
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
     }
 
-    public void setOnItemLongClickListener(@Nullable OnItemLongClickListener listener) {
-        this.mOnLongClickListener = listener;
-    }
-
-    interface OnItemClickListener extends View.OnClickListener {
-    }
-
-    interface OnItemLongClickListener extends View.OnLongClickListener {
+    public interface OnItemLongClickListener {
+        void onItemLongClick(View view, int position);
     }
 }

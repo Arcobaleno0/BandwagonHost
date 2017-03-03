@@ -1,6 +1,5 @@
 package me.pexcn.bandwagonhost.main;
 
-
 import android.support.annotation.NonNull;
 
 import java.util.List;
@@ -27,8 +26,17 @@ public class MainModel implements MainContract.Model {
     @Override
     public void addHost(@NonNull Host host, OnCompletedListener listener) {
         mHostManager.add(host);
-        String string = getAppContext().getResources().getString(R.string.snackbar_add_completed);
-        listener.onCompleted(host.title + " " + string);
+        final String string = host.title + " " + getAppContext().getResources()
+                .getString(R.string.snackbar_add_completed);
+        listener.onCompleted(string);
+    }
+
+    @Override
+    public void deleteHost(int id, OnCompletedListener listener) {
+        mHostManager.delete(id);
+        final String string = getAppContext().getResources()
+                .getString(R.string.snackbar_delete_completed);
+        listener.onCompleted(string);
     }
 
     @Override

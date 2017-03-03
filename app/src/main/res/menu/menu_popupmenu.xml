@@ -3,9 +3,9 @@
 
     <item
         android:id="@+id/menu_update"
-        android:title="更新" />
+        android:title="@string/menu_update" />
     <item
         android:id="@+id/menu_remove"
-        android:title="删除" />
+        android:title="@string/menu_delete" />
 
 </menu>

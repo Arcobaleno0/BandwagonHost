@@ -21,7 +21,9 @@ package me.pexcn.bandwagonhost.main;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -66,7 +68,28 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
         mAdapter = new HostListAdapter(mHosts);
 
         mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setHasFixedSize(true);
+        mAdapter.setOnItemClickListener((view, position) -> {
+
+        });
+        mAdapter.setOnItemLongClickListener((view, position) -> {
+            final PopupMenu menu = new PopupMenu(MainActivity.this, view, Gravity.END);
+            menu.inflate(R.menu.menu_popupmenu);
+            menu.setOnMenuItemClickListener(item -> {
+                switch (item.getItemId()) {
+                    case R.id.menu_update:
+                        showMessage("update");
+                        return true;
+                    case R.id.menu_remove:
+                        showMessage("remove");
+                        return true;
+                }
+                return false;
+            });
+            menu.show();
+        });
         mFab.setOnClickListener(v -> showAddHostDialog());
+
         getPresenter().start();
     }
 
@@ -74,6 +97,12 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
     public void addItem(@NonNull Host host) {
         mHosts.add(host);
         mAdapter.notifyItemInserted(mHosts.size());
+    }
+
+    @Override
+    public void deleteItem(int id) {
+        mHosts.remove(id);
+        mAdapter.notifyItemChanged(id);
     }
 
     @Override
