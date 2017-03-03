@@ -38,8 +38,7 @@ import me.pexcn.bandwagonhost.data.local.Host;
  * Created by pexcn on 2016-06-29.
  */
 public class MainActivity extends BaseActivity<MainContract.Presenter>
-        implements MainContract.View, View.OnClickListener,
-        AddHostDialogFragment.OnAddHostListener {
+        implements MainContract.View, AddHostDialogFragment.OnAddHostListener {
     private RecyclerView mRecyclerView;
     private HostListAdapter mAdapter;
     private List<Host> mHosts;
@@ -61,13 +60,11 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mFab = (FloatingActionButton) findViewById(R.id.fab);
-
         mHosts = new ArrayList<>();
         mAdapter = new HostListAdapter(mHosts);
 
         mRecyclerView.setAdapter(mAdapter);
-        mFab.setOnClickListener(this);
-
+        mFab.setOnClickListener(v -> showAddHostDialog());
         getPresenter().start();
     }
 
@@ -76,12 +73,6 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
         mHosts.add(host);
         mAdapter.notifyItemInserted(mHosts.size());
     }
-
-//    @Override
-//    public void deleteItem(int position) {
-//        mHosts.remove(position);
-//        mAdapter.notifyItemRemoved(position);
-//    }
 
     @Override
     public void refreshList(@NonNull List<Host> hosts) {
@@ -104,13 +95,16 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
 
     @Override
     public void showAddHostDialog() {
-        AddHostDialogFragment.newInstance().show(getSupportFragmentManager(),
-                AddHostDialogFragment.class.getSimpleName());
+        AddHostDialogFragment.newInstance()
+                .show(getSupportFragmentManager(), AddHostDialogFragment.class.getSimpleName());
     }
 
     @Override
     public void showMessage(@NonNull String msg) {
-        Snackbar.make(findViewById(R.id.coordinator), msg, Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(findViewById(R.id.coordinator), msg, Snackbar.LENGTH_SHORT)
+                .setAction(getResources().getString(android.R.string.ok), v -> {
+
+                }).show();
     }
 
     @Override
@@ -120,16 +114,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.fab:
-                showAddHostDialog();
-                break;
-        }
-    }
-
-    @Override
     public void onAddHost(@NonNull Host host) {
-        
+        getPresenter().addHost(host);
     }
 }

@@ -18,7 +18,10 @@
 
 package me.pexcn.bandwagonhost.main;
 
+import android.support.annotation.NonNull;
+
 import me.pexcn.android.base.mvp.BasePresenter;
+import me.pexcn.bandwagonhost.data.local.Host;
 
 /**
  * Created by pexcn on 2016-06-29.
@@ -36,23 +39,16 @@ public class MainPresenter extends BasePresenter<MainContract.View, MainContract
 
     @Override
     public void start() {
-        getView().showEmptyView(true);
+        if (getModel().isEmpty()) {
+            getView().showEmptyView(true);
+        }
     }
 
-//    @Override
-//    public void addHost(@NonNull Host host) {
-//        getModel().addHost(host, this);
-//        getView().addItem(host);
-//    }
-//
-//    @Override
-//    public void deleteHost(int position) {
-//        getModel().deleteHost(position, this);
-//        getView().deleteItem(position);
-//    }
-//
-//    @Override
-//    public void onCompleted(@NonNull String msg) {
-//        getView().showMessage(msg);
-//    }
+    @Override
+    public void addHost(@NonNull Host host) {
+        getModel().addHost(host, msg -> {
+            getView().addItem(host);
+            getView().showMessage(msg);
+        });
+    }
 }

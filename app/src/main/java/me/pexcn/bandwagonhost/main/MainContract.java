@@ -6,6 +6,7 @@ import java.util.List;
 
 import me.pexcn.android.base.mvp.BaseContract;
 import me.pexcn.bandwagonhost.data.local.Host;
+import me.pexcn.bandwagonhost.listener.OnCompletedListener;
 import rx.Observable;
 
 /**
@@ -15,22 +16,24 @@ public class MainContract implements BaseContract {
     interface View extends BaseContract.View<MainContract.Presenter> {
         void addItem(@NonNull Host host);
 
-//        void deleteItem(int position);
-
         void refreshList(@NonNull List<Host> hosts);
 
-        void showEmptyView(boolean shown);
-
         void showAddHostDialog();
+
+        void showEmptyView(boolean shown);
 
         void showMessage(@NonNull String msg);
     }
 
     interface Presenter extends BaseContract.Presenter<MainContract.View, MainContract.Model> {
-
+        void addHost(@NonNull Host host);
     }
 
     interface Model extends BaseContract.Model {
+        void addHost(@NonNull Host host, OnCompletedListener listener);
+
+        boolean isEmpty();
+
         Observable<List<Host>> getAllHosts();
     }
 }

@@ -51,6 +51,7 @@ public class HostManager {
 
     public void add(Host host) {
         try {
+            // TODO: 返回值
             mDao.create(host);
         } catch (SQLException e) {
             e.printStackTrace();

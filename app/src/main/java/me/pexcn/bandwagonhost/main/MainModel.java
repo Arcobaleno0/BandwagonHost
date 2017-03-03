@@ -1,10 +1,13 @@
 package me.pexcn.bandwagonhost.main;
 
 
+import android.support.annotation.NonNull;
+
 import java.util.List;
 
 import me.pexcn.bandwagonhost.data.local.Host;
 import me.pexcn.bandwagonhost.data.local.HostManager;
+import me.pexcn.bandwagonhost.listener.OnCompletedListener;
 import me.pexcn.simpleutils.SimpleUtils;
 import rx.Observable;
 import rx.schedulers.Schedulers;
@@ -19,15 +22,17 @@ public class MainModel implements MainContract.Model {
         mHostManager = HostManager.getInstance(SimpleUtils.getAppContext());
     }
 
-//    @Override
-//    public void addHost(@NonNull Host host, OnCompletedListener listener) {
-//
-//    }
-//
-//    @Override
-//    public void deleteHost(int id, OnCompletedListener listener) {
-//
-//    }
+    @Override
+    public void addHost(@NonNull Host host, OnCompletedListener listener) {
+        mHostManager.add(host);
+        // TODO: getResource()
+        listener.onCompleted(host.title + " " + "添加完成");
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return mHostManager.queryAll().isEmpty();
+    }
 
     @Override
     public Observable<List<Host>> getAllHosts() {
@@ -36,9 +41,4 @@ public class MainModel implements MainContract.Model {
             subscriber.onCompleted();
         }).subscribeOn(Schedulers.io());
     }
-
-//    @Override
-//    public Observable<Host> getHost(int position) {
-//        return null;
-//    }
 }
