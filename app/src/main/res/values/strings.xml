@@ -8,4 +8,7 @@
     <string name="dialog_veid">VEID</string>
     <string name="dialog_key">KEY</string>
     <string name="dialog_not_be_empty">not be empty</string>
+
+    <string name="snackbar_add_completed">add completed</string>
+    <string name="snackbar_load_failure">load failure</string>
 </resources>

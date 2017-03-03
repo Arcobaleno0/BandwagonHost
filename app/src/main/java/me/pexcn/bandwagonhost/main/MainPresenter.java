@@ -22,6 +22,7 @@ import android.support.annotation.NonNull;
 
 import me.pexcn.android.base.mvp.BasePresenter;
 import me.pexcn.bandwagonhost.data.local.Host;
+import rx.android.schedulers.AndroidSchedulers;
 
 /**
  * Created by pexcn on 2016-06-29.
@@ -41,6 +42,9 @@ public class MainPresenter extends BasePresenter<MainContract.View, MainContract
     public void start() {
         if (getModel().isEmpty()) {
             getView().showEmptyView(true);
+        } else {
+            getModel().getAllHosts().observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(hosts -> getView().refreshList(hosts));
         }
     }
 
@@ -49,6 +53,9 @@ public class MainPresenter extends BasePresenter<MainContract.View, MainContract
         getModel().addHost(host, msg -> {
             getView().addItem(host);
             getView().showMessage(msg);
+            if (!getModel().isEmpty()) {
+                getView().showEmptyView(false);
+            }
         });
     }
 }

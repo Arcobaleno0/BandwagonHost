@@ -16,13 +16,13 @@ public class MainContract implements BaseContract {
     interface View extends BaseContract.View<MainContract.Presenter> {
         void addItem(@NonNull Host host);
 
-        void refreshList(@NonNull List<Host> hosts);
-
         void showAddHostDialog();
 
         void showEmptyView(boolean shown);
 
         void showMessage(@NonNull String msg);
+
+        void refreshList(@NonNull List<Host> hosts);
     }
 
     interface Presenter extends BaseContract.Presenter<MainContract.View, MainContract.Model> {

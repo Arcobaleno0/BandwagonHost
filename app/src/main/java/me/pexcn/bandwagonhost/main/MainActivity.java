@@ -39,10 +39,12 @@ import me.pexcn.bandwagonhost.data.local.Host;
  */
 public class MainActivity extends BaseActivity<MainContract.Presenter>
         implements MainContract.View, AddHostDialogFragment.OnAddHostListener {
+    @SuppressWarnings("FieldCanBeLocal")
     private RecyclerView mRecyclerView;
+    @SuppressWarnings("FieldCanBeLocal")
+    private FloatingActionButton mFab;
     private HostListAdapter mAdapter;
     private List<Host> mHosts;
-    private FloatingActionButton mFab;
 
     @Override
     protected MainContract.Presenter createPresenter() {
@@ -75,15 +77,6 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
     }
 
     @Override
-    public void refreshList(@NonNull List<Host> hosts) {
-        if (!mHosts.isEmpty()) {
-            mHosts.clear();
-        }
-        mHosts.addAll(hosts);
-        mAdapter.notifyDataSetChanged();
-    }
-
-    @Override
     public void showEmptyView(boolean shown) {
         final LinearLayout emptyView = (LinearLayout) findViewById(R.id.view_empty);
         if (shown) {
@@ -105,6 +98,15 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
                 .setAction(getResources().getString(android.R.string.ok), v -> {
 
                 }).show();
+    }
+
+    @Override
+    public void refreshList(@NonNull List<Host> hosts) {
+        if (!mHosts.isEmpty()) {
+            mHosts.clear();
+        }
+        mHosts.addAll(hosts);
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override
