@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import java.util.List;
 
 import me.pexcn.android.base.mvp.BaseContract;
-import me.pexcn.bandwagonhost.bean.database.Host;
+import me.pexcn.bandwagonhost.data.local.Host;
 import rx.Observable;
 
 /**
@@ -13,32 +13,24 @@ import rx.Observable;
  */
 public class MainContract implements BaseContract {
     interface View extends BaseContract.View<MainContract.Presenter> {
-        void insertItem(Host host);
+        void addItem(@NonNull Host host);
 
-        void removeItem(int position);
+//        void deleteItem(int position);
 
-        void showList();
+        void refreshList(@NonNull List<Host> hosts);
 
-        void setEmptyView(boolean showable);
+        void showEmptyView(boolean shown);
 
         void showAddHostDialog();
+
+        void showMessage(@NonNull String msg);
     }
 
     interface Presenter extends BaseContract.Presenter<MainContract.View, MainContract.Model> {
-        void insertHost(Host host);
 
-        void removeHost(int position);
-
-        void loadHostList();
     }
 
     interface Model extends BaseContract.Model {
-        void insertHost(@NonNull Host host);
-
-        void removeHost(int position);
-
         Observable<List<Host>> getAllHosts();
-
-        Observable<Host> getHost();
     }
 }

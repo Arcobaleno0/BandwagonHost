@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package me.pexcn.bandwagonhost.database;
+package me.pexcn.bandwagonhost.data.local;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -27,26 +27,23 @@ import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
 
-import me.pexcn.bandwagonhost.Constants;
-import me.pexcn.bandwagonhost.bean.database.Host;
-
 /**
  * Created by pexcn on 2016-06-30.
  */
-public class DBHelper extends OrmLiteSqliteOpenHelper {
-    private static final String DB_NAME = Constants.DB_NAME;
-    private static final int DB_VERSION = Constants.DB_VERSION;
+public class HostDbHelper extends OrmLiteSqliteOpenHelper {
+    private static final String DB_NAME = "bandwagonhost.db";
+    private static final int DB_VERSION = 1;
 
-    private static DBHelper sInstance;
+    private static HostDbHelper sInstance;
 
-    public static DBHelper getInstance(Context context) {
+    public static HostDbHelper getInstance(Context context) {
         if (sInstance == null) {
-            sInstance = new DBHelper(context);
+            sInstance = new HostDbHelper(context);
         }
         return sInstance;
     }
 
-    private DBHelper(Context context) {
+    private HostDbHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 

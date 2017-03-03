@@ -18,7 +18,9 @@
 
 package me.pexcn.bandwagonhost.main;
 
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.View;
@@ -29,20 +31,19 @@ import java.util.List;
 
 import me.pexcn.android.base.mvp.BaseActivity;
 import me.pexcn.bandwagonhost.R;
-import me.pexcn.bandwagonhost.bean.database.Host;
-import me.pexcn.bandwagonhost.main.adapter.HostListAdapter;
-import me.pexcn.bandwagonhost.main.fragment.AddHostDialogFragment;
+import me.pexcn.bandwagonhost.adapter.HostListAdapter;
+import me.pexcn.bandwagonhost.data.local.Host;
 
 /**
  * Created by pexcn on 2016-06-29.
  */
 public class MainActivity extends BaseActivity<MainContract.Presenter>
         implements MainContract.View, View.OnClickListener,
-        AddHostDialogFragment.AddHostListener {
-    private RecyclerView mHostList;
-    private HostListAdapter mHostListAdapter;
+        AddHostDialogFragment.OnAddHostListener {
+    private RecyclerView mRecyclerView;
+    private HostListAdapter mAdapter;
     private List<Host> mHosts;
-    private FloatingActionButton mAddHostFab;
+    private FloatingActionButton mFab;
 
     @Override
     protected MainContract.Presenter createPresenter() {
@@ -58,37 +59,43 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
     protected void init() {
         super.init();
 
-        mHostList = (RecyclerView) findViewById(R.id.rcv_list);
-        mAddHostFab = (FloatingActionButton) findViewById(R.id.fab_add);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        mFab = (FloatingActionButton) findViewById(R.id.fab);
 
         mHosts = new ArrayList<>();
-        mHostListAdapter = new HostListAdapter(mHosts);
+        mAdapter = new HostListAdapter(mHosts);
 
-        mHostList.setAdapter(mHostListAdapter);
-        mAddHostFab.setOnClickListener(v -> showAddHostDialog());
+        mRecyclerView.setAdapter(mAdapter);
+        mFab.setOnClickListener(this);
+
+        getPresenter().start();
     }
 
     @Override
-    public void insertItem(Host host) {
+    public void addItem(@NonNull Host host) {
         mHosts.add(host);
-        mHostListAdapter.notifyItemInserted(mHosts.size());
+        mAdapter.notifyItemInserted(mHosts.size());
+    }
+
+//    @Override
+//    public void deleteItem(int position) {
+//        mHosts.remove(position);
+//        mAdapter.notifyItemRemoved(position);
+//    }
+
+    @Override
+    public void refreshList(@NonNull List<Host> hosts) {
+        if (!mHosts.isEmpty()) {
+            mHosts.clear();
+        }
+        mHosts.addAll(hosts);
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override
-    public void removeItem(int position) {
-        mHosts.remove(position);
-        mHostListAdapter.notifyItemRemoved(position);
-    }
-
-    @Override
-    public void showList() {
-
-    }
-
-    @Override
-    public void setEmptyView(boolean showable) {
+    public void showEmptyView(boolean shown) {
         final LinearLayout emptyView = (LinearLayout) findViewById(R.id.view_empty);
-        if (showable) {
+        if (shown) {
             emptyView.setVisibility(View.VISIBLE);
         } else {
             emptyView.setVisibility(View.GONE);
@@ -102,6 +109,11 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
     }
 
     @Override
+    public void showMessage(@NonNull String msg) {
+        Snackbar.make(findViewById(R.id.coordinator), msg, Snackbar.LENGTH_SHORT).show();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_toolbar, menu);
         return true;
@@ -109,11 +121,15 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
 
     @Override
     public void onClick(View v) {
-
+        switch (v.getId()) {
+            case R.id.fab:
+                showAddHostDialog();
+                break;
+        }
     }
 
     @Override
-    public void onAddedHost(Host host) {
-        insertItem(host);
+    public void onAddHost(@NonNull Host host) {
+        
     }
 }

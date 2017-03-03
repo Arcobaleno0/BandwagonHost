@@ -2,7 +2,7 @@
  * BandwagonHost - A bandwagonhost.com client for Android
  * Copyright (C) 2016 Xingyu Chen <pexcn97@gmail.com>
  *
- * This program is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it an d/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
@@ -16,28 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package me.pexcn.bandwagonhost.bean.api;
-
-import java.util.List;
+package me.pexcn.bandwagonhost.data.remote;
 
 /**
- * Created by pexcn on 2016-07-12.
+ * Created by pexcn on 2016-07-14.
  */
-public class Locations {
-    public int error;
-    public String currentLocation;
-    public Descriptions descriptions;
-    public List<String> locations;
+public class Api implements ApiBase {
 
-    public static class Descriptions {
-        public String USCA_2;
-        public String USCA_FMT;
-        public String USAZ_2;
-        public String USFL_2;
-        public String EUNL_3;
-    }
-
-    // extra
-    public String message;
-    public String additionalErrorInfo;
 }

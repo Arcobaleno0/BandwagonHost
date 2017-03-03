@@ -1,4 +1,4 @@
-package me.pexcn.bandwagonhost.main.fragment;
+package me.pexcn.bandwagonhost.main;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -16,7 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import me.pexcn.bandwagonhost.R;
-import me.pexcn.bandwagonhost.bean.database.Host;
+import me.pexcn.bandwagonhost.data.local.Host;
 
 /**
  * Created by pexcn on 2017-02-19.
@@ -29,7 +29,7 @@ public class AddHostDialogFragment extends DialogFragment {
     private TextInputLayout mTitleLayout;
     private TextInputLayout mVeidLayout;
     private TextInputLayout mKeyLayout;
-    private AddHostListener mListener;
+    private OnAddHostListener mListener;
 
     public static AddHostDialogFragment newInstance() {
         return new AddHostDialogFragment();
@@ -38,7 +38,7 @@ public class AddHostDialogFragment extends DialogFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mListener = (AddHostListener) getActivity();
+        mListener = (OnAddHostListener) getActivity();
     }
 
     @NonNull
@@ -55,7 +55,7 @@ public class AddHostDialogFragment extends DialogFragment {
         mKeyLayout = (TextInputLayout) view.findViewById(R.id.til_key);
         mDialog = new AlertDialog.Builder(getActivity())
                 .setView(view)
-                .setTitle(getResources().getString(R.string.activity_add_host_title))
+                .setTitle(getResources().getString(R.string.activity_add_host))
                 .setNegativeButton(getResources().getString(android.R.string.cancel), null)
                 .setPositiveButton(getResources().getString(android.R.string.ok), null)
                 .setOnKeyListener((dialog, keyCode, event) -> {
@@ -73,7 +73,7 @@ public class AddHostDialogFragment extends DialogFragment {
                 handleAndFixInput();
             } else {
                 handleAddHost();
-                dialog.dismiss();
+                dismiss();
             }
         }));
         return mDialog;
@@ -84,7 +84,7 @@ public class AddHostDialogFragment extends DialogFragment {
         mVeid.addTextChangedListener(new AddHostDialogTextWatcher(AddHostDialogTextWatcher.TYPE_VEID));
         mKey.addTextChangedListener(new AddHostDialogTextWatcher(AddHostDialogTextWatcher.TYPE_KEY));
 
-        String string = getResources().getString(R.string.dialog_text_not_be_empty);
+        String string = getResources().getString(R.string.dialog_not_be_empty);
         if (mTitle.length() == 0) {
             mTitleLayout.setError(mTitleLayout.getHint() + " " + string);
         } else {
@@ -107,10 +107,10 @@ public class AddHostDialogFragment extends DialogFragment {
         host.title = mTitle.getText().toString();
         host.veid = mVeid.getText().toString();
         host.key = mKey.getText().toString();
-        mListener.onAddedHost(host);
+        mListener.onAddHost(host);
     }
 
-    class AddHostDialogTextWatcher implements TextWatcher {
+    private class AddHostDialogTextWatcher implements TextWatcher {
         static final int TYPE_TITLE = 1;
         static final int TYPE_VEID = 2;
         static final int TYPE_KEY = 3;
@@ -152,7 +152,7 @@ public class AddHostDialogFragment extends DialogFragment {
         }
     }
 
-    public interface AddHostListener {
-        void onAddedHost(Host host);
+    interface OnAddHostListener {
+        void onAddHost(@NonNull Host host);
     }
 }

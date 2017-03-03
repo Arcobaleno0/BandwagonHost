@@ -16,18 +16,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package me.pexcn.bandwagonhost.bean.api;
+package me.pexcn.bandwagonhost.data.local;
 
-import java.util.List;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 
 /**
- * Created by pexcn on 2016-07-16.
+ * Created by pexcn on 2016-06-30.
  */
-public class MigrateResult {
-    public int error;
-    public String notificationEmail;
-    public List<String> newIps;
-
-    // extra
-    public String message;
+@DatabaseTable(tableName = "hosts")
+public class Host {
+    @DatabaseField(columnName = "id", generatedId = true)
+    public int id;
+    @DatabaseField(columnName = "title", canBeNull = false)
+    public String title;
+    @DatabaseField(columnName = "veid", canBeNull = false)
+    public String veid;
+    @DatabaseField(columnName = "key", canBeNull = false)
+    public String key;
 }

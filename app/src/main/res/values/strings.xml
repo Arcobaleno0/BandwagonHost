@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">BandwagonHost</string>
 
-    <string name="activity_add_host_title">Add Host</string>
+    <string name="activity_add_host">Add Host</string>
+    <string name="activity_empty_view">No host, please add the host first.</string>
 
-    <string name="dialog_title_text">Title</string>
-    <string name="dialog_veid_text">VEID</string>
-    <string name="dialog_key_text">KEY</string>
-    <string name="dialog_text_not_be_empty">not be empty</string>
+    <string name="dialog_title">Title</string>
+    <string name="dialog_veid">VEID</string>
+    <string name="dialog_key">KEY</string>
+    <string name="dialog_not_be_empty">not be empty</string>
 </resources>

@@ -1,42 +1,44 @@
 package me.pexcn.bandwagonhost.main;
 
 
-import android.support.annotation.NonNull;
-
 import java.util.List;
 
-import me.pexcn.bandwagonhost.bean.database.Host;
-import me.pexcn.bandwagonhost.database.HostManager;
+import me.pexcn.bandwagonhost.data.local.Host;
+import me.pexcn.bandwagonhost.data.local.HostManager;
 import me.pexcn.simpleutils.SimpleUtils;
 import rx.Observable;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by pexcn on 2016-08-09.
  */
 public class MainModel implements MainContract.Model {
-    private HostManager mHostManager;
+    private final HostManager mHostManager;
 
     public MainModel() {
         mHostManager = HostManager.getInstance(SimpleUtils.getAppContext());
     }
 
-    @Override
-    public void insertHost(@NonNull Host host) {
-
-    }
-
-    @Override
-    public void removeHost(int position) {
-
-    }
+//    @Override
+//    public void addHost(@NonNull Host host, OnCompletedListener listener) {
+//
+//    }
+//
+//    @Override
+//    public void deleteHost(int id, OnCompletedListener listener) {
+//
+//    }
 
     @Override
     public Observable<List<Host>> getAllHosts() {
-        return null;
+        return Observable.create((Observable.OnSubscribe<List<Host>>) subscriber -> {
+            subscriber.onNext(mHostManager.queryAll());
+            subscriber.onCompleted();
+        }).subscribeOn(Schedulers.io());
     }
 
-    @Override
-    public Observable<Host> getHost() {
-        return null;
-    }
+//    @Override
+//    public Observable<Host> getHost(int position) {
+//        return null;
+//    }
 }
