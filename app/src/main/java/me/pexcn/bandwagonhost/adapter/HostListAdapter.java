@@ -37,7 +37,7 @@ public class HostListAdapter extends RecyclerView.Adapter<HostListAdapter.ViewHo
 
     public HostListAdapter(List<Host> hosts) {
         this.mHosts = hosts;
-//        this.setHasStableIds(true);
+        this.setHasStableIds(true);
     }
 
     @Override
@@ -48,18 +48,18 @@ public class HostListAdapter extends RecyclerView.Adapter<HostListAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.itemView.setOnClickListener(v -> mOnClick.onItemClick(v, holder.getAdapterPosition()));
+        holder.itemView.setOnClickListener(v -> mOnClick.onItemClick(v, position));
         holder.itemView.setOnLongClickListener(v -> {
-            mOnLongClick.onItemLongClick(v, holder.getAdapterPosition());
+            mOnLongClick.onItemLongClick(v, position);
             return true;
         });
         holder.mTextView.setText(mHosts.get(position).title);
     }
 
-//    @Override
-//    public long getItemId(int position) {
-//        return super.getItemId(position);
-//    }
+    @Override
+    public long getItemId(int position) {
+        return mHosts.get(position).id;
+    }
 
     @Override
     public int getItemCount() {

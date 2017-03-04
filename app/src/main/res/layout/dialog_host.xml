@@ -18,7 +18,7 @@
             android:id="@+id/et_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/dialog_title"
+            android:hint="@string/dialog_text_title"
             android:maxLines="1" />
 
     </android.support.design.widget.TextInputLayout>
@@ -32,7 +32,7 @@
             android:id="@+id/et_veid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/dialog_veid"
+            android:hint="@string/dialog_text_veid"
             android:maxLines="1" />
 
     </android.support.design.widget.TextInputLayout>
@@ -48,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:hint="@string/dialog_key"
+            android:hint="@string/dialog_text_key"
             android:inputType="textPassword"
             android:maxLines="1" />
 

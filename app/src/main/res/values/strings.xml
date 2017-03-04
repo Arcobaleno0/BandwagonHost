@@ -1,19 +1,26 @@
 <resources>
     <string name="app_name">BandwagonHost</string>
 
-    <string name="activity_add_host">Add Host</string>
-    <string name="activity_empty_view">No host, please add the host first.</string>
+    <string name="activity_text_empty_view">No host, please add the host first.</string>
 
-    <string name="dialog_title">Title</string>
-    <string name="dialog_veid">VEID</string>
-    <string name="dialog_key">KEY</string>
-    <string name="dialog_not_be_empty">not be empty</string>
+    <string name="dialog_text_title">Title</string>
+    <string name="dialog_text_veid">VEID</string>
+    <string name="dialog_text_key">KEY</string>
 
-    <string name="snackbar_add_completed">add completed</string>
-    <string name="snackbar_delete_completed">delete completed</string>
-    <string name="snackbar_load_failure">load failure</string>
+    <string name="dialog_text_not_be_empty">not be empty</string>
+
+    <string name="dialog_title_add_host">Add Host</string>
+    <string name="dialog_title_update_host">Update Host</string>
+
+    <string name="dialog_button_ok">OK</string>
+    <string name="dialog_button_update">Update</string>
+    <string name="dialog_button_cancel">Cancel</string>
+
+    <string name="snackbar_text_add_completed">add completed</string>
+    <string name="snackbar_text_update_completed">update completed</string>
+    <string name="snackbar_text_delete_completed">delete completed</string>
+    <string name="snackbar_text_load_failure">load failure</string>
 
     <string name="menu_update">Update</string>
     <string name="menu_delete">Delete</string>
-
 </resources>

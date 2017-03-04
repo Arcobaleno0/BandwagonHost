@@ -1,6 +1,8 @@
 package me.pexcn.bandwagonhost.main;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import java.util.List;
 
@@ -16,9 +18,7 @@ public class MainContract implements BaseContract {
     interface View extends BaseContract.View<MainContract.Presenter> {
         void addItem(@NonNull Host host);
 
-        void deleteItem(int id);
-
-        void showAddHostDialog();
+        void showHostDialog(@Nullable Bundle args);
 
         void showEmptyView(boolean shown);
 
@@ -30,16 +30,18 @@ public class MainContract implements BaseContract {
     interface Presenter extends BaseContract.Presenter<MainContract.View, MainContract.Model> {
         void addHost(@NonNull Host host);
 
-        void deleteHost(int id);
+        void updateHost(@NonNull Host host);
     }
 
     interface Model extends BaseContract.Model {
+        boolean isDBEmpty();
+
         void addHost(@NonNull Host host, OnCompletedListener listener);
 
-        void deleteHost(int id, OnCompletedListener listener);
-
-        boolean isEmpty();
+        void updateHost(@NonNull Host host, OnCompletedListener listener);
 
         Observable<List<Host>> getAllHosts();
+
+        Observable<Host> getHostById(int id);
     }
 }

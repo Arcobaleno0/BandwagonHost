@@ -18,7 +18,9 @@
 
 package me.pexcn.bandwagonhost.main;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.PopupMenu;
@@ -40,7 +42,7 @@ import me.pexcn.bandwagonhost.data.local.Host;
  * Created by pexcn on 2016-06-29.
  */
 public class MainActivity extends BaseActivity<MainContract.Presenter>
-        implements MainContract.View, AddHostDialogFragment.OnAddHostListener {
+        implements MainContract.View, HostDialogFragment.OnHostListener {
     @SuppressWarnings("FieldCanBeLocal")
     private RecyclerView mRecyclerView;
     @SuppressWarnings("FieldCanBeLocal")
@@ -78,17 +80,17 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
             menu.setOnMenuItemClickListener(item -> {
                 switch (item.getItemId()) {
                     case R.id.menu_update:
-                        showMessage("update");
+                        getPresenter().updateHost(mHosts.get(position));
                         return true;
                     case R.id.menu_remove:
-                        showMessage("remove");
+//                        getPresenter().deleteHost(mHosts.get(position));
                         return true;
                 }
                 return false;
             });
             menu.show();
         });
-        mFab.setOnClickListener(v -> showAddHostDialog());
+        mFab.setOnClickListener(v -> showHostDialog(null));
 
         getPresenter().start();
     }
@@ -100,10 +102,16 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
     }
 
     @Override
-    public void deleteItem(int id) {
-        mHosts.remove(id);
-        mAdapter.notifyItemChanged(id);
+    public void showHostDialog(@Nullable Bundle args) {
+        HostDialogFragment.newInstance(args)
+                .show(getSupportFragmentManager(), HostDialogFragment.class.getSimpleName());
     }
+
+//    @Override
+//    public void deleteItem(int id) {
+//        mHosts.remove(id);
+//        mAdapter.notifyItemChanged(id);
+//    }
 
     @Override
     public void showEmptyView(boolean shown) {
@@ -113,12 +121,6 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
         } else {
             emptyView.setVisibility(View.GONE);
         }
-    }
-
-    @Override
-    public void showAddHostDialog() {
-        AddHostDialogFragment.newInstance()
-                .show(getSupportFragmentManager(), AddHostDialogFragment.class.getSimpleName());
     }
 
     @Override
@@ -145,7 +147,11 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
     }
 
     @Override
-    public void onAddHost(@NonNull Host host) {
-        getPresenter().addHost(host);
+    public void onHost(@NonNull Host host) {
+        if (host.id == 0) {
+            getPresenter().updateHost(host);
+        } else {
+            getPresenter().addHost(host);
+        }
     }
 }
