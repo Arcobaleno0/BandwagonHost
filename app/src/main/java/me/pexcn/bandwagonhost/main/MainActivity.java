@@ -37,6 +37,7 @@ import me.pexcn.android.base.mvp.BaseActivity;
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.adapter.HostListAdapter;
 import me.pexcn.bandwagonhost.data.local.Host;
+import me.pexcn.simpleutils.common.LogUtils;
 
 /**
  * Created by pexcn on 2016-06-29.
@@ -80,10 +81,12 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
             menu.setOnMenuItemClickListener(item -> {
                 switch (item.getItemId()) {
                     case R.id.menu_update:
-                        getPresenter().updateHost(mHosts.get(position));
+                        final Bundle args = new Bundle();
+                        args.putParcelable(HostDialogFragment.ARGS_HOST, mHosts.get(position));
+                        showHostDialog(args);
                         return true;
                     case R.id.menu_remove:
-//                        getPresenter().deleteHost(mHosts.get(position));
+
                         return true;
                 }
                 return false;
@@ -102,16 +105,22 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
     }
 
     @Override
+    public void deleteItem(int position) {
+        mHosts.remove(position);
+        mAdapter.notifyItemRemoved(position);
+    }
+
+    @Override
+    public void updateItem(int position, @NonNull Host host) {
+        mHosts.set(position, host);
+        mAdapter.notifyItemChanged(position);
+    }
+
+    @Override
     public void showHostDialog(@Nullable Bundle args) {
         HostDialogFragment.newInstance(args)
                 .show(getSupportFragmentManager(), HostDialogFragment.class.getSimpleName());
     }
-
-//    @Override
-//    public void deleteItem(int id) {
-//        mHosts.remove(id);
-//        mAdapter.notifyItemChanged(id);
-//    }
 
     @Override
     public void showEmptyView(boolean shown) {
@@ -127,7 +136,6 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
     public void showMessage(@NonNull String msg) {
         Snackbar.make(findViewById(R.id.coordinator), msg, Snackbar.LENGTH_SHORT)
                 .setAction(getResources().getString(android.R.string.ok), v -> {
-
                 }).show();
     }
 
@@ -147,11 +155,14 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
     }
 
     @Override
-    public void onHost(@NonNull Host host) {
-        if (host.id == 0) {
-            getPresenter().updateHost(host);
-        } else {
-            getPresenter().addHost(host);
-        }
+    public void onAddHost(@NonNull Host host) {
+        getPresenter().addHost(host);
+        LogUtils.d("Add --> " + host.id + ", " + host.title + ", " + host.veid + ", " + host.key);
+    }
+
+    @Override
+    public void onUpdateHost(@NonNull Host host) {
+        getPresenter().updateHost(host.id, mHosts.indexOf(host));
+        LogUtils.d("Update --> " + host.id + ", " + host.title + ", " + host.veid + ", " + host.key);
     }
 }

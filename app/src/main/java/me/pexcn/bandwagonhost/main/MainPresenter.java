@@ -18,7 +18,6 @@
 
 package me.pexcn.bandwagonhost.main;
 
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 
 import me.pexcn.android.base.mvp.BasePresenter;
@@ -41,7 +40,7 @@ public class MainPresenter extends BasePresenter<MainContract.View, MainContract
 
     @Override
     public void start() {
-        if (getModel().isDBEmpty()) {
+        if (getModel().isEmpty()) {
             getView().showEmptyView(true);
         } else {
             getModel().getAllHosts()
@@ -55,23 +54,19 @@ public class MainPresenter extends BasePresenter<MainContract.View, MainContract
         getModel().addHost(host, msg -> {
             getView().addItem(host);
             getView().showMessage(msg);
-            if (!getModel().isDBEmpty()) {
+            if (!getModel().isEmpty()) {
                 getView().showEmptyView(false);
             }
         });
     }
 
     @Override
-    public void updateHost(@NonNull Host host) {
-        getModel().getHostById(host.id)
+    public void updateHost(int id, int position) {
+        getModel().getHostById(id)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(host_ -> {
-                    final Bundle args = new Bundle();
-                    args.putInt(HostDialogFragment.ARGS_ID, host_.id);
-                    args.putString(HostDialogFragment.ARGS_TITLE, host_.title);
-                    args.putString(HostDialogFragment.ARGS_VEID, host_.veid);
-                    args.putString(HostDialogFragment.ARGS_KEY, host_.key);
-                    getView().showHostDialog(args);
-                });
+                .subscribe(host -> getModel().updateHost(host, msg -> {
+                    getView().updateItem(position, host);
+                    getView().showMessage(msg);
+                }));
     }
 }

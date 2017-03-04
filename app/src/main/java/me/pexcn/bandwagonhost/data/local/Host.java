@@ -18,6 +18,9 @@
 
 package me.pexcn.bandwagonhost.data.local;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
@@ -25,7 +28,7 @@ import com.j256.ormlite.table.DatabaseTable;
  * Created by pexcn on 2016-06-30.
  */
 @DatabaseTable(tableName = "hosts")
-public class Host {
+public class Host implements Parcelable {
     @DatabaseField(columnName = "id", generatedId = true)
     public int id;
     @DatabaseField(columnName = "title", canBeNull = false)
@@ -34,4 +37,39 @@ public class Host {
     public String veid;
     @DatabaseField(columnName = "key", canBeNull = false)
     public String key;
+
+    public Host() {
+    }
+
+    protected Host(Parcel in) {
+        id = in.readInt();
+        title = in.readString();
+        veid = in.readString();
+        key = in.readString();
+    }
+
+    public static final Creator<Host> CREATOR = new Creator<Host>() {
+        @Override
+        public Host createFromParcel(Parcel in) {
+            return new Host(in);
+        }
+
+        @Override
+        public Host[] newArray(int size) {
+            return new Host[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(title);
+        dest.writeString(veid);
+        dest.writeString(key);
+    }
 }

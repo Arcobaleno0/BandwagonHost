@@ -18,6 +18,10 @@ public class MainContract implements BaseContract {
     interface View extends BaseContract.View<MainContract.Presenter> {
         void addItem(@NonNull Host host);
 
+        void deleteItem(int position);
+
+        void updateItem(int position, @NonNull Host host);
+
         void showHostDialog(@Nullable Bundle args);
 
         void showEmptyView(boolean shown);
@@ -30,17 +34,19 @@ public class MainContract implements BaseContract {
     interface Presenter extends BaseContract.Presenter<MainContract.View, MainContract.Model> {
         void addHost(@NonNull Host host);
 
-        void updateHost(@NonNull Host host);
+//        void deleteHost(int position);
+
+        void updateHost(int id, int position);
     }
 
     interface Model extends BaseContract.Model {
-        boolean isDBEmpty();
-
         void addHost(@NonNull Host host, OnCompletedListener listener);
 
         void updateHost(@NonNull Host host, OnCompletedListener listener);
 
         Observable<List<Host>> getAllHosts();
+
+        boolean isEmpty();
 
         Observable<Host> getHostById(int id);
     }

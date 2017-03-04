@@ -24,7 +24,7 @@ public class MainModel implements MainContract.Model {
     }
 
     @Override
-    public boolean isDBEmpty() {
+    public boolean isEmpty() {
         return mHostManager.queryAll().isEmpty();
     }
 
