@@ -37,7 +37,6 @@ import me.pexcn.android.base.mvp.BaseActivity;
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.adapter.HostListAdapter;
 import me.pexcn.bandwagonhost.data.local.Host;
-import me.pexcn.simpleutils.common.LogUtils;
 
 /**
  * Created by pexcn on 2016-06-29.
@@ -104,11 +103,11 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
         mAdapter.notifyItemInserted(mHosts.size());
     }
 
-    @Override
-    public void deleteItem(int position) {
-        mHosts.remove(position);
-        mAdapter.notifyItemRemoved(position);
-    }
+//    @Override
+//    public void deleteItem(int position) {
+//        mHosts.remove(position);
+//        mAdapter.notifyItemRemoved(position);
+//    }
 
     @Override
     public void updateItem(int position, @NonNull Host host) {
@@ -136,6 +135,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
     public void showMessage(@NonNull String msg) {
         Snackbar.make(findViewById(R.id.coordinator), msg, Snackbar.LENGTH_SHORT)
                 .setAction(getResources().getString(android.R.string.ok), v -> {
+
                 }).show();
     }
 
@@ -157,12 +157,10 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
     @Override
     public void onAddHost(@NonNull Host host) {
         getPresenter().addHost(host);
-        LogUtils.d("Add --> " + host.id + ", " + host.title + ", " + host.veid + ", " + host.key);
     }
 
     @Override
     public void onUpdateHost(@NonNull Host host) {
-        getPresenter().updateHost(host.id, mHosts.indexOf(host));
-        LogUtils.d("Update --> " + host.id + ", " + host.title + ", " + host.veid + ", " + host.key);
+        getPresenter().updateHost(mHosts.indexOf(host), host);
     }
 }

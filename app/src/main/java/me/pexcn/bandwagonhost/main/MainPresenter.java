@@ -61,12 +61,10 @@ public class MainPresenter extends BasePresenter<MainContract.View, MainContract
     }
 
     @Override
-    public void updateHost(int id, int position) {
-        getModel().getHostById(id)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(host -> getModel().updateHost(host, msg -> {
-                    getView().updateItem(position, host);
-                    getView().showMessage(msg);
-                }));
+    public void updateHost(int position, @NonNull Host host) {
+        getModel().updateHost(host, msg -> {
+            getView().updateItem(position, host);
+            getView().showMessage(msg);
+        });
     }
 }

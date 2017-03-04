@@ -24,11 +24,6 @@ public class MainModel implements MainContract.Model {
     }
 
     @Override
-    public boolean isEmpty() {
-        return mHostManager.queryAll().isEmpty();
-    }
-
-    @Override
     public void addHost(@NonNull Host host, OnCompletedListener listener) {
         mHostManager.add(host);
         final String string = host.title + " " + getAppContext().getResources()
@@ -44,7 +39,6 @@ public class MainModel implements MainContract.Model {
         listener.onCompleted(string);
     }
 
-
 //    @Override
 //    public void deleteHost(int id, OnCompletedListener listener) {
 //        mHostManager.delete(id);
@@ -54,17 +48,14 @@ public class MainModel implements MainContract.Model {
 //    }
 
     @Override
-    public Observable<List<Host>> getAllHosts() {
-        return Observable.create((Observable.OnSubscribe<List<Host>>) subscriber -> {
-            subscriber.onNext(mHostManager.queryAll());
-            subscriber.onCompleted();
-        }).subscribeOn(Schedulers.io());
+    public boolean isEmpty() {
+        return mHostManager.queryAll().isEmpty();
     }
 
     @Override
-    public Observable<Host> getHostById(int id) {
-        return Observable.create((Observable.OnSubscribe<Host>) subscriber -> {
-            subscriber.onNext(mHostManager.query(id));
+    public Observable<List<Host>> getAllHosts() {
+        return Observable.create((Observable.OnSubscribe<List<Host>>) subscriber -> {
+            subscriber.onNext(mHostManager.queryAll());
             subscriber.onCompleted();
         }).subscribeOn(Schedulers.io());
     }

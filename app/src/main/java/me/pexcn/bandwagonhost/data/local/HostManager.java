@@ -25,6 +25,8 @@ import com.j256.ormlite.dao.Dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import me.pexcn.simpleutils.common.LogUtils;
+
 /**
  * Created by pexcn on 2016-08-09.
  */
@@ -41,7 +43,7 @@ public class HostManager {
     }
 
     private HostManager(Context context) {
-        HostDBHelper helper = HostDBHelper.getInstance(context);
+        final HostDBHelper helper = HostDBHelper.getInstance(context);
         try {
             mDao = helper.getDao(Host.class);
         } catch (SQLException e) {
@@ -68,6 +70,13 @@ public class HostManager {
 
     public void update(Host host) {
         try {
+//            UpdateBuilder<Host, Integer> builder = mDao.updateBuilder();
+//            builder.where().eq("id", id);
+//            builder.updateColumnValue("title", host.title);
+//            builder.updateColumnValue("veid", host.veid);
+//            builder.updateColumnValue("key", host.key);
+            // TODO: delete this line.
+            LogUtils.d("DB --> " + host.id + ", " + host.title + ", " + host.veid + ", " + host.key);
             mDao.update(host);
         } catch (SQLException e) {
             e.printStackTrace();

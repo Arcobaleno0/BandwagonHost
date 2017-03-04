@@ -18,7 +18,7 @@ public class MainContract implements BaseContract {
     interface View extends BaseContract.View<MainContract.Presenter> {
         void addItem(@NonNull Host host);
 
-        void deleteItem(int position);
+//        void deleteItem(int position);
 
         void updateItem(int position, @NonNull Host host);
 
@@ -36,18 +36,18 @@ public class MainContract implements BaseContract {
 
 //        void deleteHost(int position);
 
-        void updateHost(int id, int position);
+        void updateHost(int position, @NonNull Host host);
     }
 
     interface Model extends BaseContract.Model {
         void addHost(@NonNull Host host, OnCompletedListener listener);
 
-        void updateHost(@NonNull Host host, OnCompletedListener listener);
+//        void deleteHost(@NonNull Host host, OnCompletedListener listener);
 
-        Observable<List<Host>> getAllHosts();
+        void updateHost(@NonNull Host host, OnCompletedListener listener);
 
         boolean isEmpty();
 
-        Observable<Host> getHostById(int id);
+        Observable<List<Host>> getAllHosts();
     }
 }
