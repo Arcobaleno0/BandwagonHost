@@ -14,8 +14,10 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import me.pexcn.bandwagonhost.BuildConfig;
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.data.local.Host;
+import me.pexcn.simpleutils.common.LogUtils;
 
 /**
  * Created by pexcn on 2017-02-19.
@@ -134,9 +136,18 @@ public class HostDialogFragment extends DialogFragment {
     }
 
     private void dispatchProcess(@NonNull Host host) {
+        if (BuildConfig.DEBUG) {
+            LogUtils.d(host.toString());
+        }
         if (host.id == 0) {
+            if (BuildConfig.DEBUG) {
+                LogUtils.d("dispatch => " + "add");
+            }
             mListener.onAddHost(host);
         } else {
+            if (BuildConfig.DEBUG) {
+                LogUtils.d("dispatch => " + "update");
+            }
             mListener.onUpdateHost(host);
         }
     }

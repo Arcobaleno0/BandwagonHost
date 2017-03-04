@@ -72,4 +72,9 @@ public class Host implements Parcelable {
         dest.writeString(veid);
         dest.writeString(key);
     }
+
+    @Override
+    public String toString() {
+        return "id => " + id + ", title => " + title + ", veid => " + veid + ", key => " + key;
+    }
 }

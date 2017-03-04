@@ -30,20 +30,21 @@ import java.sql.SQLException;
 /**
  * Created by pexcn on 2016-06-30.
  */
-public class HostDBHelper extends OrmLiteSqliteOpenHelper {
+@SuppressWarnings("WeakerAccess")
+public class HostDatabaseHelper extends OrmLiteSqliteOpenHelper {
     private static final String DB_NAME = "bandwagonhost.db";
     private static final int DB_VERSION = 1;
 
-    private static HostDBHelper sInstance;
+    private static HostDatabaseHelper sInstance;
 
-    public static HostDBHelper getInstance(Context context) {
+    public static HostDatabaseHelper getInstance(Context context) {
         if (sInstance == null) {
-            sInstance = new HostDBHelper(context);
+            sInstance = new HostDatabaseHelper(context);
         }
         return sInstance;
     }
 
-    private HostDBHelper(Context context) {
+    private HostDatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
@@ -58,15 +59,6 @@ public class HostDBHelper extends OrmLiteSqliteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase database, ConnectionSource connectionSource, int oldVersion, int newVersion) {
-//        switch (oldVersion) {
-//            case 1:
-//            case 2:
-//
-//                break;
-//        }
 
-//        if (oldVersion < 2) {
-//
-//        }
     }
 }

@@ -25,6 +25,7 @@ import com.j256.ormlite.dao.Dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import me.pexcn.bandwagonhost.BuildConfig;
 import me.pexcn.simpleutils.common.LogUtils;
 
 /**
@@ -32,7 +33,6 @@ import me.pexcn.simpleutils.common.LogUtils;
  */
 public class HostManager {
     private Dao<Host, Integer> mDao;
-
     private static HostManager INSTANCE;
 
     public static HostManager getInstance(Context context) {
@@ -43,7 +43,7 @@ public class HostManager {
     }
 
     private HostManager(Context context) {
-        final HostDBHelper helper = HostDBHelper.getInstance(context);
+        final HostDatabaseHelper helper = HostDatabaseHelper.getInstance(context);
         try {
             mDao = helper.getDao(Host.class);
         } catch (SQLException e) {
@@ -53,8 +53,10 @@ public class HostManager {
 
     public void add(Host host) {
         try {
-            // TODO: 返回值
-            mDao.create(host);
+            int result = mDao.create(host);
+            if (BuildConfig.DEBUG) {
+                LogUtils.d(result + " rows updated");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -62,7 +64,10 @@ public class HostManager {
 
     public void delete(int id) {
         try {
-            mDao.deleteById(id);
+            int result = mDao.deleteById(id);
+            if (BuildConfig.DEBUG) {
+                LogUtils.d(result + " rows updated");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -70,14 +75,10 @@ public class HostManager {
 
     public void update(Host host) {
         try {
-//            UpdateBuilder<Host, Integer> builder = mDao.updateBuilder();
-//            builder.where().eq("id", id);
-//            builder.updateColumnValue("title", host.title);
-//            builder.updateColumnValue("veid", host.veid);
-//            builder.updateColumnValue("key", host.key);
-            // TODO: delete this line.
-            LogUtils.d("DB --> " + host.id + ", " + host.title + ", " + host.veid + ", " + host.key);
-            mDao.update(host);
+            int result = mDao.update(host);
+            if (BuildConfig.DEBUG) {
+                LogUtils.d(result + " rows updated");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

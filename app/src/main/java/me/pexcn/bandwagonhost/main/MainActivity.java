@@ -34,9 +34,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.pexcn.android.base.mvp.BaseActivity;
+import me.pexcn.bandwagonhost.BuildConfig;
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.adapter.HostListAdapter;
 import me.pexcn.bandwagonhost.data.local.Host;
+import me.pexcn.simpleutils.common.LogUtils;
 
 /**
  * Created by pexcn on 2016-06-29.
@@ -80,6 +82,9 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
             menu.setOnMenuItemClickListener(item -> {
                 switch (item.getItemId()) {
                     case R.id.menu_update:
+                        if (BuildConfig.DEBUG) {
+                            LogUtils.d("Menu clicked => " + "update" + ", position => " + position);
+                        }
                         final Bundle args = new Bundle();
                         args.putParcelable(HostDialogFragment.ARGS_HOST, mHosts.get(position));
                         showHostDialog(args);
@@ -161,6 +166,9 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
 
     @Override
     public void onUpdateHost(@NonNull Host host) {
+        if (BuildConfig.DEBUG) {
+            LogUtils.d("Host index of => " + mHosts.indexOf(host));
+        }
         getPresenter().updateHost(mHosts.indexOf(host), host);
     }
 }
