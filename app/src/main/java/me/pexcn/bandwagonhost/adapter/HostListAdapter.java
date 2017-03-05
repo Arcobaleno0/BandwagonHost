@@ -28,7 +28,6 @@ import java.util.List;
 
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.data.local.Host;
-import me.pexcn.simpleutils.SimpleUtils;
 
 /**
  * Created by pexcn on 2016-07-01.
