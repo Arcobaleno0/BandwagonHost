@@ -27,6 +27,7 @@ import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -34,6 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.pexcn.android.base.mvp.BaseActivity;
+import me.pexcn.bandwagonhost.App;
 import me.pexcn.bandwagonhost.BuildConfig;
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.adapter.HostListAdapter;
@@ -166,6 +168,19 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_toolbar, menu);
+
+        MenuItem dayNightModeItem = menu.findItem(R.id.menu_day_night_mode);
+        dayNightModeItem.setOnMenuItemClickListener(item -> {
+            if (App.getNightMode()) {
+                App.setNightMode(false);
+            } else {
+                App.setNightMode(true);
+            }
+            getWindow().setWindowAnimations(R.style.WindowAnimationFadeInOut);
+            recreate();
+            return true;
+        });
+
         return true;
     }
 

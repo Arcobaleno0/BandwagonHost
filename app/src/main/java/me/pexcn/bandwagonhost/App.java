@@ -19,16 +19,39 @@
 package me.pexcn.bandwagonhost;
 
 import android.app.Application;
+import android.support.v7.app.AppCompatDelegate;
 
 import me.pexcn.simpleutils.SimpleUtils;
+import me.pexcn.simpleutils.common.PreferencesUtils;
 
 /**
  * Created by pexcn on 2016-06-29.
  */
 public class App extends Application {
+    public static final String KEY_IS_NIGHT_MODE = "is_night_mode";
+
     @Override
     public void onCreate() {
         super.onCreate();
         SimpleUtils.init(this);
+
+        if (getNightMode()) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+    }
+
+    public static void setNightMode(boolean isNight) {
+        if (isNight) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+        PreferencesUtils.setBoolean(KEY_IS_NIGHT_MODE, isNight);
+    }
+
+    public static boolean getNightMode() {
+        return PreferencesUtils.getBoolean(KEY_IS_NIGHT_MODE, false);
     }
 }
