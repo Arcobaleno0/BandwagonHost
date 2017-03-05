@@ -1,3 +1,25 @@
 <resources>
+    <string name="app_name">BandwagonHost</string>
 
+    <string name="activity_text_empty_view">无主机，请先添加</string>
+
+    <string name="dialog_text_title">标题</string>
+    <string name="dialog_text_veid">VEID</string>
+    <string name="dialog_text_key">KEY</string>
+
+    <string name="dialog_text_not_be_empty">不能为空</string>
+
+    <string name="dialog_title_add_host">添加主机</string>
+    <string name="dialog_title_update_host">更新主机</string>
+
+    <string name="dialog_button_ok">确定</string>
+    <string name="dialog_button_update">更新</string>
+    <string name="dialog_button_cancel">取消</string>
+
+    <string name="snackbar_text_add_completed">已添加</string>
+    <string name="snackbar_text_update_completed">已更新</string>
+    <string name="snackbar_text_delete_completed">已删除</string>
+
+    <string name="menu_update">更新</string>
+    <string name="menu_delete">删除</string>
 </resources>

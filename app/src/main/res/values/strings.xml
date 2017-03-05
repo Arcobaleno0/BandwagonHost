@@ -19,7 +19,6 @@
     <string name="snackbar_text_add_completed">add completed</string>
     <string name="snackbar_text_update_completed">update completed</string>
     <string name="snackbar_text_delete_completed">delete completed</string>
-    <string name="snackbar_text_load_failure">load failure</string>
 
     <string name="menu_update">Update</string>
     <string name="menu_delete">Delete</string>
