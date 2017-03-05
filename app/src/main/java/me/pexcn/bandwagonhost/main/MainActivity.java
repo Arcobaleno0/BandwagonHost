@@ -115,7 +115,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
     public void deleteItem(int position) {
         mHosts.remove(position);
         mAdapter.notifyItemRemoved(position);
-        mAdapter.notifyItemRangeChanged(position, mAdapter.getItemCount());
+        mAdapter.notifyItemRangeChanged(position, mAdapter.getItemCount() - position);
     }
 
     @Override

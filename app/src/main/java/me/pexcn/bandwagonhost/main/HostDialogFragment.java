@@ -140,14 +140,8 @@ public class HostDialogFragment extends DialogFragment {
             LogUtils.d(host.toString());
         }
         if (host.id == 0) {
-            if (BuildConfig.DEBUG) {
-                LogUtils.d("dispatch => " + "add");
-            }
             mListener.onAddHost(host);
         } else {
-            if (BuildConfig.DEBUG) {
-                LogUtils.d("dispatch => " + "update");
-            }
             mListener.onUpdateHost(host);
         }
     }

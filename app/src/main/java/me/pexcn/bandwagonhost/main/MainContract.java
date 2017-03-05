@@ -14,6 +14,7 @@ import rx.Observable;
 /**
  * Created by Administrator on 2017-02-18 0018.
  */
+@SuppressWarnings("WeakerAccess")
 public class MainContract implements BaseContract {
     interface View extends BaseContract.View<MainContract.Presenter> {
         void addItem(@NonNull Host host);
