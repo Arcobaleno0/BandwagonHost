@@ -61,6 +61,17 @@ public class MainPresenter extends BasePresenter<MainContract.View, MainContract
     }
 
     @Override
+    public void deleteHost(int position, int id) {
+        getModel().deleteHost(id, msg -> {
+            getView().deleteItem(position);
+            getView().showMessage(msg);
+            if (getModel().isEmpty()) {
+                getView().showEmptyView(true);
+            }
+        });
+    }
+
+    @Override
     public void updateHost(int position, @NonNull Host host) {
         getModel().updateHost(host, msg -> {
             getView().updateItem(position, host);

@@ -83,14 +83,17 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
                 switch (item.getItemId()) {
                     case R.id.menu_update:
                         if (BuildConfig.DEBUG) {
-                            LogUtils.d("Menu clicked => " + "update" + ", position => " + position);
+                            LogUtils.d("update => position => " + position);
                         }
                         final Bundle args = new Bundle();
                         args.putParcelable(HostDialogFragment.ARGS_HOST, mHosts.get(position));
                         showHostDialog(args);
                         return true;
-                    case R.id.menu_remove:
-
+                    case R.id.menu_delete:
+                        if (BuildConfig.DEBUG) {
+                            LogUtils.d("delete => position => " + position);
+                        }
+                        getPresenter().deleteHost(position, (int) mAdapter.getItemId(position));
                         return true;
                 }
                 return false;
@@ -108,11 +111,12 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
         mAdapter.notifyItemInserted(mHosts.size());
     }
 
-//    @Override
-//    public void deleteItem(int position) {
-//        mHosts.remove(position);
-//        mAdapter.notifyItemRemoved(position);
-//    }
+    @Override
+    public void deleteItem(int position) {
+        mHosts.remove(position);
+        mAdapter.notifyItemRemoved(position);
+        mAdapter.notifyItemRangeChanged(position, mAdapter.getItemCount());
+    }
 
     @Override
     public void updateItem(int position, @NonNull Host host) {

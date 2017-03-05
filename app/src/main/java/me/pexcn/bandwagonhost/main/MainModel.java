@@ -39,13 +39,14 @@ public class MainModel implements MainContract.Model {
         listener.onCompleted(string);
     }
 
-//    @Override
-//    public void deleteHost(int id, OnCompletedListener listener) {
-//        mHostManager.delete(id);
-//        final String string = getAppContext().getResources()
-//                .getString(R.string.snackbar_delete_completed);
-//        listener.onCompleted(string);
-//    }
+    @Override
+    public void deleteHost(int id, OnCompletedListener listener) {
+        mHostManager.delete(id);
+        // TODO
+        final String string = getAppContext().getResources()
+                .getString(R.string.snackbar_text_delete_completed);
+        listener.onCompleted(string);
+    }
 
     @Override
     public boolean isEmpty() {
