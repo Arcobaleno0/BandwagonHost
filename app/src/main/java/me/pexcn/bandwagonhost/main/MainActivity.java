@@ -93,7 +93,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
                         if (BuildConfig.DEBUG) {
                             LogUtils.d("delete => position => " + position);
                         }
-                        getPresenter().deleteHost(position, (int) mAdapter.getItemId(position));
+                        getPresenter().deleteHost(position, mHosts.get(position));
                         return true;
                 }
                 return false;
@@ -142,10 +142,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
 
     @Override
     public void showMessage(@NonNull String msg) {
-        Snackbar.make(findViewById(R.id.coordinator), msg, Snackbar.LENGTH_SHORT)
-                .setAction(getResources().getString(android.R.string.ok), v -> {
-
-                }).show();
+        Snackbar.make(findViewById(R.id.coordinator), msg, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
@@ -170,9 +167,6 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
 
     @Override
     public void onUpdateHost(@NonNull Host host) {
-        if (BuildConfig.DEBUG) {
-            LogUtils.d("Host index of => " + mHosts.indexOf(host));
-        }
         getPresenter().updateHost(mHosts.indexOf(host), host);
     }
 }

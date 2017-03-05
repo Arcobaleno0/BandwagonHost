@@ -27,6 +27,7 @@ import rx.android.schedulers.AndroidSchedulers;
 /**
  * Created by pexcn on 2016-06-29.
  */
+@SuppressWarnings("WeakerAccess")
 public class MainPresenter extends BasePresenter<MainContract.View, MainContract.Model>
         implements MainContract.Presenter {
     public MainPresenter(MainContract.View view) {
@@ -61,8 +62,8 @@ public class MainPresenter extends BasePresenter<MainContract.View, MainContract
     }
 
     @Override
-    public void deleteHost(int position, int id) {
-        getModel().deleteHost(id, msg -> {
+    public void deleteHost(int position, @NonNull Host host) {
+        getModel().deleteHost(host, msg -> {
             getView().deleteItem(position);
             getView().showMessage(msg);
             if (getModel().isEmpty()) {
