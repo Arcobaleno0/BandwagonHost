@@ -47,7 +47,6 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
         implements MainContract.View, HostDialogFragment.OnHostListener {
     @SuppressWarnings("FieldCanBeLocal")
     private RecyclerView mRecyclerView;
-    @SuppressWarnings("FieldCanBeLocal")
     private FloatingActionButton mFab;
     private HostListAdapter mAdapter;
     private List<Host> mHosts;
@@ -152,6 +151,16 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
         }
         mHosts.addAll(hosts);
         mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showFab() {
+        mFab.show();
+    }
+
+    @Override
+    public void hideFab() {
+        mFab.hide();
     }
 
     @Override

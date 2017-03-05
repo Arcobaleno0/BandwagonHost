@@ -53,6 +53,7 @@ public class HostDialogFragment extends DialogFragment {
     private Host mHost;
     private AlertDialog mDialog;
     private OnHostListener mListener;
+    private MainContract.View mMainView;
 
     public HostDialogFragment() {
         this.setCancelable(false);
@@ -70,6 +71,7 @@ public class HostDialogFragment extends DialogFragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         mListener = (OnHostListener) getActivity();
+        mMainView = (MainContract.View) getActivity();
     }
 
     @NonNull
@@ -114,20 +116,27 @@ public class HostDialogFragment extends DialogFragment {
                     }
                     return false;
                 }).create();
-
-        mDialog.setOnShowListener(dialog -> mDialog.getButton(DialogInterface.BUTTON_POSITIVE)
-                .setOnClickListener(v -> {
-                    if (mTitle.length() == 0 || mVeid.length() == 0 || mKey.length() == 0) {
-                        fixEditTextInput();
-                    } else {
-                        mHost.title = mTitle.getText().toString();
-                        mHost.veid = mVeid.getText().toString();
-                        mHost.key = mKey.getText().toString();
-                        dispatchProcess(mHost);
-                        dialog.dismiss();
-                    }
-                }));
+        mDialog.setOnShowListener(dialog -> {
+            mDialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(v -> {
+                if (mTitle.length() == 0 || mVeid.length() == 0 || mKey.length() == 0) {
+                    fixEditTextInput();
+                } else {
+                    mHost.title = mTitle.getText().toString();
+                    mHost.veid = mVeid.getText().toString();
+                    mHost.key = mKey.getText().toString();
+                    dispatchProcess(mHost);
+                    dialog.dismiss();
+                }
+            });
+            mMainView.hideFab();
+        });
         return mDialog;
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
+        mMainView.showFab();
     }
 
     private void fixEditTextInput() {

@@ -48,6 +48,10 @@ public class MainContract implements BaseContract {
         void showMessage(@NonNull String msg);
 
         void refreshList(@NonNull List<Host> hosts);
+
+        void showFab();
+
+        void hideFab();
     }
 
     interface Presenter extends BaseContract.Presenter<MainContract.View, MainContract.Model> {
