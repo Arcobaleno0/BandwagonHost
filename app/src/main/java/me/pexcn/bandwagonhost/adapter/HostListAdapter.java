@@ -28,6 +28,7 @@ import java.util.List;
 
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.data.local.Host;
+import me.pexcn.simpleutils.SimpleUtils;
 
 /**
  * Created by pexcn on 2016-07-01.
@@ -53,7 +54,8 @@ public class HostListAdapter extends RecyclerView.Adapter<HostListAdapter.ViewHo
             mOnLongClick.onItemLongClick(v, position);
             return true;
         });
-        holder.mTextView.setText(mHosts.get(position).title);
+        holder.mTitle.setText(mHosts.get(position).title);
+        holder.mVeid.setText(holder.mVeid.getContext().getString(R.string.item_text_veid, mHosts.get(position).veid));
     }
 
     @Override
@@ -67,11 +69,13 @@ public class HostListAdapter extends RecyclerView.Adapter<HostListAdapter.ViewHo
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView mTextView;
+        TextView mTitle;
+        TextView mVeid;
 
         ViewHolder(View itemView) {
             super(itemView);
-            mTextView = (TextView) itemView.findViewById(R.id.tv_title);
+            mTitle = (TextView) itemView.findViewById(R.id.tv_title);
+            mVeid = (TextView) itemView.findViewById(R.id.tv_veid);
         }
     }
 

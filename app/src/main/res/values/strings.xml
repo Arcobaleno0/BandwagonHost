@@ -22,4 +22,6 @@
 
     <string name="menu_update">Update</string>
     <string name="menu_delete">Delete</string>
+
+    <string name="item_text_veid">VEID: %s</string>
 </resources>
