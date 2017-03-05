@@ -170,6 +170,11 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
         getMenuInflater().inflate(R.menu.menu_toolbar, menu);
 
         MenuItem dayNightModeItem = menu.findItem(R.id.menu_day_night_mode);
+        if (App.getNightMode()) {
+            dayNightModeItem.setTitle(getResources().getString(R.string.toolbar_text_day_mode));
+        } else {
+            dayNightModeItem.setTitle(getResources().getString(R.string.toolbar_text_night_mode));
+        }
         dayNightModeItem.setOnMenuItemClickListener(item -> {
             if (App.getNightMode()) {
                 App.setNightMode(false);

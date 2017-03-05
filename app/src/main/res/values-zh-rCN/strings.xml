@@ -22,4 +22,8 @@
 
     <string name="menu_update">更新</string>
     <string name="menu_delete">删除</string>
+
+    <string name="toolbar_text_day_mode">日间模式</string>
+    <string name="toolbar_text_night_mode">夜间模式</string>
+    <string name="toolbar_text_settings">设置</string>
 </resources>
