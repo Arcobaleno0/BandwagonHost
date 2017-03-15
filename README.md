@@ -1,67 +1,67 @@
 # BandwagonHost For Android
 
-BandwagonHost for android is a material design style android client for [BandwagonHost](https://bandwagonhost.com).  
-I used the BandwagonHost control panel provide RESTful styled API to develop it. The architecture is MVP, it's simplify to the codes.
+BandwagonHost ÊÇÒ»¸ö Material ·ç¸ñµÄ [BandwagonHost](https://bandwagonhost.com) ¿Í»§¶Ë¡£  
+Ê¹ÓÃÖ÷»úºóÌ¨¿ØÖÆÃæ°åÌá¹©µÄ RESTful ·ç¸ñµÄ API ½øĞĞ¿ª·¢¡£¿ª·¢Ä£Ê½Îª MVP Ä£Ê½£¬½µµÍñîºÏ¶È£¬Ê¹´úÂë¸ü¼ò½à¡£
 
-## Features
+## ÌØĞÔ
 
-1. Look up the hosts details and usaged etc.
-2. Control operations such as restarting the host switch.
-3. Reinstall system for your hosts.
-4. Switch the location for your hosts, and you can look up the location on the maps.
-5. Backup your host system images.
-6. Add or delete IPv6 address by your hosts.
-7. Send command to your hosts.
-8. Reset your hosts the root password.
+1. ²é¿´Ö÷»úÏêÏ¸ĞÅÏ¢ÒÔ¼°Ê¹ÓÃÇé¿öµÈ
+2. ¿ØÖÆÖ÷»ú¿ª¹Ø»úÖØÆôµÈ²Ù×÷
+3. ÖØ×°ÏµÍ³
+4. ÇĞ»»»ú·¿£¬¿ÉÒÔÔÚµØÍ¼ÏÔÊ¾»ú·¿µÄµØÀíÎ»ÖÃ
+5. ±¸·İÏµÍ³¾µÏñ
+6. Ìí¼Ó»òÉ¾³ı IPv6 µØÖ·
+7. ÏòÖ÷»ú·¢ËÍÃüÁîĞĞÖ´ĞĞ
+8. ÖØÖÃ Root ÃÜÂë
 
-## How to use it ?
+## Ê¹ÓÃ
 
-You must provide the `APIKey` and `VEID`. But it is worth noting that, this project can not by any way to steal yours `APIkey` and `VEID`.  
-If you unbelieve it, you can look the fucking source code.
+ĞèÒªÊ¹ÓÃÕßÌá¹©Ö÷»úµÄ `APIKey` ºÍ `VEID`¡£²»¹ıÖµµÃ×¢ÒâµÄÊÇ£¬±¾ÏîÄ¿²»»áÍ¨¹ıÈÎºÎ·½Ê½µÁÈ¡ÄãµÄ `APIkey` ºÍ `VEID` ¡£  
+Èç¹û²»·ÅĞÄ£¬¿ÉÒÔÔÄ¶ÁËüµÄÔ´´úÂë¡£
 
-1. Get the `APIKey` and `VEID` from the hosts control panel.
-2. Click your screen bottom right corner "+" to add the host, finished.
+1. ´ÓÖ÷»úºóÌ¨Ãæ°å»ñÈ¡ `APIKey` ºÍ `VEID`
+2. µã»÷ÓÒÏÂ½Ç + ºÅÀ´Ìí¼ÓÖ÷»ú£¬Íê³É
 3. Enjoy it!
 
-## Build
+## ±àÒë
 
-### Build environment
+### ±àÒë»·¾³
 
 * JDK 1.8+
 * Android SDK
   * Android Build Tools 24.0.1+
-  * Android Support Repository 24+ å’Œ Google Repository 32+
+  * Android Support Repository 24+ ºÍ Google Repository 32+
 * Android Studio 2.1+
 * Gradle 2.10+
 
-### How to build ?
+### ÈçºÎ±àÒë
 
-1. Use `git` to `clone` this project to your local disk.
-2. Use Android Studio import the project.
-3. Click Android Studio navigation bar, and click `Build -> Build APK`.
+1. Ê¹ÓÃ `git` °Ñ±¾ÏîÄ¿ `clone` µ½±¾µØ
+2. Ê¹ÓÃ Android Studio µ¼Èë±¾ÏîÄ¿
+3. µã»÷ Android Studio µ¼º½À¸£¬`Build -> Build APK`
 
-Of course you also use by command line way, Connect step 1, then:
+µ±È»£¬Ò²¿ÉÒÔÊ¹ÓÃÃüÁîĞĞµÄ·½Ê½±àÒë£¬½Ó×ÅÒÔÉÏµÚ 1 ²½£¬È»ºó£º
 
 ```bash
 cd /path/to/this/project
 gradle assembleDebug
 ```
 
-If you need build Release version, you can use `gradle assembleRelease` command line, **but make sure the signature issue.**
+Èç¹ûĞèÒª±àÒë Release °æ±¾£¬¿ÉÒÔÊ¹ÓÃ `gradle assembleRelease` £¬**µ«ÊÇÇëÎñ±Ø×¢ÒâÇ©ÃûÎÊÌâ**
 
-## Screenshots
+## ½ØÍ¼
 
 // TODO
 
-## Downloads
+## ÏÂÔØ
 
-Maybe added to Google Play in the future, Current you can go to this project [Release](https://github.com/pexcn/BandwagonHost/releases) page to download it.
+ÒÔºó¿ÉÄÜ»áÉÏ¼Ü Google Play, Ä¿Ç°¿ÉÒÔµ½±¾ÏîÄ¿ [Release](https://github.com/pexcn/BandwagonHost/releases) Ò³ÃæÏÂÔØ
 
 ## TODO
 
-* [ ] Day night mode
+* [ ] Ò¹¼äÄ£Ê½
 
-## Depends
+## ÒÀÀµÏîÄ¿
 
 * [Android Support Appcompat/Cardview/Design/Recyclerview](https://developer.android.com/topic/libraries/support-library/index.html)
 * [Google Play Service Maps](https://developers.google.com/android/guides/setup)
@@ -72,13 +72,13 @@ Maybe added to Google Play in the future, Current you can go to this project [Re
 * [ormlite](https://github.com/j256/ormlite-android)
 * [Floating Action Button](https://github.com/Clans/FloatingActionButton)
 
-## Contributors
+## ¹±Ï×Õß
 
 * Xingyu Chen
   * E-mail [pexcn97@gmail.com](mailto:pexcn97@gmail.com)
   * Blog [https://pexcn.me](https://pexcn.me)
 
-## License
+## ¿ªÔ´Ğí¿ÉÖ¤
 
 ![GPL v3](https://www.gnu.org/graphics/gplv3-127x51.png)
 
