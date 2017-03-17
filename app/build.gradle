@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion 25
@@ -12,9 +13,6 @@ android {
         versionName "0.0.1"
         multiDexEnabled true
         resConfigs "en", "zh-rCN"
-        jackOptions {
-            enabled true
-        }
     }
 
     buildTypes {
@@ -23,6 +21,13 @@ android {
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    retrolambda {
+        javaVersion JavaVersion.VERSION_1_7
+        jvmArgs '-noverify'
+        defaultMethods false
+        incremental true
     }
 
     compileOptions {
@@ -49,9 +54,8 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
 
     compile 'com.j256.ormlite:ormlite-android:5.0'
+    compile 'com.github.clans:fab:1.6.4'
 
     // compile 'com.google.android.gms:play-services-maps:9.4.0'
     // compile 'com.google.code.gson:gson:2.7'
-
-     compile 'com.github.clans:fab:1.6.4'
 }
