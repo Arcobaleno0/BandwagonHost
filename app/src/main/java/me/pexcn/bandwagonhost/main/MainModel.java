@@ -25,7 +25,7 @@ import java.util.List;
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.data.local.Host;
 import me.pexcn.bandwagonhost.data.local.HostManager;
-import me.pexcn.bandwagonhost.listener.OnCompletedListener;
+import me.pexcn.bandwagonhost.listener.OnCallbackListener;
 import rx.Observable;
 import rx.schedulers.Schedulers;
 
@@ -43,27 +43,27 @@ public class MainModel implements MainContract.Model {
     }
 
     @Override
-    public void addHost(@NonNull Host host, OnCompletedListener listener) {
+    public void addHost(@NonNull Host host, OnCallbackListener<String> listener) {
         mHostManager.add(host);
         final String string = host.title + " " + getAppContext().getResources()
                 .getString(R.string.snackbar_text_add_completed);
-        listener.onCompleted(string);
+        listener.onCallback(string);
     }
 
     @Override
-    public void updateHost(@NonNull Host host, OnCompletedListener listener) {
+    public void updateHost(@NonNull Host host, OnCallbackListener<String> listener) {
         mHostManager.update(host);
         final String string = host.title + " " + getAppContext().getResources()
                 .getString(R.string.snackbar_text_update_completed);
-        listener.onCompleted(string);
+        listener.onCallback(string);
     }
 
     @Override
-    public void deleteHost(@NonNull Host host, OnCompletedListener listener) {
+    public void deleteHost(@NonNull Host host, OnCallbackListener<String> listener) {
         mHostManager.delete(host.id);
         final String string = host.title + " " + getAppContext().getResources()
                 .getString(R.string.snackbar_text_delete_completed);
-        listener.onCompleted(string);
+        listener.onCallback(string);
     }
 
     @Override

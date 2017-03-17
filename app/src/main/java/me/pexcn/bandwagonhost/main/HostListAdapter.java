@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package me.pexcn.bandwagonhost.adapter;
+package me.pexcn.bandwagonhost.main;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

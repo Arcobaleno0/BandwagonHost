@@ -38,7 +38,6 @@ import me.pexcn.android.base.mvp.BaseActivity;
 import me.pexcn.bandwagonhost.App;
 import me.pexcn.bandwagonhost.BuildConfig;
 import me.pexcn.bandwagonhost.R;
-import me.pexcn.bandwagonhost.adapter.HostListAdapter;
 import me.pexcn.bandwagonhost.data.local.Host;
 import me.pexcn.simpleutils.common.LogUtils;
 

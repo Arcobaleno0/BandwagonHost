@@ -29,7 +29,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitHelper {
     private static Retrofit sInstance;
 
-    public static <T> T createService(Class<T> cls) {
+    public static <T> T createService(Class<T> clazz) {
         if (sInstance == null) {
             sInstance = new Retrofit.Builder()
                     .baseUrl(ApiBase.BASE_URL)
@@ -37,6 +37,6 @@ public class RetrofitHelper {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
-        return sInstance.create(cls);
+        return sInstance.create(clazz);
     }
 }

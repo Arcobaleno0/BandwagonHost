@@ -23,6 +23,6 @@ import android.support.annotation.NonNull;
 /**
  * Created by pexcn on 2017-03-03.
  */
-public interface OnCompletedListener {
-    void onCompleted(@NonNull String msg);
+public interface OnCallbackListener<T> {
+    void onCallback(@NonNull T t);
 }

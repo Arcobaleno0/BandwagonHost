@@ -26,7 +26,7 @@ import java.util.List;
 
 import me.pexcn.android.base.mvp.BaseContract;
 import me.pexcn.bandwagonhost.data.local.Host;
-import me.pexcn.bandwagonhost.listener.OnCompletedListener;
+import me.pexcn.bandwagonhost.listener.OnCallbackListener;
 import rx.Observable;
 
 /**
@@ -63,11 +63,11 @@ public class MainContract implements BaseContract {
     }
 
     interface Model extends BaseContract.Model {
-        void addHost(@NonNull Host host, OnCompletedListener listener);
+        void addHost(@NonNull Host host, OnCallbackListener<String> listener);
 
-        void deleteHost(@NonNull Host host, OnCompletedListener listener);
+        void deleteHost(@NonNull Host host, OnCallbackListener<String> listener);
 
-        void updateHost(@NonNull Host host, OnCompletedListener listener);
+        void updateHost(@NonNull Host host, OnCallbackListener<String> listener);
 
         boolean isEmpty();
 
