@@ -35,13 +35,13 @@ public class HostDatabaseHelper extends OrmLiteSqliteOpenHelper {
     private static final String DB_NAME = "bandwagonhost.db";
     private static final int DB_VERSION = 1;
 
-    private static HostDatabaseHelper sInstance;
+    private static HostDatabaseHelper INSTANCE;
 
     public static HostDatabaseHelper getInstance(Context context) {
-        if (sInstance == null) {
-            sInstance = new HostDatabaseHelper(context);
+        if (INSTANCE == null) {
+            INSTANCE = new HostDatabaseHelper(context);
         }
-        return sInstance;
+        return INSTANCE;
     }
 
     private HostDatabaseHelper(Context context) {

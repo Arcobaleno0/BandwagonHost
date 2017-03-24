@@ -21,6 +21,7 @@ package me.pexcn.bandwagonhost.main.mvp;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import java.lang.ref.WeakReference;
 import java.util.List;
 
 import me.pexcn.android.base.listener.OnCallbackListener;
@@ -28,7 +29,6 @@ import me.pexcn.android.base.mvp.BaseModel;
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.data.local.Host;
 import me.pexcn.bandwagonhost.data.local.HostManager;
-import me.pexcn.bandwagonhost.main.mvp.MainContract;
 import me.pexcn.simpleutils.Utils;
 import rx.Observable;
 import rx.schedulers.Schedulers;
@@ -38,11 +38,11 @@ import rx.schedulers.Schedulers;
  */
 @SuppressWarnings("WeakerAccess")
 public class MainModel extends BaseModel implements MainContract.Model {
-    private final HostManager mHostManager;
+    private HostManager mHostManager;
 
     public MainModel(Context context) {
         super(context);
-        mHostManager = HostManager.getInstance(context);
+        mHostManager = HostManager.getInstance(new WeakReference<>(context).get());
     }
 
     @Override
