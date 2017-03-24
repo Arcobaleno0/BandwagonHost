@@ -76,14 +76,16 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
         mHosts = new ArrayList<>();
         mAdapter = new HostListAdapter(mHosts);
 
-        mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setAdapter(mAdapter);
+
         // OnRecyclerViewItemClick
         mAdapter.setOnItemClickListener((view, position) -> {
             Intent intent = new Intent(MainActivity.this, ManagerActivity.class);
             intent.putExtra(Constants.EXTRA_KEY_HOST, mHosts.get(position));
             startActivity(intent);
         });
+
         // OnRecyclerViewItemLongClick
         mAdapter.setOnItemLongClickListener((view, position) -> {
             final PopupMenu menu = new PopupMenu(MainActivity.this, view, Gravity.END);
