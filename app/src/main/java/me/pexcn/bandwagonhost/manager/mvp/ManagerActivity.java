@@ -36,10 +36,12 @@ public class ManagerActivity extends BaseActivity<ManagerContract.Presenter>
 
         mTabLayout = (TabLayout) findViewById(R.id.tab_layout);
         mViewPager = (ViewPager) findViewById(R.id.view_pager);
-        mAdapter = new ManagerPagerAdapter(getSupportFragmentManager());
+        mAdapter = ManagerPagerAdapter.getInstance(getSupportFragmentManager());
         mHost = getIntent().getParcelableExtra(Constants.EXTRA_KEY_HOST);
 
-        mAdapter.addFragment("VPS Info", InfoFragment.newInstance());
+        mAdapter.addPage("Test", InfoFragment.newInstance());
+        mAdapter.addPage("Test", InfoFragment.newInstance());
+        mAdapter.addPage("Test", InfoFragment.newInstance());
 
         mViewPager.setOffscreenPageLimit(3);
         mViewPager.setAdapter(mAdapter);
