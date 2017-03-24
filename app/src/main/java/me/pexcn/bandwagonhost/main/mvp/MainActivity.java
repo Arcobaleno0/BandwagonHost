@@ -16,8 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package me.pexcn.bandwagonhost.main;
+package me.pexcn.bandwagonhost.main.mvp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -35,10 +36,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.pexcn.android.base.mvp.BaseActivity;
-import me.pexcn.bandwagonhost.App;
 import me.pexcn.bandwagonhost.BuildConfig;
 import me.pexcn.bandwagonhost.R;
+import me.pexcn.bandwagonhost.app.App;
+import me.pexcn.bandwagonhost.app.Constants;
 import me.pexcn.bandwagonhost.data.local.Host;
+import me.pexcn.bandwagonhost.main.ui.HostDialogFragment;
+import me.pexcn.bandwagonhost.main.ui.HostListAdapter;
+import me.pexcn.bandwagonhost.manager.mvp.ManagerActivity;
 import me.pexcn.simpleutils.common.LogUtils;
 
 /**
@@ -73,9 +78,13 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
 
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setHasFixedSize(true);
+        // OnRecyclerViewItemClick
         mAdapter.setOnItemClickListener((view, position) -> {
-
+            Intent intent = new Intent(MainActivity.this, ManagerActivity.class);
+            intent.putExtra(Constants.EXTRA_KEY_HOST, mHosts.get(position));
+            startActivity(intent);
         });
+        // OnRecyclerViewItemLongClick
         mAdapter.setOnItemLongClickListener((view, position) -> {
             final PopupMenu menu = new PopupMenu(MainActivity.this, view, Gravity.END);
             menu.inflate(R.menu.menu_popupmenu);
@@ -86,7 +95,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
                             LogUtils.d("update => position => " + position);
                         }
                         final Bundle args = new Bundle();
-                        args.putParcelable(HostDialogFragment.ARGS_HOST, mHosts.get(position));
+                        args.putParcelable(Constants.EXTRA_KEY_HOST, mHosts.get(position));
                         showHostDialog(args);
                         return true;
                     case R.id.menu_delete:
@@ -170,9 +179,9 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
 
         MenuItem dayNightModeItem = menu.findItem(R.id.menu_day_night_mode);
         if (App.getNightMode()) {
-            dayNightModeItem.setTitle(getResources().getString(R.string.toolbar_text_day_mode));
+            dayNightModeItem.setTitle(getString(R.string.toolbar_text_day_mode));
         } else {
-            dayNightModeItem.setTitle(getResources().getString(R.string.toolbar_text_night_mode));
+            dayNightModeItem.setTitle(getString(R.string.toolbar_text_night_mode));
         }
         dayNightModeItem.setOnMenuItemClickListener(item -> {
             if (App.getNightMode()) {
@@ -189,12 +198,12 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
     }
 
     @Override
-    public void onAddHost(@NonNull Host host) {
+    public void onAdd(@NonNull Host host) {
         getPresenter().addHost(host);
     }
 
     @Override
-    public void onUpdateHost(@NonNull Host host) {
+    public void onUpdate(@NonNull Host host) {
         getPresenter().updateHost(mHosts.indexOf(host), host);
     }
 }

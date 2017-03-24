@@ -16,13 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package me.pexcn.bandwagonhost.listener;
-
-import android.support.annotation.NonNull;
+package me.pexcn.bandwagonhost.app;
 
 /**
- * Created by pexcn on 2017-03-03.
+ * Created by pexcn on 2017-03-24.
  */
-public interface OnCallbackListener<T> {
-    void onCallback(@NonNull T t);
+public interface Constants {
+    String EXTRA_KEY_HOST = "host";
 }

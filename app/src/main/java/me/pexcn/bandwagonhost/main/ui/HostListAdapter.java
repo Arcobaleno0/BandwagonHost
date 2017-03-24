@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package me.pexcn.bandwagonhost.main;
+package me.pexcn.bandwagonhost.main.ui;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -32,6 +32,7 @@ import me.pexcn.bandwagonhost.data.local.Host;
 /**
  * Created by pexcn on 2016-07-01.
  */
+@SuppressWarnings("WeakerAccess")
 public class HostListAdapter extends RecyclerView.Adapter<HostListAdapter.ViewHolder> {
     private List<Host> mHosts;
 
@@ -67,11 +68,11 @@ public class HostListAdapter extends RecyclerView.Adapter<HostListAdapter.ViewHo
         return mHosts.size();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView mTitle;
-        TextView mVeid;
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView mTitle;
+        public TextView mVeid;
 
-        ViewHolder(View itemView) {
+        public ViewHolder(View itemView) {
             super(itemView);
             mTitle = (TextView) itemView.findViewById(R.id.tv_title);
             mVeid = (TextView) itemView.findViewById(R.id.tv_veid);

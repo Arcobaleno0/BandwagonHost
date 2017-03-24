@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package me.pexcn.bandwagonhost.main;
+package me.pexcn.bandwagonhost.main.mvp;
 
 import android.support.annotation.NonNull;
 
@@ -36,7 +36,7 @@ public class MainPresenter extends BasePresenter<MainContract.View, MainContract
 
     @Override
     public MainContract.Model createModel() {
-        return new MainModel();
+        return new MainModel(getContext());
     }
 
     @Override

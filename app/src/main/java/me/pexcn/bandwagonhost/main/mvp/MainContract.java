@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package me.pexcn.bandwagonhost.main;
+package me.pexcn.bandwagonhost.main.mvp;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -24,9 +24,9 @@ import android.support.annotation.Nullable;
 
 import java.util.List;
 
+import me.pexcn.android.base.listener.OnCallbackListener;
 import me.pexcn.android.base.mvp.BaseContract;
 import me.pexcn.bandwagonhost.data.local.Host;
-import me.pexcn.bandwagonhost.listener.OnCallbackListener;
 import rx.Observable;
 
 /**
@@ -34,7 +34,7 @@ import rx.Observable;
  */
 @SuppressWarnings("WeakerAccess")
 public class MainContract implements BaseContract {
-    interface View extends BaseContract.View<MainContract.Presenter> {
+    public interface View extends BaseContract.View<MainContract.Presenter> {
         void addItem(@NonNull Host host);
 
         void deleteItem(int position);
@@ -54,7 +54,7 @@ public class MainContract implements BaseContract {
         void hideFab();
     }
 
-    interface Presenter extends BaseContract.Presenter<MainContract.View, MainContract.Model> {
+    public interface Presenter extends BaseContract.Presenter<MainContract.View, MainContract.Model> {
         void addHost(@NonNull Host host);
 
         void deleteHost(int position, @NonNull Host host);
@@ -62,7 +62,7 @@ public class MainContract implements BaseContract {
         void updateHost(int position, @NonNull Host host);
     }
 
-    interface Model extends BaseContract.Model {
+    public interface Model extends BaseContract.Model {
         void addHost(@NonNull Host host, OnCallbackListener<String> listener);
 
         void deleteHost(@NonNull Host host, OnCallbackListener<String> listener);

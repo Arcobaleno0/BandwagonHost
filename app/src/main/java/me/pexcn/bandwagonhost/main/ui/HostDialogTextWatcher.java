@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package me.pexcn.bandwagonhost.main;
+package me.pexcn.bandwagonhost.main.ui;
 
 import android.support.design.widget.TextInputLayout;
 import android.text.Editable;

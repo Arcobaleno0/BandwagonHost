@@ -16,12 +16,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package me.pexcn.bandwagonhost;
+package me.pexcn.bandwagonhost.app;
 
 import android.app.Application;
 import android.support.v7.app.AppCompatDelegate;
 
-import me.pexcn.simpleutils.SimpleUtils;
+import me.pexcn.simpleutils.Utils;
 import me.pexcn.simpleutils.common.PreferencesUtils;
 
 /**
@@ -33,7 +33,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        SimpleUtils.init(this);
+        Utils.init(this);
 
         if (getNightMode()) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);

@@ -16,54 +16,57 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package me.pexcn.bandwagonhost.main;
+package me.pexcn.bandwagonhost.main.mvp;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 import java.util.List;
 
+import me.pexcn.android.base.listener.OnCallbackListener;
+import me.pexcn.android.base.mvp.BaseModel;
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.data.local.Host;
 import me.pexcn.bandwagonhost.data.local.HostManager;
-import me.pexcn.bandwagonhost.listener.OnCallbackListener;
+import me.pexcn.bandwagonhost.main.mvp.MainContract;
+import me.pexcn.simpleutils.Utils;
 import rx.Observable;
 import rx.schedulers.Schedulers;
-
-import static me.pexcn.simpleutils.SimpleUtils.getAppContext;
 
 /**
  * Created by pexcn on 2016-08-09.
  */
 @SuppressWarnings("WeakerAccess")
-public class MainModel implements MainContract.Model {
+public class MainModel extends BaseModel implements MainContract.Model {
     private final HostManager mHostManager;
 
-    public MainModel() {
-        mHostManager = HostManager.getInstance(getAppContext());
+    public MainModel(Context context) {
+        super(context);
+        mHostManager = HostManager.getInstance(context);
     }
 
     @Override
     public void addHost(@NonNull Host host, OnCallbackListener<String> listener) {
         mHostManager.add(host);
-        final String string = host.title + " " + getAppContext().getResources()
+        final String string = host.title + " " + Utils.getContext().getResources()
                 .getString(R.string.snackbar_text_add_completed);
-        listener.onCallback(string);
+        listener.callback(string);
     }
 
     @Override
     public void updateHost(@NonNull Host host, OnCallbackListener<String> listener) {
         mHostManager.update(host);
-        final String string = host.title + " " + getAppContext().getResources()
+        final String string = host.title + " " + Utils.getContext().getResources()
                 .getString(R.string.snackbar_text_update_completed);
-        listener.onCallback(string);
+        listener.callback(string);
     }
 
     @Override
     public void deleteHost(@NonNull Host host, OnCallbackListener<String> listener) {
         mHostManager.delete(host.id);
-        final String string = host.title + " " + getAppContext().getResources()
+        final String string = host.title + " " + Utils.getContext().getResources()
                 .getString(R.string.snackbar_text_delete_completed);
-        listener.onCallback(string);
+        listener.callback(string);
     }
 
     @Override

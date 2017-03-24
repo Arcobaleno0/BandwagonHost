@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package me.pexcn.bandwagonhost.main;
+package me.pexcn.bandwagonhost.main.ui;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -34,15 +34,15 @@ import android.view.ViewGroup;
 
 import me.pexcn.bandwagonhost.BuildConfig;
 import me.pexcn.bandwagonhost.R;
+import me.pexcn.bandwagonhost.app.Constants;
 import me.pexcn.bandwagonhost.data.local.Host;
+import me.pexcn.bandwagonhost.main.mvp.MainContract;
 import me.pexcn.simpleutils.common.LogUtils;
 
 /**
  * Created by pexcn on 2017-02-19.
  */
 public class HostDialogFragment extends DialogFragment {
-    public static final String ARGS_HOST = "host";
-
     private TextInputEditText mTitle;
     private TextInputEditText mVeid;
     private TextInputEditText mKey;
@@ -77,7 +77,7 @@ public class HostDialogFragment extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        final View view = getActivity().getLayoutInflater().inflate(R.layout.dialog_host,
+        final View view = getActivity().getLayoutInflater().inflate(R.layout.dialog_edit_host,
                 (ViewGroup) getActivity().getWindow().getDecorView(), false);
         mTitle = (TextInputEditText) view.findViewById(R.id.et_title);
         mVeid = (TextInputEditText) view.findViewById(R.id.et_veid);
@@ -88,7 +88,7 @@ public class HostDialogFragment extends DialogFragment {
 
         final Bundle args = getArguments();
         if (args != null) {
-            mHost = args.getParcelable(ARGS_HOST);
+            mHost = args.getParcelable(Constants.EXTRA_KEY_HOST);
             if (mHost != null) {
                 mTitle.setText(mHost.title);
                 mVeid.setText(mHost.veid);
@@ -102,12 +102,12 @@ public class HostDialogFragment extends DialogFragment {
         mDialog = new AlertDialog.Builder(getActivity())
                 .setView(view)
                 .setTitle(args == null
-                        ? getResources().getString(R.string.dialog_title_add_host)
-                        : getResources().getString(R.string.dialog_title_update_host))
+                        ? getString(R.string.dialog_title_add_host)
+                        : getString(R.string.dialog_title_update_host))
                 .setPositiveButton(args == null
-                        ? getResources().getString(R.string.dialog_button_ok)
-                        : getResources().getString(R.string.dialog_button_update), null)
-                .setNegativeButton(getResources().getString(R.string.dialog_button_cancel), null)
+                        ? getString(R.string.dialog_button_ok)
+                        : getString(R.string.dialog_button_update), null)
+                .setNegativeButton(getString(R.string.dialog_button_cancel), null)
                 .setOnKeyListener((dialog, keyCode, event) -> {
                     if (keyCode == KeyEvent.KEYCODE_BACK
                             && event.getAction() == KeyEvent.ACTION_UP && !event.isCanceled()) {
@@ -144,7 +144,7 @@ public class HostDialogFragment extends DialogFragment {
         mVeid.addTextChangedListener(new HostDialogTextWatcher(mLayoutVeid));
         mKey.addTextChangedListener(new HostDialogTextWatcher(mLayoutKey));
 
-        final String string = getResources().getString(R.string.dialog_text_not_be_empty);
+        final String string = getString(R.string.dialog_text_not_be_empty);
         if (mTitle.length() == 0) {
             mLayoutTitle.setError(mLayoutTitle.getHint() + " " + string);
         } else {
@@ -167,15 +167,15 @@ public class HostDialogFragment extends DialogFragment {
             LogUtils.d(host.toString());
         }
         if (host.id == 0) {
-            mListener.onAddHost(host);
+            mListener.onAdd(host);
         } else {
-            mListener.onUpdateHost(host);
+            mListener.onUpdate(host);
         }
     }
 
-    interface OnHostListener {
-        void onAddHost(@NonNull Host host);
+    public interface OnHostListener {
+        void onAdd(@NonNull Host host);
 
-        void onUpdateHost(@NonNull Host host);
+        void onUpdate(@NonNull Host host);
     }
 }
