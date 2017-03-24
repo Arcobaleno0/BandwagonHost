@@ -6,7 +6,9 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 
 import me.pexcn.android.base.mvp.BaseFragment;
+import me.pexcn.bandwagonhost.BuildConfig;
 import me.pexcn.bandwagonhost.R;
+import me.pexcn.bandwagonhost.app.App;
 
 /**
  * Created by pexcn on 2017-03-24.
@@ -28,7 +30,10 @@ public class InfoFragment extends BaseFragment<InfoContract.Presenter> implement
 
     @Override
     protected void initView(View view) {
-
+        if (BuildConfig.DEBUG) {
+            App.getRefWatcher().watch(this);
+            App.getRefWatcher().watch(view);
+        }
     }
 
     @Override

@@ -23,4 +23,5 @@ package me.pexcn.bandwagonhost.app;
  */
 public interface Constants {
     String EXTRA_KEY_HOST = "host";
+    String PREF_KEY_IS_NIGHT_MODE = "is_night_mode";
 }

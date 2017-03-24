@@ -21,6 +21,10 @@ package me.pexcn.bandwagonhost.app;
 import android.app.Application;
 import android.support.v7.app.AppCompatDelegate;
 
+import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
+
+import me.pexcn.bandwagonhost.BuildConfig;
 import me.pexcn.simpleutils.Utils;
 import me.pexcn.simpleutils.common.PreferencesUtils;
 
@@ -28,11 +32,16 @@ import me.pexcn.simpleutils.common.PreferencesUtils;
  * Created by pexcn on 2016-06-29.
  */
 public class App extends Application {
-    public static final String KEY_IS_NIGHT_MODE = "is_night_mode";
+    private static RefWatcher sRefWatcher;
 
     @Override
     public void onCreate() {
         super.onCreate();
+
+        if (BuildConfig.DEBUG) {
+            sRefWatcher = LeakCanary.install(this);
+        }
+
         Utils.init(this);
 
         if (getNightMode()) {
@@ -42,16 +51,20 @@ public class App extends Application {
         }
     }
 
+    public static RefWatcher getRefWatcher() {
+        return sRefWatcher;
+    }
+
     public static void setNightMode(boolean isNight) {
         if (isNight) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
-        PreferencesUtils.setBoolean(KEY_IS_NIGHT_MODE, isNight);
+        PreferencesUtils.setBoolean(Constants.PREF_KEY_IS_NIGHT_MODE, isNight);
     }
 
     public static boolean getNightMode() {
-        return PreferencesUtils.getBoolean(KEY_IS_NIGHT_MODE, false);
+        return PreferencesUtils.getBoolean(Constants.PREF_KEY_IS_NIGHT_MODE, false);
     }
 }
