@@ -20,32 +20,36 @@ package me.pexcn.bandwagonhost.data.local;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.v4.util.ArrayMap;
 
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
+import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
 
+import me.pexcn.bandwagonhost.app.Constants;
+import me.pexcn.bandwagonhost.data.local.entity.Host;
+import me.pexcn.simpleutils.Utils;
+
 /**
  * Created by pexcn on 2016-06-30.
  */
-@SuppressWarnings("WeakerAccess")
-public class HostDatabaseHelper extends OrmLiteSqliteOpenHelper {
-    private static final String DB_NAME = "bandwagonhost.db";
-    private static final int DB_VERSION = 1;
+public class DBHelper extends OrmLiteSqliteOpenHelper {
+    private static DBHelper INSTANCE;
+    private ArrayMap<String, Dao> mDaos;
 
-    private static HostDatabaseHelper INSTANCE;
-
-    public static HostDatabaseHelper getInstance(Context context) {
+    public static DBHelper getHelper() {
         if (INSTANCE == null) {
-            INSTANCE = new HostDatabaseHelper(context);
+            INSTANCE = new DBHelper(Utils.getContext());
         }
         return INSTANCE;
     }
 
-    private HostDatabaseHelper(Context context) {
-        super(context, DB_NAME, null, DB_VERSION);
+    private DBHelper(Context context) {
+        super(context, Constants.DB_NAME, null, Constants.DB_VERSION);
+        mDaos = new ArrayMap<>();
     }
 
     @Override
@@ -60,5 +64,27 @@ public class HostDatabaseHelper extends OrmLiteSqliteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase database, ConnectionSource connectionSource, int oldVersion, int newVersion) {
 
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public <D extends Dao<T, ?>, T> D getDao(Class<T> clazz) throws SQLException {
+        String className = clazz.getSimpleName();
+        D dao = (D) mDaos.get(className);
+        if (dao == null) {
+            dao = super.getDao(clazz);
+            mDaos.put(className, dao);
+        }
+        return dao;
+    }
+
+    @Override
+    public void close() {
+        super.close();
+
+        for (String key : mDaos.keySet()) {
+            mDaos.put(key, null);
+        }
+        mDaos = null;
     }
 }

@@ -1,4 +1,4 @@
-package me.pexcn.bandwagonhost.manager.ui;
+package me.pexcn.bandwagonhost.manager;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

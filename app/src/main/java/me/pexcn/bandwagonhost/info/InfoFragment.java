@@ -1,4 +1,4 @@
-package me.pexcn.bandwagonhost.info.mvp;
+package me.pexcn.bandwagonhost.info;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

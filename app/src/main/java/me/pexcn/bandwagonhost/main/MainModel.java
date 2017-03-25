@@ -16,19 +16,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package me.pexcn.bandwagonhost.main.mvp;
+package me.pexcn.bandwagonhost.main;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import java.lang.ref.WeakReference;
 import java.util.List;
 
 import me.pexcn.android.base.listener.OnCallbackListener;
 import me.pexcn.android.base.mvp.BaseModel;
 import me.pexcn.bandwagonhost.R;
-import me.pexcn.bandwagonhost.data.local.Host;
-import me.pexcn.bandwagonhost.data.local.HostManager;
+import me.pexcn.bandwagonhost.data.local.entity.Host;
+import me.pexcn.bandwagonhost.data.local.dao.HostDao;
 import me.pexcn.simpleutils.Utils;
 import rx.Observable;
 import rx.schedulers.Schedulers;
@@ -38,16 +37,16 @@ import rx.schedulers.Schedulers;
  */
 @SuppressWarnings("WeakerAccess")
 public class MainModel extends BaseModel implements MainContract.Model {
-    private HostManager mHostManager;
+    private HostDao mHostDao;
 
     public MainModel(Context context) {
         super(context);
-        mHostManager = HostManager.getInstance(new WeakReference<>(context).get());
+        mHostDao = new HostDao();
     }
 
     @Override
     public void addHost(@NonNull Host host, OnCallbackListener<String> listener) {
-        mHostManager.add(host);
+        mHostDao.add(host);
         final String string = host.title + " " + Utils.getContext().getResources()
                 .getString(R.string.snackbar_text_add_completed);
         listener.callback(string);
@@ -55,7 +54,7 @@ public class MainModel extends BaseModel implements MainContract.Model {
 
     @Override
     public void updateHost(@NonNull Host host, OnCallbackListener<String> listener) {
-        mHostManager.update(host);
+        mHostDao.update(host);
         final String string = host.title + " " + Utils.getContext().getResources()
                 .getString(R.string.snackbar_text_update_completed);
         listener.callback(string);
@@ -63,7 +62,7 @@ public class MainModel extends BaseModel implements MainContract.Model {
 
     @Override
     public void deleteHost(@NonNull Host host, OnCallbackListener<String> listener) {
-        mHostManager.delete(host.id);
+        mHostDao.delete(host.id);
         final String string = host.title + " " + Utils.getContext().getResources()
                 .getString(R.string.snackbar_text_delete_completed);
         listener.callback(string);
@@ -71,13 +70,13 @@ public class MainModel extends BaseModel implements MainContract.Model {
 
     @Override
     public boolean isEmpty() {
-        return mHostManager.queryAll().isEmpty();
+        return mHostDao.queryAll().isEmpty();
     }
 
     @Override
     public Observable<List<Host>> getAllHosts() {
         return Observable.create((Observable.OnSubscribe<List<Host>>) subscriber -> {
-            subscriber.onNext(mHostManager.queryAll());
+            subscriber.onNext(mHostDao.queryAll());
             subscriber.onCompleted();
         }).subscribeOn(Schedulers.io());
     }

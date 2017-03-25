@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package me.pexcn.bandwagonhost.main.ui;
+package me.pexcn.bandwagonhost.main;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -27,7 +27,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import me.pexcn.bandwagonhost.R;
-import me.pexcn.bandwagonhost.data.local.Host;
+import me.pexcn.bandwagonhost.data.local.entity.Host;
 
 /**
  * Created by pexcn on 2016-07-01.

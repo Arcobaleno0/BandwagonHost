@@ -22,6 +22,13 @@ package me.pexcn.bandwagonhost.app;
  * Created by pexcn on 2017-03-24.
  */
 public interface Constants {
+    // Extras
     String EXTRA_KEY_HOST = "host";
+
+    // Preferences
     String PREF_KEY_IS_NIGHT_MODE = "is_night_mode";
+
+    // Databases
+    String DB_NAME = "bandwagonhost.db";
+    int DB_VERSION = 1;
 }

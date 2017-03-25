@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package me.pexcn.bandwagonhost.main.ui;
+package me.pexcn.bandwagonhost.main;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -35,8 +35,7 @@ import android.view.ViewGroup;
 import me.pexcn.bandwagonhost.BuildConfig;
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.app.Constants;
-import me.pexcn.bandwagonhost.data.local.Host;
-import me.pexcn.bandwagonhost.main.mvp.MainContract;
+import me.pexcn.bandwagonhost.data.local.entity.Host;
 import me.pexcn.simpleutils.common.LogUtils;
 
 /**

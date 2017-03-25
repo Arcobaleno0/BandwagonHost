@@ -61,8 +61,8 @@ dependencies {
 
     // Third-party
     compile 'com.j256.ormlite:ormlite-android:5.0'
-    compile 'com.github.clans:fab:1.6.4'
 
+    // compile 'com.github.clans:fab:1.6.4'
     // compile 'com.google.android.gms:play-services-maps:9.4.0'
     // compile 'com.google.code.gson:gson:2.7'
 }

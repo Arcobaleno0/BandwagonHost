@@ -16,9 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package me.pexcn.bandwagonhost.data.local;
-
-import android.content.Context;
+package me.pexcn.bandwagonhost.data.local.dao;
 
 import com.j256.ormlite.dao.Dao;
 
@@ -26,26 +24,19 @@ import java.sql.SQLException;
 import java.util.List;
 
 import me.pexcn.bandwagonhost.BuildConfig;
+import me.pexcn.bandwagonhost.data.local.DBHelper;
+import me.pexcn.bandwagonhost.data.local.entity.Host;
 import me.pexcn.simpleutils.common.LogUtils;
 
 /**
  * Created by pexcn on 2016-08-09.
  */
-public class HostManager {
+public class HostDao {
     private Dao<Host, Integer> mDao;
-    private static HostManager INSTANCE;
 
-    public static HostManager getInstance(Context context) {
-        if (INSTANCE == null) {
-            INSTANCE = new HostManager(context);
-        }
-        return INSTANCE;
-    }
-
-    private HostManager(Context context) {
-        final HostDatabaseHelper helper = HostDatabaseHelper.getInstance(context);
+    public HostDao() {
         try {
-            mDao = helper.getDao(Host.class);
+            mDao = DBHelper.getHelper().getDao(Host.class);
         } catch (SQLException e) {
             e.printStackTrace();
         }
