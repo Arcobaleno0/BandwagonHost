@@ -30,6 +30,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
@@ -147,6 +148,14 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
         } else {
             emptyView.setVisibility(View.GONE);
         }
+
+        final ViewGroup.LayoutParams params = mRecyclerView.getLayoutParams();
+        if (shown) {
+            params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        } else {
+            params.height = ViewGroup.LayoutParams.MATCH_PARENT;
+        }
+        mRecyclerView.setLayoutParams(params);
     }
 
     @Override

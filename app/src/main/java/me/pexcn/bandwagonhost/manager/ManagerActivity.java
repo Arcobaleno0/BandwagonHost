@@ -39,8 +39,8 @@ public class ManagerActivity extends BaseActivity<ManagerContract.Presenter>
         mHost = getIntent().getParcelableExtra(Constants.EXTRA_KEY_HOST);
 
         mAdapter.addPage("Test", InfoFragment.newInstance());
-        mAdapter.addPage("Test", InfoFragment.newInstance());
-        mAdapter.addPage("Test", InfoFragment.newInstance());
+        mAdapter.addPage("Test2", InfoFragment.newInstance());
+        mAdapter.addPage("Test3", InfoFragment.newInstance());
 
         mViewPager.setOffscreenPageLimit(3);
         mViewPager.setAdapter(mAdapter);
