@@ -12,20 +12,13 @@ import me.pexcn.simpleutils.common.LogUtils;
 /**
  * Created by pexcn on 2017-03-24.
  */
+@SuppressWarnings("WeakerAccess")
 public class ManagerPagerAdapter extends FragmentPagerAdapter implements IPageAdapter<Fragment> {
     private ArrayMap<String, Fragment> mMap;
-    private static ManagerPagerAdapter INSTANCE;
 
-    private ManagerPagerAdapter(FragmentManager fm) {
+    public ManagerPagerAdapter(FragmentManager fm) {
         super(fm);
         mMap = new ArrayMap<>();
-    }
-
-    public static ManagerPagerAdapter getInstance(FragmentManager fm) {
-        if (INSTANCE == null) {
-            INSTANCE = new ManagerPagerAdapter(fm);
-        }
-        return INSTANCE;
     }
 
     @Override

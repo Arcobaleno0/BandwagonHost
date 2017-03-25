@@ -35,7 +35,7 @@ public class ManagerActivity extends BaseActivity<ManagerContract.Presenter>
 
         mTabLayout = (TabLayout) findViewById(R.id.tab_layout);
         mViewPager = (ViewPager) findViewById(R.id.view_pager);
-        mAdapter = ManagerPagerAdapter.getInstance(getSupportFragmentManager());
+        mAdapter = new ManagerPagerAdapter(getSupportFragmentManager());
         mHost = getIntent().getParcelableExtra(Constants.EXTRA_KEY_HOST);
 
         mAdapter.addPage("Test", InfoFragment.newInstance());
