@@ -59,7 +59,7 @@ dependencies {
 
     // Mime
     compile 'me.pexcn:simpleutils:0.0.14'
-    compile 'me.pexcn:android-base:0.0.16'
+    compile 'me.pexcn:android-base:0.1.0'
 
     // compile 'com.github.clans:fab:1.6.4'
     // compile 'com.google.android.gms:play-services-maps:9.4.0'
