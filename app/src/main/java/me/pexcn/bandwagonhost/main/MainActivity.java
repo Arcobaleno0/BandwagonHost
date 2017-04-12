@@ -36,7 +36,7 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.pexcn.android.base.mvp.BaseActivity;
+import me.pexcn.android.base.arch.mvp.BaseActivity;
 import me.pexcn.bandwagonhost.BuildConfig;
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.app.App;

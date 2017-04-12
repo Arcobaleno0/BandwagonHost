@@ -2,7 +2,7 @@ package me.pexcn.bandwagonhost.manager;
 
 import android.content.Context;
 
-import me.pexcn.android.base.mvp.BaseModel;
+import me.pexcn.android.base.arch.mvp.BaseModel;
 
 /**
  * Created by pexcn on 2017-03-24.

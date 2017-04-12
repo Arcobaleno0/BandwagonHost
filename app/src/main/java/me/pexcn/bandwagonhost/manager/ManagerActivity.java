@@ -3,7 +3,7 @@ package me.pexcn.bandwagonhost.manager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 
-import me.pexcn.android.base.mvp.BaseActivity;
+import me.pexcn.android.base.arch.mvp.BaseActivity;
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.app.Constants;
 import me.pexcn.bandwagonhost.data.local.entity.Host;

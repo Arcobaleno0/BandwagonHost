@@ -20,7 +20,7 @@ package me.pexcn.bandwagonhost.main;
 
 import android.support.annotation.NonNull;
 
-import me.pexcn.android.base.mvp.BasePresenter;
+import me.pexcn.android.base.arch.mvp.BasePresenter;
 import me.pexcn.bandwagonhost.data.local.entity.Host;
 import rx.android.schedulers.AndroidSchedulers;
 

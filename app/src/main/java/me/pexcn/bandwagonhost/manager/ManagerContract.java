@@ -18,7 +18,7 @@
 
 package me.pexcn.bandwagonhost.manager;
 
-import me.pexcn.android.base.mvp.BaseContract;
+import me.pexcn.android.base.arch.mvp.BaseContract;
 
 /**
  * Created by Administrator on 2017-02-18 0018.

@@ -1,6 +1,6 @@
 package me.pexcn.bandwagonhost.info;
 
-import me.pexcn.android.base.mvp.BaseContract;
+import me.pexcn.android.base.arch.mvp.BaseContract;
 
 /**
  * Created by pexcn on 2017-03-24.

@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
-import me.pexcn.android.base.mvp.BaseFragment;
+import me.pexcn.android.base.arch.mvp.BaseFragment;
 import me.pexcn.bandwagonhost.R;
 
 /**

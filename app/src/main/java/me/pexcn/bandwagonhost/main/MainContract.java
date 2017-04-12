@@ -24,8 +24,8 @@ import android.support.annotation.Nullable;
 
 import java.util.List;
 
+import me.pexcn.android.base.arch.mvp.BaseContract;
 import me.pexcn.android.base.listener.OnCallbackListener;
-import me.pexcn.android.base.mvp.BaseContract;
 import me.pexcn.bandwagonhost.data.local.entity.Host;
 import rx.Observable;
 
