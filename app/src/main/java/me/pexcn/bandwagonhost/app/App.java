@@ -24,7 +24,6 @@ import android.support.v7.app.AppCompatDelegate;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
-import me.pexcn.bandwagonhost.BuildConfig;
 import me.pexcn.simpleutils.Utils;
 import me.pexcn.simpleutils.common.PreferencesUtils;
 
@@ -37,11 +36,6 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
-        if (BuildConfig.DEBUG) {
-            sRefWatcher = LeakCanary.install(this);
-        }
-
         Utils.init(this);
 
         if (getNightMode()) {
@@ -49,6 +43,8 @@ public class App extends Application {
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
+
+        sRefWatcher = LeakCanary.install(this);
     }
 
     public static RefWatcher getRefWatcher() {

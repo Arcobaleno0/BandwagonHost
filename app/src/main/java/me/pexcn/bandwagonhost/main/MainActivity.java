@@ -143,16 +143,12 @@ public class MainActivity extends BaseActivity<MainContract.Presenter>
     @Override
     public void showEmptyView(boolean shown) {
         final LinearLayout emptyView = (LinearLayout) findViewById(R.id.view_empty);
-        if (shown) {
-            emptyView.setVisibility(View.VISIBLE);
-        } else {
-            emptyView.setVisibility(View.GONE);
-        }
-
         final ViewGroup.LayoutParams params = mRecyclerView.getLayoutParams();
         if (shown) {
+            emptyView.setVisibility(View.VISIBLE);
             params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
         } else {
+            emptyView.setVisibility(View.GONE);
             params.height = ViewGroup.LayoutParams.MATCH_PARENT;
         }
         mRecyclerView.setLayoutParams(params);

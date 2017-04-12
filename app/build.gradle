@@ -37,7 +37,6 @@ android {
 }
 
 dependencies {
-    // compile fileTree(include: ['*.jar'], dir: 'libs')
     // Google
     compile 'com.android.support:appcompat-v7:25.3.0'
     compile 'com.android.support:design:25.3.0'
@@ -55,14 +54,14 @@ dependencies {
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
 
+    // Third-party
+    compile 'com.j256.ormlite:ormlite-android:5.0'
+
     // Mime
     compile 'me.pexcn:simpleutils:0.0.14'
     compile 'me.pexcn:android-base:0.0.16'
 
-    // Third-party
-    compile 'com.j256.ormlite:ormlite-android:5.0'
-
     // compile 'com.github.clans:fab:1.6.4'
     // compile 'com.google.android.gms:play-services-maps:9.4.0'
-    // compile 'com.google.code.gson:gson:2.7'
+    // compile 'com.google.code.gson:gson:2.8.0'
 }
