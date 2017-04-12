@@ -52,6 +52,8 @@ public class MainContract implements BaseContract {
         void showFab();
 
         void hideFab();
+
+        void setNightMode(boolean isNight);
     }
 
     public interface Presenter extends BaseContract.Presenter<MainContract.View, MainContract.Model> {
