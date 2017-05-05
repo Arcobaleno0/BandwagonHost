@@ -37,13 +37,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.pexcn.android.base.arch.mvp.BaseActivity;
+import me.pexcn.android.utils.io.LogUtils;
 import me.pexcn.bandwagonhost.BuildConfig;
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.app.App;
 import me.pexcn.bandwagonhost.app.Constants;
 import me.pexcn.bandwagonhost.data.local.entity.Host;
 import me.pexcn.bandwagonhost.manager.ManagerActivity;
-import me.pexcn.simpleutils.common.LogUtils;
 
 /**
  * Created by pexcn on 2016-06-29.

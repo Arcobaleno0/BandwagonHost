@@ -32,11 +32,11 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import me.pexcn.android.utils.io.LogUtils;
 import me.pexcn.bandwagonhost.BuildConfig;
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.app.Constants;
 import me.pexcn.bandwagonhost.data.local.entity.Host;
-import me.pexcn.simpleutils.common.LogUtils;
 
 /**
  * Created by pexcn on 2017-02-19.

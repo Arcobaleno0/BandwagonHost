@@ -18,7 +18,7 @@
 
 package me.pexcn.bandwagonhost.utils;
 
-import me.pexcn.bandwagonhost.data.remote.Api;
+import me.pexcn.bandwagonhost.data.remote.entity.Api;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -27,16 +27,20 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by pexcn on 2016-07-24.
  */
 public class RetrofitHelper {
-    private static Retrofit sInstance;
+    private volatile static Retrofit INSTANCE;
 
     public static <T> T createService(Class<T> clazz) {
-        if (sInstance == null) {
-            sInstance = new Retrofit.Builder()
-                    .baseUrl(Api.BASE_URL)
-                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
+        if (INSTANCE == null) {
+            synchronized (Retrofit.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = new Retrofit.Builder()
+                            .baseUrl(Api.BASE_URL)
+                            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
+                }
+            }
         }
-        return sInstance.create(clazz);
+        return INSTANCE.create(clazz);
     }
 }

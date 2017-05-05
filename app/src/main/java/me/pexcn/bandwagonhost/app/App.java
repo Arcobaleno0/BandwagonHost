@@ -24,8 +24,8 @@ import android.support.v7.app.AppCompatDelegate;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
-import me.pexcn.simpleutils.Utils;
-import me.pexcn.simpleutils.common.PreferencesUtils;
+import me.pexcn.android.utils.Utils;
+import me.pexcn.android.utils.io.PreferencesUtils;
 
 /**
  * Created by pexcn on 2016-06-29.

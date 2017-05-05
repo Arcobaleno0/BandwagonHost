@@ -25,10 +25,10 @@ import java.util.List;
 
 import me.pexcn.android.base.arch.mvp.BaseModel;
 import me.pexcn.android.base.listener.OnCallbackListener;
+import me.pexcn.android.utils.Utils;
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.data.local.dao.HostDao;
 import me.pexcn.bandwagonhost.data.local.entity.Host;
-import me.pexcn.simpleutils.Utils;
 import rx.Observable;
 import rx.schedulers.Schedulers;
 

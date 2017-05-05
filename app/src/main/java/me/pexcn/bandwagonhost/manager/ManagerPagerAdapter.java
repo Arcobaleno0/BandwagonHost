@@ -6,14 +6,13 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.util.ArrayMap;
 import android.view.ViewGroup;
 
-import me.pexcn.bandwagonhost.base.IPageAdapter;
-import me.pexcn.simpleutils.common.LogUtils;
+import me.pexcn.android.utils.io.LogUtils;
 
 /**
  * Created by pexcn on 2017-03-24.
  */
 @SuppressWarnings("WeakerAccess")
-public class ManagerPagerAdapter extends FragmentPagerAdapter implements IPageAdapter<Fragment> {
+public class ManagerPagerAdapter extends FragmentPagerAdapter {
     private ArrayMap<String, Fragment> mMap;
 
     public ManagerPagerAdapter(FragmentManager fm) {
@@ -36,12 +35,10 @@ public class ManagerPagerAdapter extends FragmentPagerAdapter implements IPageAd
         return mMap == null ? 0 : mMap.size();
     }
 
-    @Override
     public void addPage(String title, Fragment page) {
         mMap.put(title, page);
     }
 
-    @Override
     public void removePage(String title) {
         mMap.remove(title);
     }
