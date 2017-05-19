@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#0077D9</color>
-    <color name="colorPrimaryDark">#005FAE</color>
+    <color name="colorPrimary">#795548</color>
+    <color name="colorPrimaryDark">#5D4037</color>
     <color name="colorAccent">#0F9D58</color>
 
     <!--<color name="fabMenuNormal">@color/colorAccent</color>-->
