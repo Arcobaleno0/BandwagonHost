@@ -1,4 +1,4 @@
-package me.pexcn.bandwagonhost.manager;
+package me.pexcn.bandwagonhost.manager.mvp;
 
 import android.content.Context;
 

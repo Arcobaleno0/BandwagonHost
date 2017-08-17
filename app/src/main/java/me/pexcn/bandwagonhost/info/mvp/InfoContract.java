@@ -1,4 +1,4 @@
-package me.pexcn.bandwagonhost.info;
+package me.pexcn.bandwagonhost.info.mvp;
 
 import me.pexcn.android.base.arch.mvp.BaseContract;
 

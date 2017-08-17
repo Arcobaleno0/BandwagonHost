@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package me.pexcn.bandwagonhost.main;
+package me.pexcn.bandwagonhost.main.mvp;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -43,7 +43,9 @@ import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.app.App;
 import me.pexcn.bandwagonhost.app.Constants;
 import me.pexcn.bandwagonhost.data.local.entity.Host;
-import me.pexcn.bandwagonhost.manager.ManagerActivity;
+import me.pexcn.bandwagonhost.main.dialog.HostDialogFragment;
+import me.pexcn.bandwagonhost.main.adapter.HostListAdapter;
+import me.pexcn.bandwagonhost.manager.mvp.ManagerActivity;
 
 /**
  * Created by pexcn on 2016-06-29.

@@ -16,38 +16,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package me.pexcn.bandwagonhost.main;
+package me.pexcn.bandwagonhost.manager.mvp;
 
-import android.support.design.widget.TextInputLayout;
-import android.text.Editable;
-import android.text.TextWatcher;
+import me.pexcn.android.base.arch.mvp.BaseContract;
 
 /**
- * Created by pexcn on 2017-03-04.
+ * Created by Administrator on 2017-02-18 0018.
  */
 @SuppressWarnings("WeakerAccess")
-public class HostDialogTextWatcher implements TextWatcher {
-    private TextInputLayout mLayout;
-
-    public HostDialogTextWatcher(TextInputLayout layout) {
-        this.mLayout = layout;
-    }
-
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+public class ManagerContract implements BaseContract {
+    interface View extends BaseContract.View<ManagerContract.Presenter> {
 
     }
 
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
+    interface Presenter extends BaseContract.Presenter<ManagerContract.View, ManagerContract.Model> {
 
     }
 
-    @Override
-    public void afterTextChanged(Editable s) {
-        if (mLayout.getError() != null) {
-            mLayout.setError(null);
-            // mLayout.setErrorEnabled(false);
-        }
+    interface Model extends BaseContract.Model {
+
     }
 }
