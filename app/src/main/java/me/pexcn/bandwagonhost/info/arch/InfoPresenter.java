@@ -1,4 +1,4 @@
-package me.pexcn.bandwagonhost.info.mvp;
+package me.pexcn.bandwagonhost.info.arch;
 
 import me.pexcn.android.base.arch.mvp.BasePresenter;
 

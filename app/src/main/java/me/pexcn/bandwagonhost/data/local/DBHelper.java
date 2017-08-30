@@ -31,7 +31,7 @@ import java.sql.SQLException;
 
 import me.pexcn.android.utils.Utils;
 import me.pexcn.bandwagonhost.app.Constants;
-import me.pexcn.bandwagonhost.data.local.entity.Host;
+import me.pexcn.bandwagonhost.data.local.bean.Host;
 
 /**
  * Created by pexcn on 2016-06-30.

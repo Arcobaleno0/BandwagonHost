@@ -18,7 +18,7 @@
 
 package me.pexcn.bandwagonhost.utils;
 
-import me.pexcn.bandwagonhost.data.remote.entity.Api;
+import me.pexcn.bandwagonhost.data.remote.bean.Api;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;

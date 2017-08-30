@@ -36,8 +36,8 @@ import me.pexcn.android.utils.io.LogUtils;
 import me.pexcn.bandwagonhost.BuildConfig;
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.app.Constants;
-import me.pexcn.bandwagonhost.data.local.entity.Host;
-import me.pexcn.bandwagonhost.main.mvp.MainContract;
+import me.pexcn.bandwagonhost.data.local.bean.Host;
+import me.pexcn.bandwagonhost.main.arch.MainContract;
 
 /**
  * Created by pexcn on 2017-02-19.

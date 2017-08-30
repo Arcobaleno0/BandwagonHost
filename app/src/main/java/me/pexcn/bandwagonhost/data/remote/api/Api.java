@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package me.pexcn.bandwagonhost.data.remote.entity;
+package me.pexcn.bandwagonhost.data.remote.bean;
 
 /**
  * Created by pexcn on 2016-06-29.

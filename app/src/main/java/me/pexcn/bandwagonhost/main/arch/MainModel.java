@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package me.pexcn.bandwagonhost.main.mvp;
+package me.pexcn.bandwagonhost.main.arch;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -28,7 +28,7 @@ import me.pexcn.android.base.listener.OnCallbackListener;
 import me.pexcn.android.utils.Utils;
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.data.local.dao.HostDao;
-import me.pexcn.bandwagonhost.data.local.entity.Host;
+import me.pexcn.bandwagonhost.data.local.bean.Host;
 import rx.Observable;
 import rx.schedulers.Schedulers;
 

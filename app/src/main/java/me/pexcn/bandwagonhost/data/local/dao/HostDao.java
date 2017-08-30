@@ -26,7 +26,7 @@ import java.util.List;
 import me.pexcn.android.utils.io.LogUtils;
 import me.pexcn.bandwagonhost.BuildConfig;
 import me.pexcn.bandwagonhost.data.local.DBHelper;
-import me.pexcn.bandwagonhost.data.local.entity.Host;
+import me.pexcn.bandwagonhost.data.local.bean.Host;
 
 /**
  * Created by pexcn on 2016-08-09.

@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package me.pexcn.bandwagonhost.data.local.entity;
+package me.pexcn.bandwagonhost.data.local.bean;
 
 import android.os.Parcel;
 import android.os.Parcelable;

@@ -1,4 +1,4 @@
-package me.pexcn.bandwagonhost.manager.mvp;
+package me.pexcn.bandwagonhost.manager.arch;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -6,8 +6,8 @@ import android.support.v4.view.ViewPager;
 import me.pexcn.android.base.arch.mvp.BaseActivity;
 import me.pexcn.bandwagonhost.R;
 import me.pexcn.bandwagonhost.app.Constants;
-import me.pexcn.bandwagonhost.data.local.entity.Host;
-import me.pexcn.bandwagonhost.info.mvp.InfoFragment;
+import me.pexcn.bandwagonhost.data.local.bean.Host;
+import me.pexcn.bandwagonhost.info.arch.InfoFragment;
 import me.pexcn.bandwagonhost.manager.adapter.ManagerPagerAdapter;
 
 /**

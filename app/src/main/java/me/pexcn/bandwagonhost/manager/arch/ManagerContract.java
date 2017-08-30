@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package me.pexcn.bandwagonhost.manager.mvp;
+package me.pexcn.bandwagonhost.manager.arch;
 
 import me.pexcn.android.base.arch.mvp.BaseContract;
 
